@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17EAD30CCDF7206890E29DBC /* Pods_ReachStudyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF0BB6CE715220712796491F /* Pods_ReachStudyTests.framework */; };
+		4D1E5F168356FB6168453879 /* Pods_ReachStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF5F9CF427A5333A85044E9 /* Pods_ReachStudy.framework */; };
+		589567B9A26CF64F37F952D7 /* Pods_ReachStudyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */; };
+		6403BB7521B7A6B100B8A21F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7421B7A6B100B8A21F /* Reachability.swift */; };
+		6403BB7721B7A6C600B8A21F /* GazeReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7621B7A6C600B8A21F /* GazeReachability.swift */; };
+		6403BB7921B7A6D600B8A21F /* GazeTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7821B7A6D600B8A21F /* GazeTouch.swift */; };
+		6403BB7B21B7A6FC00B8A21F /* ComboNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7A21B7A6FC00B8A21F /* ComboNormal.swift */; };
+		6403BB7D21B7A71000B8A21F /* ComboGaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7C21B7A71000B8A21F /* ComboGaze.swift */; };
+		6403BB7F21B7ABF800B8A21F /* TrainingTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */; };
+		6403BB8121B7F37700B8A21F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6403BB8021B7F37700B8A21F /* Utility.swift */; };
+		641D913421B98F6D001B3E65 /* BaselineTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913321B98F6D001B3E65 /* BaselineTask.swift */; };
+		641D913621B98F87001B3E65 /* ReachTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913521B98F87001B3E65 /* ReachTask.swift */; };
+		641D913821B98F98001B3E65 /* GazeReachTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913721B98F98001B3E65 /* GazeReachTask.swift */; };
+		641D913A21B98FAB001B3E65 /* GazeTouchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913921B98FAB001B3E65 /* GazeTouchTask.swift */; };
+		641D913C21B98FBF001B3E65 /* ComboNormalTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913B21B98FBF001B3E65 /* ComboNormalTask.swift */; };
+		641D913E21B98FD0001B3E65 /* ComboGazeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913D21B98FD0001B3E65 /* ComboGazeTask.swift */; };
+		64293ACE21B6B63D00568C92 /* DescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293ACD21B6B63D00568C92 /* DescriptionController.swift */; };
+		64293AD021B6C3F500568C92 /* GridTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293ACF21B6C3F500568C92 /* GridTargets.swift */; };
+		64293AD221B6C3FA00568C92 /* GazeBasedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293AD121B6C3F900568C92 /* GazeBasedController.swift */; };
+		64293AD421B6CC8300568C92 /* Baseline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293AD321B6CC8300568C92 /* Baseline.swift */; };
 		643D5FD321B68144004520B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FD221B68144004520B0 /* AppDelegate.swift */; };
 		643D5FD521B68145004520B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FD421B68144004520B0 /* ViewController.swift */; };
 		643D5FD821B68145004520B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643D5FD621B68145004520B0 /* Main.storyboard */; };
@@ -14,6 +34,10 @@
 		643D5FDD21B68145004520B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 643D5FDB21B68145004520B0 /* LaunchScreen.storyboard */; };
 		643D5FE821B68146004520B0 /* ReachStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FE721B68146004520B0 /* ReachStudyTests.swift */; };
 		643D5FF321B68146004520B0 /* ReachStudyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FF221B68146004520B0 /* ReachStudyUITests.swift */; };
+		643D600121B68160004520B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 643D600021B68160004520B0 /* GoogleService-Info.plist */; };
+		643D600321B68575004520B0 /* Dataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600221B68575004520B0 /* Dataset.swift */; };
+		643D600521B6857B004520B0 /* EyeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600421B6857B004520B0 /* EyeTracker.swift */; };
+		643D600721B68584004520B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600621B68584004520B0 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +58,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03A76EAF3F027A3FB96D5B74 /* Pods-ReachStudyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyUITests/Pods-ReachStudyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		27B648EF5A2C638AFEE633E6 /* Pods-ReachStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudy/Pods-ReachStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		6403BB7421B7A6B100B8A21F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6403BB7621B7A6C600B8A21F /* GazeReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeReachability.swift; sourceTree = "<group>"; };
+		6403BB7821B7A6D600B8A21F /* GazeTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeTouch.swift; sourceTree = "<group>"; };
+		6403BB7A21B7A6FC00B8A21F /* ComboNormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboNormal.swift; sourceTree = "<group>"; };
+		6403BB7C21B7A71000B8A21F /* ComboGaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboGaze.swift; sourceTree = "<group>"; };
+		6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTargets.swift; sourceTree = "<group>"; };
+		6403BB8021B7F37700B8A21F /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		641D913321B98F6D001B3E65 /* BaselineTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaselineTask.swift; sourceTree = "<group>"; };
+		641D913521B98F87001B3E65 /* ReachTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachTask.swift; sourceTree = "<group>"; };
+		641D913721B98F98001B3E65 /* GazeReachTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeReachTask.swift; sourceTree = "<group>"; };
+		641D913921B98FAB001B3E65 /* GazeTouchTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeTouchTask.swift; sourceTree = "<group>"; };
+		641D913B21B98FBF001B3E65 /* ComboNormalTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboNormalTask.swift; sourceTree = "<group>"; };
+		641D913D21B98FD0001B3E65 /* ComboGazeTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboGazeTask.swift; sourceTree = "<group>"; };
+		64293ACD21B6B63D00568C92 /* DescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionController.swift; sourceTree = "<group>"; };
+		64293ACF21B6C3F500568C92 /* GridTargets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTargets.swift; sourceTree = "<group>"; };
+		64293AD121B6C3F900568C92 /* GazeBasedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeBasedController.swift; sourceTree = "<group>"; };
+		64293AD321B6CC8300568C92 /* Baseline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseline.swift; sourceTree = "<group>"; };
 		643D5FCF21B68144004520B0 /* ReachStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReachStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		643D5FD221B68144004520B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		643D5FD421B68144004520B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +90,17 @@
 		643D5FEE21B68146004520B0 /* ReachStudyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReachStudyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		643D5FF221B68146004520B0 /* ReachStudyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachStudyUITests.swift; sourceTree = "<group>"; };
 		643D5FF421B68146004520B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		643D600021B68160004520B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		643D600221B68575004520B0 /* Dataset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dataset.swift; sourceTree = "<group>"; };
+		643D600421B6857B004520B0 /* EyeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeTracker.swift; sourceTree = "<group>"; };
+		643D600621B68584004520B0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests.release.xcconfig"; sourceTree = "<group>"; };
+		AF0BB6CE715220712796491F /* Pods_ReachStudyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0A1A191F28F6FBDABA7DAE9 /* Pods-ReachStudyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyUITests/Pods-ReachStudyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E6CFAA97F0AC8F1045C41DF4 /* Pods-ReachStudyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FAF5F9CF427A5333A85044E9 /* Pods_ReachStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC9B07805B47062CB26C39A /* Pods-ReachStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudy/Pods-ReachStudy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1E5F168356FB6168453879 /* Pods_ReachStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EAD30CCDF7206890E29DBC /* Pods_ReachStudyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +124,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				589567B9A26CF64F37F952D7 /* Pods_ReachStudyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B0E267DD8B6E7E5CFEC0F68 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27B648EF5A2C638AFEE633E6 /* Pods-ReachStudy.debug.xcconfig */,
+				FFC9B07805B47062CB26C39A /* Pods-ReachStudy.release.xcconfig */,
+				E6CFAA97F0AC8F1045C41DF4 /* Pods-ReachStudyTests.debug.xcconfig */,
+				7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */,
+				03A76EAF3F027A3FB96D5B74 /* Pods-ReachStudyUITests.debug.xcconfig */,
+				C0A1A191F28F6FBDABA7DAE9 /* Pods-ReachStudyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		641D913121B91E6A001B3E65 /* TrainingTasks */ = {
+			isa = PBXGroup;
+			children = (
+				64293AD321B6CC8300568C92 /* Baseline.swift */,
+				6403BB7421B7A6B100B8A21F /* Reachability.swift */,
+				6403BB7621B7A6C600B8A21F /* GazeReachability.swift */,
+				6403BB7821B7A6D600B8A21F /* GazeTouch.swift */,
+				6403BB7A21B7A6FC00B8A21F /* ComboNormal.swift */,
+				6403BB7C21B7A71000B8A21F /* ComboGaze.swift */,
+			);
+			path = TrainingTasks;
+			sourceTree = "<group>";
+		};
+		641D913221B986A1001B3E65 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				641D913321B98F6D001B3E65 /* BaselineTask.swift */,
+				641D913521B98F87001B3E65 /* ReachTask.swift */,
+				641D913721B98F98001B3E65 /* GazeReachTask.swift */,
+				641D913921B98FAB001B3E65 /* GazeTouchTask.swift */,
+				641D913B21B98FBF001B3E65 /* ComboNormalTask.swift */,
+				641D913D21B98FD0001B3E65 /* ComboGazeTask.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
 		643D5FC621B68144004520B0 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +177,8 @@
 				643D5FE621B68146004520B0 /* ReachStudyTests */,
 				643D5FF121B68146004520B0 /* ReachStudyUITests */,
 				643D5FD021B68144004520B0 /* Products */,
+				0B0E267DD8B6E7E5CFEC0F68 /* Pods */,
+				853E6E86CF5433ED1B4506AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +195,22 @@
 		643D5FD121B68144004520B0 /* ReachStudy */ = {
 			isa = PBXGroup;
 			children = (
+				641D913221B986A1001B3E65 /* Tasks */,
+				641D913121B91E6A001B3E65 /* TrainingTasks */,
 				643D5FD221B68144004520B0 /* AppDelegate.swift */,
 				643D5FD421B68144004520B0 /* ViewController.swift */,
+				64293ACD21B6B63D00568C92 /* DescriptionController.swift */,
+				6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */,
+				64293ACF21B6C3F500568C92 /* GridTargets.swift */,
+				64293AD121B6C3F900568C92 /* GazeBasedController.swift */,
+				643D600421B6857B004520B0 /* EyeTracker.swift */,
+				643D600621B68584004520B0 /* Extensions.swift */,
+				643D600221B68575004520B0 /* Dataset.swift */,
+				6403BB8021B7F37700B8A21F /* Utility.swift */,
 				643D5FD621B68145004520B0 /* Main.storyboard */,
 				643D5FD921B68145004520B0 /* Assets.xcassets */,
 				643D5FDB21B68145004520B0 /* LaunchScreen.storyboard */,
+				643D600021B68160004520B0 /* GoogleService-Info.plist */,
 				643D5FDE21B68145004520B0 /* Info.plist */,
 			);
 			path = ReachStudy;
@@ -125,6 +234,16 @@
 			path = ReachStudyUITests;
 			sourceTree = "<group>";
 		};
+		853E6E86CF5433ED1B4506AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAF5F9CF427A5333A85044E9 /* Pods_ReachStudy.framework */,
+				AF0BB6CE715220712796491F /* Pods_ReachStudyTests.framework */,
+				66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +251,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 643D5FF721B68146004520B0 /* Build configuration list for PBXNativeTarget "ReachStudy" */;
 			buildPhases = (
+				73903875027962D273945ADD /* [CP] Check Pods Manifest.lock */,
 				643D5FCB21B68144004520B0 /* Sources */,
 				643D5FCC21B68144004520B0 /* Frameworks */,
 				643D5FCD21B68144004520B0 /* Resources */,
+				D99E3E4DF92A215CB04B5320 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,9 +270,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 643D5FFA21B68146004520B0 /* Build configuration list for PBXNativeTarget "ReachStudyTests" */;
 			buildPhases = (
+				C528F38626F6D92B8E08E94D /* [CP] Check Pods Manifest.lock */,
 				643D5FDF21B68146004520B0 /* Sources */,
 				643D5FE021B68146004520B0 /* Frameworks */,
 				643D5FE121B68146004520B0 /* Resources */,
+				A1600442EDE2FFE85BCB91A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +290,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 643D5FFD21B68146004520B0 /* Build configuration list for PBXNativeTarget "ReachStudyUITests" */;
 			buildPhases = (
+				487D495F5EF34C21399B8667 /* [CP] Check Pods Manifest.lock */,
 				643D5FEA21B68146004520B0 /* Sources */,
 				643D5FEB21B68146004520B0 /* Frameworks */,
 				643D5FEC21B68146004520B0 /* Resources */,
@@ -230,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643D5FDD21B68145004520B0 /* LaunchScreen.storyboard in Resources */,
+				643D600121B68160004520B0 /* GoogleService-Info.plist in Resources */,
 				643D5FDA21B68145004520B0 /* Assets.xcassets in Resources */,
 				643D5FD821B68145004520B0 /* Main.storyboard in Resources */,
 			);
@@ -251,12 +376,157 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		487D495F5EF34C21399B8667 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReachStudyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73903875027962D273945ADD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReachStudy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1600442EDE2FFE85BCB91A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C528F38626F6D92B8E08E94D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReachStudyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D99E3E4DF92A215CB04B5320 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ReachStudy/Pods-ReachStudy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReachStudy/Pods-ReachStudy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		643D5FCB21B68144004520B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6403BB7921B7A6D600B8A21F /* GazeTouch.swift in Sources */,
+				64293ACE21B6B63D00568C92 /* DescriptionController.swift in Sources */,
+				641D913821B98F98001B3E65 /* GazeReachTask.swift in Sources */,
+				641D913A21B98FAB001B3E65 /* GazeTouchTask.swift in Sources */,
+				64293AD421B6CC8300568C92 /* Baseline.swift in Sources */,
+				64293AD021B6C3F500568C92 /* GridTargets.swift in Sources */,
+				643D600721B68584004520B0 /* Extensions.swift in Sources */,
+				641D913421B98F6D001B3E65 /* BaselineTask.swift in Sources */,
+				641D913E21B98FD0001B3E65 /* ComboGazeTask.swift in Sources */,
+				643D600321B68575004520B0 /* Dataset.swift in Sources */,
+				641D913C21B98FBF001B3E65 /* ComboNormalTask.swift in Sources */,
 				643D5FD521B68145004520B0 /* ViewController.swift in Sources */,
+				643D600521B6857B004520B0 /* EyeTracker.swift in Sources */,
+				6403BB7721B7A6C600B8A21F /* GazeReachability.swift in Sources */,
+				64293AD221B6C3FA00568C92 /* GazeBasedController.swift in Sources */,
+				6403BB7521B7A6B100B8A21F /* Reachability.swift in Sources */,
+				6403BB7D21B7A71000B8A21F /* ComboGaze.swift in Sources */,
+				6403BB8121B7F37700B8A21F /* Utility.swift in Sources */,
+				641D913621B98F87001B3E65 /* ReachTask.swift in Sources */,
+				6403BB7F21B7ABF800B8A21F /* TrainingTargets.swift in Sources */,
+				6403BB7B21B7A6FC00B8A21F /* ComboNormal.swift in Sources */,
 				643D5FD321B68144004520B0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,9 +700,11 @@
 		};
 		643D5FF821B68146004520B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27B648EF5A2C638AFEE633E6 /* Pods-ReachStudy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T4RSVTP5V3;
 				INFOPLIST_FILE = ReachStudy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,9 +719,11 @@
 		};
 		643D5FF921B68146004520B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFC9B07805B47062CB26C39A /* Pods-ReachStudy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T4RSVTP5V3;
 				INFOPLIST_FILE = ReachStudy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,6 +738,7 @@
 		};
 		643D5FFB21B68146004520B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6CFAA97F0AC8F1045C41DF4 /* Pods-ReachStudyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +759,7 @@
 		};
 		643D5FFC21B68146004520B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +780,7 @@
 		};
 		643D5FFE21B68146004520B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03A76EAF3F027A3FB96D5B74 /* Pods-ReachStudyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +800,7 @@
 		};
 		643D5FFF21B68146004520B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0A1A191F28F6FBDABA7DAE9 /* Pods-ReachStudyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

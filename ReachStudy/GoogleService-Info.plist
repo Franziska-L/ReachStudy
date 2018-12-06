@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>934098919695-nut2l458bfrf4rgbrog9hbh45busu6mo.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.934098919695-nut2l458bfrf4rgbrog9hbh45busu6mo</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5BgtuW925WCCChyAhAg907p5Dp4zJo8s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>934098919695</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>id.ReachStudy</string>
+	<key>PROJECT_ID</key>
+	<string>reachstudy-dd8ac</string>
+	<key>STORAGE_BUCKET</key>
+	<string>reachstudy-dd8ac.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:934098919695:ios:f82a865bdd2583af</string>
+	<key>DATABASE_URL</key>
+	<string>https://reachstudy-dd8ac.firebaseio.com</string>
+</dict>
+</plist>

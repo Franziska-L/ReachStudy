@@ -1,0 +1,6 @@
+framework module Pods_ReachStudy {
+  umbrella header "Pods-ReachStudy-umbrella.h"
+
+  export *
+  module * { export * }
+}
