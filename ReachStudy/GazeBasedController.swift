@@ -23,20 +23,22 @@ class GazeBasedController: TrainingTargets, TrackerDelegate {
         return self.view 
     }
     
-    func checkPosition(position: CGPoint) {
-        
+    func checkPosition(position: CGPoint, target: UIButton) {
         /*if counter < 9 {
-            let offset: CGFloat = 10.0
-            let minX = targetPositions[counter].x - offset
-            let minY = targetPositions[counter].y - offset
-            let maxX = targetPositions[counter].x + targetSize.width + offset
-            let maxY = targetPositions[counter].y + targetSize.height + offset
-            
-            if position.x > minX && position.x < maxX && position.y > minY && position.y < maxY {
-                isTargetActive = true
-            } else {
-                isTargetActive = false
-            }
-        }*/
+         let offset: CGFloat = 10.0
+         let minX = targetPositions[counter].x - offset
+         let minY = targetPositions[counter].y - offset
+         let maxX = targetPositions[counter].x + targetSize.width + offset
+         let maxY = targetPositions[counter].y + targetSize.height + offset
+         
+         if position.x > minX && position.x < maxX && position.y > minY && position.y < maxY {
+         isTargetActive = true
+         } else {
+         isTargetActive = false
+         }
+         }*/
     }
+        
+    
+    
 }

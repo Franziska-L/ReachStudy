@@ -114,7 +114,7 @@ class TrainingTargets: UIViewController {
         }
     }*/
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startTask" {
             if let vc = segue.destination as? GridTargets {
                 vc.condition = condition
@@ -122,7 +122,7 @@ class TrainingTargets: UIViewController {
                 vc.counter = counter
             }
         }
-    }
+    }*/
 
     
 }

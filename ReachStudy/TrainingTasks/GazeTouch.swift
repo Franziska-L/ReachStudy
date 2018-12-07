@@ -75,6 +75,24 @@ class GazeTouch: GazeBasedController {
         
         let position = cursor.frame.origin
         
+        checkPosition(position: position, target: trainingTargets[frames])
+        
        
+    }
+    
+    override func checkPosition(position position: CGPoint, target: UIButton) {
+        let frame = target.frame.origin
+        
+        let offset: CGFloat = 10.0
+        let minX = frame.x - offset
+        let minY = frame.y - offset
+        let maxX = frame.x + target.frame.width + offset
+        let maxY = frame.y + target.frame.height + offset
+        
+        if position.x > minX && position.x < maxX && position.y > minY && position.y < maxY {
+            //target active
+        } else {
+            //target not active
+        }
     }
 }

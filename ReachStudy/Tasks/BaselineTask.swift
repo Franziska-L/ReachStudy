@@ -72,16 +72,7 @@ class BaselineTask: GridTargets {
             self.frames += 1
         }
     }
-    
-    override func finishTask() {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DescriptionController") as? DescriptionController {
-            vc.data = data
-            vc.counter = condition! + 1
-            vc.counter = counter
-            
-            present(vc, animated: true, completion: nil)
-        }
-    }
+   
     
     
     /*func activateButtons(_ targets: [UIButton], _ randomNumbers: [Int], _ finishButton: UIButton, _ data: Dataset, _ condition: Int, _ frames: Int, _ count: Int) -> Int {

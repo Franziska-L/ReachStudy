@@ -52,8 +52,6 @@ class GridTargets: UIViewController {
         }
         //timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateScreen), userInfo: nil, repeats: true)
         
-        print(condition!)
-         
         let x1: CGFloat = 70
         let x2: CGFloat = 250
         let y1: CGFloat = 100
@@ -90,12 +88,6 @@ class GridTargets: UIViewController {
     @objc func activateButton(_ sender: UIButton) {
         switch condition {
         case 1:
-            //Baseline
-            //print(sender.tag)
-            //if sender.tag == randomNumbers[frames] {
-             //   let baseline = Baseline()
-                //frames = baseline.activateButtons(gridTargets, randomNumbers, finishButton,  data, condition!, frames, 7)
-            //}
             break
         case 2:
             //Reachability
@@ -144,23 +136,19 @@ class GridTargets: UIViewController {
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
         ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
     }
+
     
-    func resetTargets() {
-        totalTime = 0
-        isTargetActive = false
-        counter = 0
-    }
-    
-    @objc func finishTask() {}
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "startNextTraining" {
-            if let vc = segue.destination as? DescriptionController {
+    @objc func finishTask() {
+        if counter < 6 {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DescriptionController") as? DescriptionController {
                 vc.data = data
                 vc.counter = counter + 1
+                
+                present(vc, animated: true, completion: nil)
+            } else if counter == 6 {
+                print("Alert hier fertig!")
             }
         }
     }
-
     
 }
