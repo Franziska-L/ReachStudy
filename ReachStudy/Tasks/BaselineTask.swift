@@ -44,26 +44,28 @@ class BaselineTask: GridTargets {
         let currentFrames = frames
         
         if sender.tag == number {
-            gridTargets[number].backgroundColor = UIColor.green
+            targets[number].backgroundColor = UIColor.green
            
-            let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+            /*let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
             let position = [gridTargets[randomNumbers[frames]].frame.origin.x, gridTargets[randomNumbers[frames]].frame.origin.y]
             
             //data.conditions[condition].targetProperties[targetID].highlightTimestamp = "\(timestamp)"
             let ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
-            ref.updateChildValues(["Touch Timestamp": timestamp, "Touch Position": position])
+            ref.updateChildValues(["Touch Timestamp": timestamp, "Touch Position": position])*/
+            
+            setDataTarget()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if currentFrames < 7 {
                     
-                    self.gridTargets[number].backgroundColor = UIColor.gray
-                self.gridTargets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                    self.targets[number].backgroundColor = UIColor.gray
+                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
                     
-                    self.saveTargetData(self.data, self.gridTargets[self.randomNumbers[currentFrames+1]], self.randomNumbers[currentFrames+1], self.condition!-1)
+                    self.saveTargetData(self.data, self.targets[self.randomNumbers[currentFrames+1]], self.randomNumbers[currentFrames+1], self.condition!-1)
                     
                     
                 } else if currentFrames == 7 {
-                    for button in self.gridTargets {
+                    for button in self.targets {
                         button.isHidden = true
                         self.finishButton.isHidden = false
                     }
@@ -122,5 +124,52 @@ class BaselineTask: GridTargets {
      }
     
     
+    
+    
+    /*func activateButtons(_ targets: [UIButton], _ randomNumbers: [Int], _ finishButton: UIButton, _ data: Dataset, _ condition: Int, _ frames: Int, _ count: Int) -> Int {
+     targets[randomNumbers[frames]].backgroundColor = UIColor.green
+     
+     let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+     let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
+     
+     //data.conditions[condition].targetProperties[targetID].highlightTimestamp = "\(timestamp)"
+     let ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition-1].conditionId)").child("Target \(data.conditions[condition-1].targetProperties[randomNumbers[frames]].targetId)")
+     ref.updateChildValues(["Touch Timestamp": timestamp, "Touch Position": position])
+     
+     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+     if frames < count {
+     
+     targets[randomNumbers[frames]].backgroundColor = UIColor.gray
+     targets[randomNumbers[frames+1]].backgroundColor = UIColor.yellow
+     
+     self.saveTargetData(data, targets[randomNumbers[frames+1]], randomNumbers[frames+1], condition-1)
+     
+     
+     
+     
+     } else if frames == count {
+     for button in targets {
+     button.isHidden = true
+     finishButton.isHidden = false
+     }
+     }
+     }
+     return frames + 1
+     }*/
+    
+    
+    
+    /*func saveTargetData(_ data: Dataset, _ target: UIButton, _ targetID: Int, _ condition: Int) {
+     
+     //let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+     //let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
+     
+     let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+     let position = [target.frame.origin.x, target.frame.origin.y]
+     
+     //data.conditions[condition].targetProperties[targetID].highlightTimestamp = "\(timestamp)"
+     let ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition].conditionId)").child("Target \(data.conditions[condition].targetProperties[targetID].targetId)")
+     ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
+     }*/
     
 }

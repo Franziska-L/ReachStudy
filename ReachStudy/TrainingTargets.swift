@@ -9,29 +9,9 @@
 
 import UIKit
 
-class TrainingTargets: UIViewController {
+class TrainingTargets: TargetViewController {
   
     
-    //var trackerPosition: CGPoint = CGPoint()
-    
-    var trainingTargets: [UIButton] = [UIButton]()
-    var targetPositions: [CGPoint] = [CGPoint]()
-    let targetSize: CGSize = CGSize(width: 70, height: 70)
-    //var isTargetActive = false
-    
-    var condition: Int?
-    var counter: Int = Int()
-    var data: Dataset = Dataset()
-    
-    var randomNumbers = [Int]()
-    
-    var frames = 0
-    //var timer = Timer()
-    
-    //var cursor: UIView = UIView()
-
-    
-
     var startTaskButton: UIButton = UIButton()
     
     
@@ -66,63 +46,45 @@ class TrainingTargets: UIViewController {
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
-            if condition == 1 {
+            if condition == 1 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
             }
 
             self.view.addSubview(target)
-            trainingTargets.append(target)
+            targets.append(target)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if self.frames == 0 {
-                self.trainingTargets[self.randomNumbers[self.frames]].backgroundColor = UIColor.yellow
+                self.targets[self.randomNumbers[self.frames]].backgroundColor = UIColor.yellow
             }
         }
         
-        //timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(updateScreen), userInfo: nil, repeats: true)
+    }
+    
+    func updateScreen() {
+        let number = randomNumbers[frames]
+        let currentFrames = frames
+        
+        targets[number].backgroundColor = UIColor.green
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if currentFrames < 2 {
+                
+                self.targets[number].backgroundColor = UIColor.gray
+                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                
+            } else if currentFrames == 2 {
+                for button in self.targets {
+                    button.isHidden = true
+                    self.startTaskButton.isHidden = false
+                }
+            }
+        }
+        self.frames += 1
     }
     
     
     @objc func activateButton(_ sender: UIButton) {}
     @objc func startTask() {}
-    
-    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(condition!)
-        switch condition {
-        case 4:
-            //Gazebased indirect touch
-            GazeTouch().showCursor(cursor: cursor)
-            break
-        default:
-            break
-        }
-    }*/
-    
-  
-    
-    /*@objc func updateScreen() {
-        if frames < 3 {
-            //self.trainingTargets[randomNumbers[frames]-1].backgroundColor = UIColor.gray
-            self.trainingTargets[randomNumbers[frames]].backgroundColor = UIColor.yellow
-            frames += 1
-        } else if frames == 3 {
-            for button in trainingTargets {
-                button.isHidden = true
-                startTask.isHidden = false
-            }
-        }
-    }*/
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "startTask" {
-            if let vc = segue.destination as? GridTargets {
-                vc.condition = condition
-                vc.data = data
-                vc.counter = counter
-            }
-        }
-    }*/
-
-    
+ 
 }

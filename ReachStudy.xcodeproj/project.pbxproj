@@ -25,7 +25,6 @@
 		641D913E21B98FD0001B3E65 /* ComboGazeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D913D21B98FD0001B3E65 /* ComboGazeTask.swift */; };
 		64293ACE21B6B63D00568C92 /* DescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293ACD21B6B63D00568C92 /* DescriptionController.swift */; };
 		64293AD021B6C3F500568C92 /* GridTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293ACF21B6C3F500568C92 /* GridTargets.swift */; };
-		64293AD221B6C3FA00568C92 /* GazeBasedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293AD121B6C3F900568C92 /* GazeBasedController.swift */; };
 		64293AD421B6CC8300568C92 /* Baseline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64293AD321B6CC8300568C92 /* Baseline.swift */; };
 		643D5FD321B68144004520B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FD221B68144004520B0 /* AppDelegate.swift */; };
 		643D5FD521B68145004520B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D5FD421B68144004520B0 /* ViewController.swift */; };
@@ -38,6 +37,7 @@
 		643D600321B68575004520B0 /* Dataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600221B68575004520B0 /* Dataset.swift */; };
 		643D600521B6857B004520B0 /* EyeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600421B6857B004520B0 /* EyeTracker.swift */; };
 		643D600721B68584004520B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600621B68584004520B0 /* Extensions.swift */; };
+		64D1F7AC21C0EE4600A0CE83 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +75,6 @@
 		641D913D21B98FD0001B3E65 /* ComboGazeTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboGazeTask.swift; sourceTree = "<group>"; };
 		64293ACD21B6B63D00568C92 /* DescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionController.swift; sourceTree = "<group>"; };
 		64293ACF21B6C3F500568C92 /* GridTargets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTargets.swift; sourceTree = "<group>"; };
-		64293AD121B6C3F900568C92 /* GazeBasedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GazeBasedController.swift; sourceTree = "<group>"; };
 		64293AD321B6CC8300568C92 /* Baseline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseline.swift; sourceTree = "<group>"; };
 		643D5FCF21B68144004520B0 /* ReachStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReachStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		643D5FD221B68144004520B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		643D600221B68575004520B0 /* Dataset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dataset.swift; sourceTree = "<group>"; };
 		643D600421B6857B004520B0 /* EyeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeTracker.swift; sourceTree = "<group>"; };
 		643D600621B68584004520B0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests.release.xcconfig"; sourceTree = "<group>"; };
 		AF0BB6CE715220712796491F /* Pods_ReachStudyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,9 +200,9 @@
 				643D5FD221B68144004520B0 /* AppDelegate.swift */,
 				643D5FD421B68144004520B0 /* ViewController.swift */,
 				64293ACD21B6B63D00568C92 /* DescriptionController.swift */,
+				64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */,
 				6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */,
 				64293ACF21B6C3F500568C92 /* GridTargets.swift */,
-				64293AD121B6C3F900568C92 /* GazeBasedController.swift */,
 				643D600421B6857B004520B0 /* EyeTracker.swift */,
 				643D600621B68584004520B0 /* Extensions.swift */,
 				643D600221B68575004520B0 /* Dataset.swift */,
@@ -520,12 +520,12 @@
 				643D5FD521B68145004520B0 /* ViewController.swift in Sources */,
 				643D600521B6857B004520B0 /* EyeTracker.swift in Sources */,
 				6403BB7721B7A6C600B8A21F /* GazeReachability.swift in Sources */,
-				64293AD221B6C3FA00568C92 /* GazeBasedController.swift in Sources */,
 				6403BB7521B7A6B100B8A21F /* Reachability.swift in Sources */,
 				6403BB7D21B7A71000B8A21F /* ComboGaze.swift in Sources */,
 				6403BB8121B7F37700B8A21F /* Utility.swift in Sources */,
 				641D913621B98F87001B3E65 /* ReachTask.swift in Sources */,
 				6403BB7F21B7ABF800B8A21F /* TrainingTargets.swift in Sources */,
+				64D1F7AC21C0EE4600A0CE83 /* TargetViewController.swift in Sources */,
 				6403BB7B21B7A6FC00B8A21F /* ComboNormal.swift in Sources */,
 				643D5FD321B68144004520B0 /* AppDelegate.swift in Sources */,
 			);

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GazeReachability: GazeBasedController {
+class GazeReachability: TrainingTargets {
     
     let topArea: CGFloat = 1/5 * UIScreen.main.bounds.height
     let rightArea: CGFloat = 3/4 * UIScreen.main.bounds.width

@@ -13,9 +13,6 @@ class ComboNormal: TrainingTargets {
     let swipePad: UIView = UIView()
     let swipePadSize: CGFloat = 100
     
-    let cursor: UIView = UIView()
-    let cursorSize: CGFloat = 10
-    
     var swipePadX: CGFloat = CGFloat()
     var swipePadY: CGFloat = CGFloat()
     
@@ -31,12 +28,8 @@ class ComboNormal: TrainingTargets {
         
         self.view.addSubview(swipePad)
         
-        cursor.frame = CGRect(x: 0, y: 0, width: cursorSize, height: cursorSize)
-        cursor.layer.cornerRadius = 5
         cursor.backgroundColor = UIColor.gray
-        cursor.isHidden = true
-        
-        self.view.addSubview(cursor)
+
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         tap.numberOfTapsRequired = 1
