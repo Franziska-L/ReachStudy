@@ -34,7 +34,8 @@ class GridTargets: TargetViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if self.frames == 0 {
                 self.targets[self.randomNumbers[self.frames]].backgroundColor = UIColor.yellow
-                //Baseline().saveTargetData(self.data, self.gridTargets[0], self.randomNumbers[0], self.condition!-1)
+                
+                self.setDataTarget()
             }
         }
         //timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateScreen), userInfo: nil, repeats: true)
@@ -63,9 +64,16 @@ class GridTargets: TargetViewController {
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
+            
             if condition == 1 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
+            } else if condition == 2 || condition == 3 || condition == 5 {
+                if index > 3 {
+                    target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
+                }
             }
+            
+            //setTargetPosition(position: targetPositions[index])
             
             self.view.addSubview(target)
             targets.append(target)
@@ -74,22 +82,32 @@ class GridTargets: TargetViewController {
     
     @objc func activateButton(_ sender: UIButton) {}
     
-    @objc func updateScreen() {
-        if frames < 8 {
-            //self.gridTargets[randomNumbers[frames]-1].backgroundColor = UIColor.gray
-            targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
-            let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
-            let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
-            self.data.conditions[condition!-1].targetProperties[randomNumbers[frames]].highlightTimestamp = "\(timestamp)"
-            ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
-            ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
-            frames += 1
-        } else if frames == 8 {
-            for button in targets {
-                button.isHidden = true
-                finishButton.isHidden = false
+    func updateScreen() {
+        let number = randomNumbers[frames]
+        let currentFrames = frames
+        
+        targets[number].backgroundColor = UIColor.green
+        
+        setTimestamp(for: "Touch")
+        
+        print("save")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if currentFrames < 7 {
+                
+                self.targets[number].backgroundColor = UIColor.gray
+                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                
+                self.setDataTarget()
+                
+            } else if currentFrames == 7 {
+                for button in self.targets {
+                    button.isHidden = true
+                    self.finishButton.isHidden = false
+                }
             }
         }
+        self.frames += 1
     }
     
     func setDataTarget() {
@@ -101,6 +119,17 @@ class GridTargets: TargetViewController {
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
         ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
     }
+    
+    
+    func setTimestamp(for target: String) {
+        let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+        
+        self.data.conditions[condition!-1].targetProperties[randomNumbers[frames]].highlightTimestamp = "\(timestamp)"
+        
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
+        ref.updateChildValues(["\(target) Timestamp": timestamp])
+    }
+    
     
     @objc func finishTask() {
         print(counter)

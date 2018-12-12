@@ -18,7 +18,8 @@ class GazeTouchTask: GridTargets {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        setCursorPosition()
+        let trackerPosition = EyeTracker.getTrackerPosition()
+        setCursorPosition(position: trackerPosition)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -44,32 +45,14 @@ class GazeTouchTask: GridTargets {
         
         let position = cursor.frame.origin
        
-        let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-        
-        if isActive {
-            updateScreenColor()
+        if frames <= 7 {
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
         }
     }
     
-    func updateScreenColor() {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        targets[number].backgroundColor = UIColor.green
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if currentFrames < 7 {
-                
-                self.targets[number].backgroundColor = UIColor.gray
-                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                
-            } else if currentFrames == 7 {
-                for button in self.targets {
-                    button.isHidden = true
-                    self.finishButton.isHidden = false
-                }
-            }
-        }
-        self.frames += 1
-    }
     
 }

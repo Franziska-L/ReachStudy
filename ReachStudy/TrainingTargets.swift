@@ -19,7 +19,7 @@ class TrainingTargets: TargetViewController {
         super.viewDidLoad()
         
         startTaskButton.frame = CGRect(x: 100, y: 500, width: 200, height: 60)
-        startTaskButton.setTitle("Starte Training", for: .normal)
+        startTaskButton.setTitle("Starte Aufgabe", for: .normal)
         startTaskButton.setTitleColor(UIColor.blue, for: .normal)
         startTaskButton.addTarget(self, action: #selector(startTask), for: .touchUpInside)
         self.view.addSubview(startTaskButton)
@@ -48,6 +48,10 @@ class TrainingTargets: TargetViewController {
             target.tag = index
             if condition == 1 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
+            } else if condition == 5 {
+                if index > 1 {
+                    target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
+                }
             }
 
             self.view.addSubview(target)

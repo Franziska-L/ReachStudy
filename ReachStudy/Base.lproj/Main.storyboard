@@ -91,7 +91,7 @@
         <!--Gaze Reachability-->
         <scene sceneID="lAz-p2-d14">
             <objects>
-                <viewController storyboardIdentifier="GazeReachTraining" id="VX5-68-F2z" customClass="GazeReachability" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GazeReachability" id="VX5-68-F2z" customClass="GazeReachability" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tC9-4N-ee7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +124,7 @@
         <!--Reachability-->
         <scene sceneID="9Ct-da-QGD">
             <objects>
-                <viewController storyboardIdentifier="ReachabilityTraining" id="Wtv-x6-8M5" customClass="Reachability" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Reachability" id="Wtv-x6-8M5" customClass="Reachability" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S7y-0n-S1X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,7 +142,7 @@
         <!--Combo Gaze-->
         <scene sceneID="mMz-Qx-Wtq">
             <objects>
-                <viewController storyboardIdentifier="ComboGazeTraining" id="Olg-DR-pS6" customClass="ComboGaze" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComboGaze" id="Olg-DR-pS6" customClass="ComboGaze" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6td-tq-rBR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@
         <!--Gaze Touch-->
         <scene sceneID="5W9-Yn-rxd">
             <objects>
-                <viewController storyboardIdentifier="GazeTouchTraining" id="fjy-me-rSb" customClass="GazeTouch" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GazeTouch" id="fjy-me-rSb" customClass="GazeTouch" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sCw-KI-RTz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,7 +193,7 @@
         <!--Combo Normal-->
         <scene sceneID="0X1-EO-Yio">
             <objects>
-                <viewController storyboardIdentifier="ComboNormalTraining" id="gpM-np-90o" customClass="ComboNormal" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComboNormal" id="gpM-np-90o" customClass="ComboNormal" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2e-0G-mtU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,8 +211,7 @@
         <!--Baseline-->
         <scene sceneID="LRh-g3-MXm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ef-dN-8gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="BaselineTraining" id="I4u-Wu-vn9" customClass="Baseline" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Baseline" id="I4u-Wu-vn9" customClass="Baseline" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n2Q-Ie-lUj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,6 +222,7 @@
                         <segue destination="Mem-vF-Aec" kind="show" identifier="baseline" id="kdh-td-v06"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ef-dN-8gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2049" y="-1428"/>
         </scene>

@@ -30,10 +30,11 @@ class DescriptionController: UIViewController {
     }
     
     @IBAction func startTraining(_ sender: Any) {
+        print(sequence[counter])
         switch sequence[counter] {
         case 1:
             //Baseline
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BaselineTraining") as? Baseline {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Baseline") as? Baseline {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter
@@ -43,7 +44,7 @@ class DescriptionController: UIViewController {
             break
         case 2:
             //Reachability
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReachabilityTraining") as? Reachability {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reachability") as? Reachability {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter
@@ -53,7 +54,7 @@ class DescriptionController: UIViewController {
             break
         case 3:
             //Gazebased reachbility
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachTraining") as? GazeReachability {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachability") as? GazeReachability {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter
@@ -63,7 +64,7 @@ class DescriptionController: UIViewController {
             break
         case 4:
             //Gazebased indirect touch
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouchTraining") as? GazeTouch {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouch") as? GazeTouch {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter
@@ -73,7 +74,7 @@ class DescriptionController: UIViewController {
             break
         case 5:
             //Combo
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTraining") as? ComboNormal {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormal") as? ComboNormal {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter
@@ -83,7 +84,7 @@ class DescriptionController: UIViewController {
             break
         case 6:
             //Combo with gaze
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGazeTraining") as? ComboGaze {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGaze") as? ComboGaze {
                 vc.data = data!
                 vc.condition = sequence[counter]
                 vc.counter = counter

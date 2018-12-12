@@ -28,13 +28,18 @@ class ComboNormal: TrainingTargets {
         
         self.view.addSubview(swipePad)
         
-        cursor.backgroundColor = UIColor.gray
 
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         tap.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tap)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cursor.backgroundColor = UIColor.gray
     }
     
     /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,7 +75,7 @@ class ComboNormal: TrainingTargets {
         let distY: CGFloat = newLocation.y - prevLocaiton.y
         
         let x = swipePadX + distX
-        let y = swipePadY + distY - 400.0
+        let y = swipePadY + distY - 350.0
         
         swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
@@ -84,7 +89,11 @@ class ComboNormal: TrainingTargets {
     @objc func handleTap(sender: UIGestureRecognizer) {
         let position = cursor.frame.origin
         
-        let offset: CGFloat = 10.0
+        let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+        
+        if isActive {
+            updateScreen()
+        }
         
         /*var minX = button1.frame.origin.x - offset
         var minY = button1.frame.origin.y - offset
@@ -113,10 +122,41 @@ class ComboNormal: TrainingTargets {
         
     }
     
-    @IBAction func click(_ sender: Any) {
-        let alert = UIAlertController(title: "Hi", message: "Bla", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
+    override func activateButton(_ sender: UIButton) {
+        let number = randomNumbers[frames]
+        let currentFrames = frames
+        
+        if sender.tag == number && frames <= 2 {
+            targets[number].backgroundColor = UIColor.green
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if currentFrames < 2 {
+                    
+                    self.targets[number].backgroundColor = UIColor.gray
+                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                    
+                } else if currentFrames == 2 {
+                    for button in self.targets {
+                        button.isHidden = true
+                        self.startTaskButton.isHidden = false
+                        self.cursor.isHidden = true
+                        self.swipePad.isHidden = true
+                    }
+                }
+            }
+            self.frames += 1
+        }
+    }
+    
+    
+    override func startTask() {
+        
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTask") as? ComboNormalTask {
+            vc.data = data
+            vc.condition = condition
+            vc.counter = counter
+            
+            present(vc, animated: true, completion: nil)
+        }
     }
     
 }

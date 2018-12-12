@@ -13,12 +13,12 @@ class ComboGazeTask: GridTargets {
     var trackerActive = false
     
     let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
-    
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
     }
     
@@ -27,9 +27,17 @@ class ComboGazeTask: GridTargets {
         EyeTracker.delegate = self
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timer.invalidate()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let trackerPosition = EyeTracker.getTrackerPosition()
+
         if trackerPosition.y < middle {
-            setCursorPosition()
+            setCursorPosition(position: trackerPosition)
             trackerActive = true
         } else {
             trackerActive = false
@@ -87,13 +95,18 @@ class ComboGazeTask: GridTargets {
         
         if sender.tag == number && sender.tag > 1 {
             targets[number].backgroundColor = UIColor.green
+            
+            setTimestamp(for: "Touch")
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
+                if currentFrames < 7 {
                     
                     self.targets[number].backgroundColor = UIColor.gray
                     self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
                     
-                } else if currentFrames == 2 {
+                    self.setDataTarget()
+                    
+                } else if currentFrames == 7 {
                     for button in self.targets {
                         button.isHidden = true
                         self.finishButton.isHidden = false

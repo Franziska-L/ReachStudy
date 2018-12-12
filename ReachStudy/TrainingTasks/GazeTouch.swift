@@ -21,7 +21,8 @@ class GazeTouch: TrainingTargets {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //Show Cursor
-        setCursorPosition()
+        let trackerPosition = EyeTracker.getTrackerPosition()
+        setCursorPosition(position: trackerPosition)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

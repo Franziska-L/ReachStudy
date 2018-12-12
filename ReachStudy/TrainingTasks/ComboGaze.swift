@@ -19,6 +19,7 @@ class ComboGaze: TrainingTargets {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Test")
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
@@ -30,8 +31,10 @@ class ComboGaze: TrainingTargets {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {        
+        let trackerPosition = EyeTracker.getTrackerPosition()
+        
         if trackerPosition.y < middle {
-            setCursorPosition()
+            setCursorPosition(position: trackerPosition)
             trackerActive = true
         } else {
             trackerActive = false
@@ -60,12 +63,10 @@ class ComboGaze: TrainingTargets {
         
         let position = cursor.frame.origin
         
+        trackerActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+
         if trackerActive {
-            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-            
-            if isActive {
-                updateScreen()
-            }
+            updateScreen()
         }
     }
     
@@ -79,6 +80,8 @@ class ComboGaze: TrainingTargets {
             EyeTracker.instance.trackerView.alpha = 0.2
             EyeTracker.instance.trackerView.backgroundColor = UIColor.gray
         }
+        
+        //trackerActive = checkPosition(position: eyePosition, target: targets[randomNumbers[frames]])
         
     }
     
