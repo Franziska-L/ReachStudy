@@ -30,7 +30,6 @@ class DescriptionController: UIViewController {
     }
     
     @IBAction func startTraining(_ sender: Any) {
-        print(sequence[counter])
         switch sequence[counter] {
         case 1:
             //Baseline

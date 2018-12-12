@@ -46,7 +46,7 @@ class TrainingTargets: TargetViewController {
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
-            if condition == 1 || condition == 6 {
+            if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
             } else if condition == 5 {
                 if index > 1 {

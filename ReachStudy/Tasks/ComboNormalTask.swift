@@ -23,7 +23,7 @@ class ComboNormalTask: GridTargets {
         
         swipePad.frame = CGRect(x: 0, y: 0, width: swipePadSize, height: swipePadSize)
         swipePad.layer.cornerRadius = CGFloat(swipePadSize / 2)
-        swipePad.backgroundColor = UIColor.gray
+        swipePad.backgroundColor = UIColor.blue
         swipePad.isHidden = true
         
         self.view.addSubview(swipePad)
@@ -39,7 +39,7 @@ class ComboNormalTask: GridTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        cursor.backgroundColor = UIColor.gray
+        cursor.backgroundColor = UIColor.blue
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,11 +69,36 @@ class ComboNormalTask: GridTargets {
     @objc func handleTap(sender: UIGestureRecognizer) {
         let position = cursor.frame.origin
         
-        let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-        
-        if isActive {
-            updateScreen()
+        if frames <= 7 {
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
         }
+    }
+    
+    override func updateScreen() {
+        let number = randomNumbers[frames]
+        let currentFrames = frames
+        
+        targets[number].backgroundColor = UIColor.green
+        
+        setTimestamp(for: "Touch")
+                
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if currentFrames < 7 {
+                
+                self.targets[number].backgroundColor = UIColor.gray
+                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                
+                self.setDataTarget()
+                
+            } else if currentFrames == 7 {
+                self.hideViews()
+            }
+        }
+        self.frames += 1
     }
     
     override func activateButton(_ sender: UIButton) {
@@ -89,15 +114,19 @@ class ComboNormalTask: GridTargets {
                     self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
                     
                 } else if currentFrames == 7 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.finishButton.isHidden = false
-                        self.cursor.isHidden = true
-                        self.swipePad.isHidden = true
-                    }
+                    self.hideViews()
                 }
             }
             self.frames += 1
+        }
+    }
+    
+    func hideViews() {
+        for button in self.targets {
+            button.isHidden = true
+            self.finishButton.isHidden = false
+            self.cursor.isHidden = true
+            self.swipePad.isHidden = true
         }
     }
     

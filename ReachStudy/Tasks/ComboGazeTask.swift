@@ -31,6 +31,8 @@ class ComboGazeTask: GridTargets {
         super.viewWillAppear(animated)
         
         timer.invalidate()
+        EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+        EyeTracker.instance.trackerView.alpha = 0.5
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

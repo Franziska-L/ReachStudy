@@ -65,9 +65,9 @@ class GridTargets: TargetViewController {
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
             
-            if condition == 1 || condition == 6 {
+            if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
-            } else if condition == 2 || condition == 3 || condition == 5 {
+            } else if condition == 5 {
                 if index > 3 {
                     target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
                 }
@@ -89,8 +89,6 @@ class GridTargets: TargetViewController {
         targets[number].backgroundColor = UIColor.green
         
         setTimestamp(for: "Touch")
-        
-        print("save")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if currentFrames < 7 {
@@ -132,7 +130,6 @@ class GridTargets: TargetViewController {
     
     
     @objc func finishTask() {
-        print(counter)
         if counter < 6 {
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DescriptionController") as? DescriptionController {
                 vc.data = data

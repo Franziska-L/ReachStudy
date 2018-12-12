@@ -19,7 +19,6 @@ class ComboGaze: TrainingTargets {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Test")
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
@@ -28,6 +27,14 @@ class ComboGaze: TrainingTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         EyeTracker.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timer.invalidate()
+        EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+        EyeTracker.instance.trackerView.alpha = 0.5
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {        
