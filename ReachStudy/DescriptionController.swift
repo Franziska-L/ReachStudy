@@ -23,7 +23,6 @@ class DescriptionController: UIViewController {
             sequence.append(Int(data!.conditions[index].conditionId)!)
         }
         
-        print(counter)
         
         descriptionText.text = "Du startest gleich mit der \(sequence[counter]). Methode\n\nDu wirst immer zuerst drei Übungsziele bekommen mit denen du dich an die an die Technik gewöhnen kannst. Drücke den Button sobald er gelb aufläuchtet.\n Danach bekommst du 8 Ziele die du so genau und so schnell wie möglich anklicken sollst."
         
@@ -95,17 +94,5 @@ class DescriptionController: UIViewController {
             break
         }
     }
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "startBaseline" {
-            if let vc = segue.destination as? TrainingTargets {
-                vc.data = data!
-                if counter < 6 {
-                    vc.condition = sequence[counter]
-                    vc.counter = counter
-                }
-            }
-        }
-    }*/
     
 }

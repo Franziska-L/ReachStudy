@@ -127,6 +127,9 @@ class ComboNormalTask: GridTargets {
             self.finishButton.isHidden = false
             self.cursor.isHidden = true
             self.swipePad.isHidden = true
+            
+            self.timer.invalidate()
+            self.setTotalTime()
         }
     }
     

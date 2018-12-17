@@ -15,7 +15,8 @@ class GridTargets: TargetViewController {
     var finishButton: UIButton = UIButton()
     
     
-    //var timer = Timer()
+    var timer = Timer()
+    var totalTime = 0
   
     
     override func viewDidLoad() {
@@ -38,7 +39,8 @@ class GridTargets: TargetViewController {
                 self.setDataTarget()
             }
         }
-        //timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateScreen), userInfo: nil, repeats: true)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countTime), userInfo: nil, repeats: true)
         
         let x1: CGFloat = 70
         let x2: CGFloat = 250
@@ -80,6 +82,10 @@ class GridTargets: TargetViewController {
         }
     }
     
+    @objc func countTime() {
+        totalTime += 1
+    }
+    
     @objc func activateButton(_ sender: UIButton) {}
     
     func updateScreen() {
@@ -102,6 +108,9 @@ class GridTargets: TargetViewController {
                 for button in self.targets {
                     button.isHidden = true
                     self.finishButton.isHidden = false
+                    
+                    self.timer.invalidate()
+                    self.setTotalTime()
                 }
             }
         }
@@ -113,8 +122,7 @@ class GridTargets: TargetViewController {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
         
-        self.data.conditions[condition!-1].targetProperties[randomNumbers[frames]].highlightTimestamp = "\(timestamp)"
-        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
         ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
     }
     
@@ -122,22 +130,29 @@ class GridTargets: TargetViewController {
     func setTimestamp(for target: String) {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         
-        self.data.conditions[condition!-1].targetProperties[randomNumbers[frames]].highlightTimestamp = "\(timestamp)"
         
-        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(data.conditions[condition!-1].conditionId)").child("Target \(data.conditions[condition!-1].targetProperties[randomNumbers[frames]].targetId)")
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
         ref.updateChildValues(["\(target) Timestamp": timestamp])
+    }
+    
+    func setTotalTime() {
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
+        ref.updateChildValues(["Total Time": totalTime])
     }
     
     
     @objc func finishTask() {
-        if counter < 6 {
+        print("Counter: \(counter)")
+        if counter < 5 {
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DescriptionController") as? DescriptionController {
                 vc.data = data
                 vc.counter = counter + 1
                 
                 present(vc, animated: true, completion: nil)
-            } else if counter == 6 {
-                print("Alert hier fertig!")
+            }
+        } else if counter == 5 {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Start") as? ViewController {
+                present(vc, animated: true, completion: nil)
             }
         }
     }

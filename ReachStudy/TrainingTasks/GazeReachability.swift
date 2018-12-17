@@ -18,12 +18,12 @@ class GazeReachability: TrainingTargets {
     
     let gazeView: UIView = UIView()
     
-    var timer = Timer()
+    var trackerTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTrackerTimer), userInfo: nil, repeats: true)
         
         gazeView.frame = CGRect(x: rightArea, y: 30, width: rightArea/3, height: topArea)
         gazeView.backgroundColor = UIColor.red
@@ -88,7 +88,7 @@ class GazeReachability: TrainingTargets {
     }
     
     
-    @objc func updateTimer() {
+    @objc func updateTrackerTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
         
         if eyePosition.y > 0 && eyePosition.y < topArea && eyePosition.x > rightArea && eyePosition.x < UIScreen.main.bounds.width && !viewIsMoved {

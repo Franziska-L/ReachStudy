@@ -53,7 +53,8 @@ class ViewController: UIViewController {
             for i in 0 ..< data.conditions.count {
                 ref = Database.database().reference().child(key!).child("Condition \(data.conditions[i].conditionId)")
                 ref.setValue([
-                    "Condition ID": data.conditions[i].conditionId])
+                    "Condition ID": data.conditions[i].conditionId,
+                    "Total Time": 0])
                 for targetID in 0...7 {
                     ref.child("Target \(targetID)").setValue([
                         "Target ID": targetID,

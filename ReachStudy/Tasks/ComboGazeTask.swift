@@ -13,12 +13,12 @@ class ComboGazeTask: GridTargets {
     var trackerActive = false
     
     let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
-    var timer = Timer()
+    var trackerTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
+        trackerTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
     }
     
@@ -30,7 +30,7 @@ class ComboGazeTask: GridTargets {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        timer.invalidate()
+        trackerTimer.invalidate()
         EyeTracker.instance.trackerView.backgroundColor = UIColor.red
         EyeTracker.instance.trackerView.alpha = 0.5
     }
