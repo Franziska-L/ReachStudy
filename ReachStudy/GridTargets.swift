@@ -22,7 +22,8 @@ class GridTargets: TargetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        finishButton.frame = CGRect(x: 100, y: 500, width: 200, height: 60)
+        finishButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
+        finishButton.center = self.view.center
         finishButton.setTitle("Fertig", for: .normal)
         finishButton.setTitleColor(UIColor.blue, for: .normal)
         finishButton.addTarget(self, action: #selector(finishTask), for: .touchUpInside)
@@ -33,11 +34,9 @@ class GridTargets: TargetViewController {
         randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if self.frames == 0 {
-                self.targets[self.randomNumbers[self.frames]].backgroundColor = UIColor.yellow
-                
-                self.setDataTarget()
-            }
+            self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
+            
+            self.setDataTarget()
         }
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countTime), userInfo: nil, repeats: true)
@@ -82,6 +81,12 @@ class GridTargets: TargetViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EyeTracker.delegate = self 
+    }
+    
     @objc func countTime() {
         totalTime += 1
     }
@@ -111,6 +116,16 @@ class GridTargets: TargetViewController {
                     
                     self.timer.invalidate()
                     self.setTotalTime()
+                    if self.counter == 5 {
+                        let label = UILabel()
+                        label.frame = CGRect(x: 0, y: 200, width: self.view.frame.width, height: 120)
+                        label.numberOfLines = 2
+                        label.textAlignment = .center
+                        label.center.x = self.view.center.x
+                        label.text = "Du hast es geschafft! \nDanke für deine Teilnahme."
+                        label.textColor = UIColor.blue
+                        self.view.addSubview(label)
+                    }
                 }
             }
         }

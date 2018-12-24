@@ -45,7 +45,7 @@ class GazeTouchTask: GridTargets {
         
         let position = cursor.frame.origin
        
-        if frames <= 7 {
+        if frames < 8 {
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {

@@ -15,7 +15,7 @@ class GazeTouch: TrainingTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        EyeTracker.delegate = self
+        //EyeTracker.delegate = self
     }
     
     
@@ -46,14 +46,14 @@ class GazeTouch: TrainingTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
-        let position = cursor.frame.origin
-        let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-        
-        if isActive {
-            updateScreen()
+        if frames < 3 {
+            let position = cursor.frame.origin
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
         }
-        
-       
     }
     
     

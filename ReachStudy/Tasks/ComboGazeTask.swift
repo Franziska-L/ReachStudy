@@ -68,7 +68,7 @@ class ComboGazeTask: GridTargets {
         
         let position = cursor.frame.origin
         
-        if trackerActive {
+        if trackerActive && frames < 8 {
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
@@ -112,6 +112,8 @@ class ComboGazeTask: GridTargets {
                     for button in self.targets {
                         button.isHidden = true
                         self.finishButton.isHidden = false
+                        self.timer.invalidate()
+                        self.setTotalTime()
                     }
                 }
             }

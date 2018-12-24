@@ -25,7 +25,7 @@ class GazeReachability: TrainingTargets {
         
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTrackerTimer), userInfo: nil, repeats: true)
         
-        gazeView.frame = CGRect(x: rightArea, y: 30, width: rightArea/3, height: topArea)
+        gazeView.frame = CGRect(x: 0, y: -30, width: view.frame.width, height: topArea)
         gazeView.backgroundColor = UIColor.red
         gazeView.layer.cornerRadius = 8
         gazeView.alpha = 0.3
@@ -38,7 +38,7 @@ class GazeReachability: TrainingTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        EyeTracker.delegate = self
+        //EyeTracker.delegate = self
 
     }
     
@@ -69,6 +69,8 @@ class GazeReachability: TrainingTargets {
                         button.isHidden = true
                         self.startTaskButton.isHidden = false
                         self.gazeView.isHidden = true
+                        
+                        self.trackerTimer.invalidate()
                     }
                 }
             }
@@ -91,10 +93,12 @@ class GazeReachability: TrainingTargets {
     @objc func updateTrackerTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        if eyePosition.y > 0 && eyePosition.y < topArea && eyePosition.x > rightArea && eyePosition.x < UIScreen.main.bounds.width && !viewIsMoved {
+        if eyePosition.y > -30 && eyePosition.y < topArea && eyePosition.x > 0 && eyePosition.x < self.view.frame.width && !viewIsMoved {
             EyeTracker.instance.trackerView.isHidden = true
             self.view.layer.cornerRadius = 40
-            self.view.frame.origin.y += moveDistance
+            UIView.animate(withDuration: 0.4) {
+                self.view.frame.origin.y += self.moveDistance
+            }
             viewIsMoved = true
         }
     }

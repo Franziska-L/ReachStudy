@@ -11,7 +11,7 @@ import UIKit
 class ComboGaze: TrainingTargets {
  
     var trackerActive = false
-    
+    var borderView = UIView()
     let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
     
     var timer = Timer()
@@ -20,13 +20,18 @@ class ComboGaze: TrainingTargets {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        borderView.frame = CGRect(x: 0, y: middle, width: view.frame.width, height: 2)
+        borderView.backgroundColor = UIColor.black
+        self.view.addSubview(borderView)
+        
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        EyeTracker.delegate = self
+        
+        //EyeTracker.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,12 +73,14 @@ class ComboGaze: TrainingTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
-        let position = cursor.frame.origin
-        
-        trackerActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-
-        if trackerActive {
-            updateScreen()
+        if frames < 3 {
+            let position = cursor.frame.origin
+            
+            trackerActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if trackerActive {
+                updateScreen()
+            }
         }
     }
     
@@ -108,6 +115,7 @@ class ComboGaze: TrainingTargets {
                 } else if currentFrames == 2 {
                     for button in self.targets {
                         button.isHidden = true
+                        self.borderView.isHidden = true
                         self.startTaskButton.isHidden = false
                     }
                 }

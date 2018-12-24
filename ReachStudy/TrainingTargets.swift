@@ -18,7 +18,8 @@ class TrainingTargets: TargetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startTaskButton.frame = CGRect(x: 100, y: 500, width: 200, height: 60)
+        startTaskButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
+        startTaskButton.center = self.view.center
         startTaskButton.setTitle("Starte Aufgabe", for: .normal)
         startTaskButton.setTitleColor(UIColor.blue, for: .normal)
         startTaskButton.addTarget(self, action: #selector(startTask), for: .touchUpInside)
@@ -59,9 +60,7 @@ class TrainingTargets: TargetViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if self.frames == 0 {
-                self.targets[self.randomNumbers[self.frames]].backgroundColor = UIColor.yellow
-            }
+            self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
         }
         
     }

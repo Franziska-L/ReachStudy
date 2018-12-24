@@ -23,7 +23,7 @@ class GazeReachTask: GridTargets {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        trackerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         gazeView.frame = CGRect(x: rightArea, y: 30, width: rightArea/3, height: topArea)
         gazeView.backgroundColor = UIColor.red
@@ -48,6 +48,8 @@ class GazeReachTask: GridTargets {
         
         if sender.tag == number {
             targets[number].backgroundColor = UIColor.green
+            setTimestamp(for: "Touch")
+            
             if viewIsMoved {
                 viewIsMoved = false
                 EyeTracker.instance.trackerView.isHidden = false
@@ -61,11 +63,17 @@ class GazeReachTask: GridTargets {
                     self.targets[number].backgroundColor = UIColor.gray
                     self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
                     
+                    self.setDataTarget()
+                    
                 } else if currentFrames == 7 {
                     for button in self.targets {
                         button.isHidden = true
                         self.finishButton.isHidden = false
                         self.gazeView.isHidden = true
+                        
+                        self.timer.invalidate()
+                        self.trackerTimer.invalidate()
+                        self.setTotalTime()
                     }
                 }
             }
@@ -90,7 +98,9 @@ class GazeReachTask: GridTargets {
         if eyePosition.y > 0 && eyePosition.y < topArea && eyePosition.x > rightArea && eyePosition.x < UIScreen.main.bounds.width && !viewIsMoved {
             EyeTracker.instance.trackerView.isHidden = true
             self.view.layer.cornerRadius = 40
-            self.view.frame.origin.y += moveDistance
+            UIView.animate(withDuration: 0.4) {
+                self.view.frame.origin.y += self.moveDistance
+            }
             viewIsMoved = true
         }
     }
