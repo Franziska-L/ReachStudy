@@ -11,13 +11,5 @@ import Firebase
 
 class BaselineTask: GridTargets {
     
-    
-    override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        
-        if sender.tag == number {
-            updateScreen()
-        }
-    }
    
 }

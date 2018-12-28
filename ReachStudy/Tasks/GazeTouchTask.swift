@@ -13,7 +13,8 @@ class GazeTouchTask: GridTargets {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        EyeTracker.delegate = self
+        
+        //EyeTracker.delegate = self
     }
     
     

@@ -25,18 +25,35 @@ class GazeReachTask: GridTargets {
         
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        gazeView.frame = CGRect(x: rightArea, y: 30, width: rightArea/3, height: topArea)
+        gazeView.frame = CGRect(x: 0, y: -30, width: view.frame.width, height: topArea)
         gazeView.backgroundColor = UIColor.red
         gazeView.layer.cornerRadius = 8
         gazeView.alpha = 0.3
         self.view.addSubview(gazeView)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        EyeTracker.delegate = self
+        //EyeTracker.delegate = self
+        
+    }
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        
+        if viewIsMoved {
+            self.view.layer.cornerRadius = 40
+            UIView.animate(withDuration: 0.4) {
+                self.view.frame.origin.y -= self.moveDistance
+            }
+            
+            viewIsMoved = false
+        }
         
     }
     
@@ -81,15 +98,6 @@ class GazeReachTask: GridTargets {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if viewIsMoved {
-            UIView.animate(withDuration: 0.4) {
-                self.view.frame.origin.y -= self.moveDistance
-            }
-            viewIsMoved = false
-            EyeTracker.instance.trackerView.isHidden = false
-        }
-    }
     
     
     @objc func updateTimer() {

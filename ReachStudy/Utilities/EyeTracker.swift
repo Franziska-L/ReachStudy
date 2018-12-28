@@ -21,7 +21,7 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     var sceneView: ARSCNView!
  
     let trackerView: UIView = {
-        let frame = CGRect(x: -50, y: -50, width: 50, height: 50)
+        let frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let view = UIView(frame: frame)
         view.backgroundColor = UIColor.red
         view.alpha = 0.5
@@ -45,6 +45,7 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
     //Physical Phone Size of iPhone X
     let physicalPhoneScreenSize = CGSize(width: 0.0623908297, height: 0.135096943231532)
+    //375 x 812
     let phoneScreenSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     
     var virtualPhoneNode: SCNNode = SCNNode()

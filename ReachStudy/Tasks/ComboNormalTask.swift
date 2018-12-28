@@ -16,7 +16,6 @@ class ComboNormalTask: GridTargets {
     var swipePadX: CGFloat = CGFloat()
     var swipePadY: CGFloat = CGFloat()
     
-    let middle = 1/2 * UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ class ComboNormalTask: GridTargets {
         
         self.view.addSubview(swipePad)
         
-        
+        borderView.isHidden = false
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         tap.numberOfTapsRequired = 1

@@ -15,7 +15,7 @@ class GazeTouch: TrainingTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //EyeTracker.delegate = self
+        EyeTracker.delegate = self
     }
     
     
@@ -27,7 +27,6 @@ class GazeTouch: TrainingTargets {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
-        
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         

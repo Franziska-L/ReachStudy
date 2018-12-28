@@ -10,30 +10,58 @@ import UIKit
 
 class Reachability: TrainingTargets {
     
-  
-    override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
+    var viewIsMoved = false
+    let moveDistance: CGFloat = 350
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        if sender.tag == number {
-            targets[number].backgroundColor = UIColor.green
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 2 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.startTaskButton.isHidden = false
-                    }
-                }
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let position = touch.location(in: self.view)
+        
+        if frames < 3 {
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
             }
-            self.frames += 1
         }
     }
     
+    
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            if viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.view.frame.origin.y -= self.moveDistance
+                }
+                viewIsMoved = false
+            }
+        }
+        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            if !viewIsMoved {
+                self.view.layer.cornerRadius = 40
+                UIView.animate(withDuration: 0.4) {
+                    self.view.frame.origin.y += self.moveDistance
+                }
+                
+                viewIsMoved = true
+            }
+        }
+    }
+
     override func startTask() {
         
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReachTask") as? ReachTask {

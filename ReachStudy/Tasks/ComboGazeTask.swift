@@ -12,19 +12,21 @@ class ComboGazeTask: GridTargets {
     
     var trackerActive = false
     
-    let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
     var trackerTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        borderView.isHidden = false
+
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        EyeTracker.delegate = self
+        
+        //EyeTracker.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,15 +68,25 @@ class ComboGazeTask: GridTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
-        let position = cursor.frame.origin
-        
         if trackerActive && frames < 8 {
+            let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
                 updateScreen()
             }
+        } else if !trackerActive && frames < 8 {
+            let touch: UITouch! = touches.first
+            
+            let touchPosition = touch.location(in: self.view)
+            
+            let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
         }
+        
     }
     
     @objc func eyeTrackerActive() {

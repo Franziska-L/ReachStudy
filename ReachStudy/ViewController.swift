@@ -32,22 +32,6 @@ class ViewController: UIViewController {
             
             setSequence()
             
-            //Nur auskommentiert damit es nicht immer Daten in die Datenbank speichert
-            /*ref.setValue(["ParticipantId": participantIDLabel.text])
-            ref = ref.child("Conditions")
-            for condition in data.conditions {
-                ref.childByAutoId().setValue([
-                    "Condition ID": condition.conditionId,
-                    "Highlight Timestamp": "",
-                    "Touch Timestamp": "",
-                    "Target Position": "",
-                    "Touch Position": "",
-                    "Touch In Target": false,
-                    "Distance": ""
-                    ])
-            }*/
-            
-            
             
             ref.setValue(["Participant ID": participantIDLabel.text])
             for i in 0 ..< data.conditions.count {
@@ -61,7 +45,8 @@ class ViewController: UIViewController {
                         "Highlight Timestamp": "",
                         "Touch Timestamp": "",
                         "Target Position": [],
-                        "Touch Position": "",
+                        "Touch Positions": [],
+                        "Eye Positions": [],
                         "Touch In Target": false,
                         "Distance": ""
                         ])

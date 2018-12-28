@@ -11,18 +11,13 @@ import UIKit
 class ComboGaze: TrainingTargets {
  
     var trackerActive = false
-    var borderView = UIView()
-    let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
     
     var timer = Timer()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        borderView.frame = CGRect(x: 0, y: middle, width: view.frame.width, height: 2)
-        borderView.backgroundColor = UIColor.black
-        self.view.addSubview(borderView)
+        borderView.isHidden = false
         
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(eyeTrackerActive), userInfo: nil, repeats: true)
         
@@ -31,7 +26,7 @@ class ComboGaze: TrainingTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //EyeTracker.delegate = self
+        EyeTracker.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,10 +38,21 @@ class ComboGaze: TrainingTargets {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {        
-        let trackerPosition = EyeTracker.getTrackerPosition()
+        trackerPosition = EyeTracker.getTrackerPosition()
         
         if trackerPosition.y < middle {
-            setCursorPosition(position: trackerPosition)
+            
+           
+            
+            let x = EyeTracker.instance.trackerView.frame.size.width / 2 + trackerPosition.x - cursorSize/2
+            let y = EyeTracker.instance.trackerView.frame.size.height / 2 + trackerPosition.y - cursorSize/2
+            
+            print(trackerPosition)
+            print(x)
+            print(y)
+            
+            cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+            cursor.isHidden = false
             trackerActive = true
         } else {
             trackerActive = false
@@ -73,14 +79,27 @@ class ComboGaze: TrainingTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
-        if frames < 3 {
+        if trackerActive && frames < 3 {
             let position = cursor.frame.origin
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
-            trackerActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-            
-            if trackerActive {
+            if isActive {
                 updateScreen()
             }
+        } else if !trackerActive && frames < 3 && targets[randomNumbers[frames]].tag > 1 {
+            let touch: UITouch! = touches.first
+            
+            let touchPosition = touch.location(in: self.view)
+            
+            let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
+        }
+        
+        if frames == 3 {
+            borderView.isHidden = true
         }
     }
     
@@ -99,30 +118,6 @@ class ComboGaze: TrainingTargets {
         
     }
     
-    
-    override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        if sender.tag == number && sender.tag > 1 {
-            targets[number].backgroundColor = UIColor.green
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 2 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.borderView.isHidden = true
-                        self.startTaskButton.isHidden = false
-                    }
-                }
-            }
-            self.frames += 1
-        }
-    }
     
     override func startTask() {
         

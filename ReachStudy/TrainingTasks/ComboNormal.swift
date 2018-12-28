@@ -16,7 +16,6 @@ class ComboNormal: TrainingTargets {
     var swipePadX: CGFloat = CGFloat()
     var swipePadY: CGFloat = CGFloat()
     
-    let middle = 1/2 * UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +27,7 @@ class ComboNormal: TrainingTargets {
         
         self.view.addSubview(swipePad)
         
+        borderView.isHidden = false
 
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
@@ -88,12 +88,15 @@ class ComboNormal: TrainingTargets {
     
     @objc func handleTap(sender: UIGestureRecognizer) {
         let position = cursor.frame.origin
-        
         if frames <= 2 {
-            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-            
-            if isActive {
-                updateScreen()
+            if targets[randomNumbers[frames]].tag > 1 {
+                
+            } else {
+                let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+                
+                if isActive {
+                    updateScreen()
+                }
             }
         }
         
@@ -116,26 +119,6 @@ class ComboNormal: TrainingTargets {
         self.frames += 1
     }
     
-    
-    override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        if sender.tag == number && frames <= 2 {
-            targets[number].backgroundColor = UIColor.green
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 2 {
-                    self.hideViews()
-                }
-            }
-            self.frames += 1
-        }
-    }
     
     func hideViews() {
         for button in self.targets {

@@ -11,7 +11,7 @@ import UIKit
 class TargetViewController: UIViewController, TrackerDelegate {
     
     
-    var targets: [UIButton] = [UIButton]()
+    var targets: [UIView] = [UIView]()
     var targetPositions: [CGPoint] = [CGPoint]()
     let targetSize: CGSize = CGSize(width: 70, height: 70)
     
@@ -20,6 +20,10 @@ class TargetViewController: UIViewController, TrackerDelegate {
     
     var randomNumbers = [Int]()
     var frames = 0
+    
+    var borderView = UIView()
+    let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
+
     
     var trackerPosition: CGPoint = CGPoint()
     
@@ -31,13 +35,18 @@ class TargetViewController: UIViewController, TrackerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        borderView.frame = CGRect(x: 0, y: middle, width: view.frame.width, height: 2)
+        borderView.backgroundColor = UIColor.black
+        self.view.addSubview(borderView)
+        borderView.isHidden = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         cursor.frame = CGRect(x: 0, y: 0, width: cursorSize, height: cursorSize)
-        cursor.layer.cornerRadius = 5
+        cursor.layer.cornerRadius = cursorSize/2
         cursor.backgroundColor = UIColor.red
         
         self.view.addSubview(cursor)
@@ -45,7 +54,7 @@ class TargetViewController: UIViewController, TrackerDelegate {
     }
     
     
-    func checkPosition(position: CGPoint, target: UIButton) -> Bool {
+    func checkPosition(position: CGPoint, target: UIView) -> Bool {
         let frame = target.frame.origin
         
         let offset: CGFloat = 10.0

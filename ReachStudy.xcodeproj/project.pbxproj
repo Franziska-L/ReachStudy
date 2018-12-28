@@ -195,6 +195,7 @@
 		643D5FD121B68144004520B0 /* ReachStudy */ = {
 			isa = PBXGroup;
 			children = (
+				64791B6021D631EF00CC4E6E /* Utilities */,
 				641D913221B986A1001B3E65 /* Tasks */,
 				641D913121B91E6A001B3E65 /* TrainingTasks */,
 				643D5FD221B68144004520B0 /* AppDelegate.swift */,
@@ -203,10 +204,6 @@
 				64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */,
 				6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */,
 				64293ACF21B6C3F500568C92 /* GridTargets.swift */,
-				643D600421B6857B004520B0 /* EyeTracker.swift */,
-				643D600621B68584004520B0 /* Extensions.swift */,
-				643D600221B68575004520B0 /* Dataset.swift */,
-				6403BB8021B7F37700B8A21F /* Utility.swift */,
 				643D5FD621B68145004520B0 /* Main.storyboard */,
 				643D5FD921B68145004520B0 /* Assets.xcassets */,
 				643D5FDB21B68145004520B0 /* LaunchScreen.storyboard */,
@@ -232,6 +229,17 @@
 				643D5FF421B68146004520B0 /* Info.plist */,
 			);
 			path = ReachStudyUITests;
+			sourceTree = "<group>";
+		};
+		64791B6021D631EF00CC4E6E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				643D600221B68575004520B0 /* Dataset.swift */,
+				643D600421B6857B004520B0 /* EyeTracker.swift */,
+				643D600621B68584004520B0 /* Extensions.swift */,
+				6403BB8021B7F37700B8A21F /* Utility.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		853E6E86CF5433ED1B4506AA /* Frameworks */ = {

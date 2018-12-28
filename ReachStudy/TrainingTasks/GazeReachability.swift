@@ -30,21 +30,22 @@ class GazeReachability: TrainingTargets {
         gazeView.layer.cornerRadius = 8
         gazeView.alpha = 0.3
         self.view.addSubview(gazeView)
-        //let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
-        //swipeDown.direction = .down
-        //self.view.addGestureRecognizer(swipeDown)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //EyeTracker.delegate = self
+        EyeTracker.delegate = self
 
     }
     
     
     
-    override func activateButton(_ sender: UIButton) {
+    /*override func activateButton(_ sender: UIButton) {
         let number = randomNumbers[frames]
         let currentFrames = frames
         
@@ -76,9 +77,9 @@ class GazeReachability: TrainingTargets {
             }
             self.frames += 1
         }
-    }
+    }*/
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if viewIsMoved {
             UIView.animate(withDuration: 0.4) {
                 self.view.frame.origin.y -= self.moveDistance
@@ -87,6 +88,19 @@ class GazeReachability: TrainingTargets {
             EyeTracker.instance.trackerView.isHidden = false
             //EyeTracker.instance.trackerView.frame = CGRect(x: -50, y: -50, width: 50, height: 50)
         }
+    }*/
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+  
+        if viewIsMoved {
+            self.view.layer.cornerRadius = 40
+            UIView.animate(withDuration: 0.4) {
+                self.view.frame.origin.y -= self.moveDistance
+            }
+            
+            viewIsMoved = false
+        }
+        
     }
     
     

@@ -29,9 +29,9 @@ class TrainingTargets: TargetViewController {
         
         randomNumbers = Utility().generateRandomSequence(from: 0, to: 2, quit: 3)
         
-        let x1: CGFloat = 50
-        let x2: CGFloat = 170
-        let x3: CGFloat = 300
+        let x1: CGFloat = 30
+        let x2: CGFloat = 152
+        let x3: CGFloat = 275
         let y1: CGFloat = 100
         let y2: CGFloat = 300
         let y3: CGFloat = 500
@@ -42,27 +42,45 @@ class TrainingTargets: TargetViewController {
             CGPoint(x: x3, y: y3)]
         
         for index in 0...targetPositions.count-1 {
-            let target: UIButton = UIButton()
+            let target: UIView = UIView()
             target.frame = CGRect(origin: targetPositions[index], size: targetSize)
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
-            if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
+            //target.isHidden = true
+            
+            /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
             } else if condition == 5 {
                 if index > 1 {
                     target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
                 }
-            }
+            }*/
 
             self.view.addSubview(target)
             targets.append(target)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.targets[self.randomNumbers[0]].isHidden = false
             self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
         }
         
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        
+        let position = touch.location(in: self.view)
+
+        if frames < 3 {
+            
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
+        }
     }
     
     func updateScreen() {
@@ -74,20 +92,24 @@ class TrainingTargets: TargetViewController {
             if currentFrames < 2 {
                 
                 self.targets[number].backgroundColor = UIColor.gray
+                self.targets[number].isHidden = true
+
                 self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                self.targets[self.randomNumbers[currentFrames+1]].isHidden = false
                 
             } else if currentFrames == 2 {
-                for button in self.targets {
-                    button.isHidden = true
-                    self.startTaskButton.isHidden = false
-                }
+                self.targets[number].isHidden = true
+                self.startTaskButton.isHidden = false
+                //for button in self.targets {
+                //    button.isHidden = true
+                //}
             }
         }
         self.frames += 1
     }
     
     
-    @objc func activateButton(_ sender: UIButton) {}
     @objc func startTask() {}
+    
  
 }

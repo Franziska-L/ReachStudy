@@ -9,30 +9,7 @@
 import UIKit
 
 class Baseline: TrainingTargets {
-    
-    
-    override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
 
-        if sender.tag == number {
-            targets[number].backgroundColor = UIColor.green
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 2 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.startTaskButton.isHidden = false
-                    }
-                }
-            }
-            self.frames += 1
-        }
-    }
     
     override func startTask() {
         

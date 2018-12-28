@@ -17,6 +17,9 @@ class GridTargets: TargetViewController {
     
     var timer = Timer()
     var totalTime = 0
+    
+    var eyePositions = [[CGFloat]]()
+    var touchPositions = [[CGFloat]]()
   
     
     override func viewDidLoad() {
@@ -33,16 +36,10 @@ class GridTargets: TargetViewController {
         
         randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
-            
-            self.setDataTarget()
-        }
-        
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countTime), userInfo: nil, repeats: true)
         
-        let x1: CGFloat = 70
-        let x2: CGFloat = 250
+        let x1: CGFloat = 60
+        let x2: CGFloat = 245
         let y1: CGFloat = 100
         let y2: CGFloat = 300
         let y3: CGFloat = 500
@@ -60,25 +57,33 @@ class GridTargets: TargetViewController {
         
     
         for index in 0...targetPositions.count - 1 {
-            let target: UIButton = UIButton()
+            let target: UIView = UIView()
             target.frame = CGRect(origin: targetPositions[index], size: targetSize)
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
+            //target.isHidden = true
             
-            if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
+            /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
             } else if condition == 5 {
                 if index > 3 {
                     target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
                 }
-            }
-            
-            //setTargetPosition(position: targetPositions[index])
-            
+            }*/
+
             self.view.addSubview(target)
             targets.append(target)
         }
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.targets[self.randomNumbers[0]].isHidden = false
+            self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
+            
+            self.setDataTarget()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,9 +92,49 @@ class GridTargets: TargetViewController {
         EyeTracker.delegate = self 
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let touchPosition = touch.location(in: self.view)
+        
+        let eyePosition = EyeTracker.getTrackerPosition()
+        
+        addPositionsToArray(eyePosition, touchPosition)
+
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        
+        let touchPosition = touch.location(in: self.view)
+        let eyePosition = EyeTracker.getTrackerPosition()
+        
+        addPositionsToArray(eyePosition, touchPosition)
+        
+        if frames < 8 {
+            
+            print(touchPositions)
+            print(eyePositions)
+            
+            let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
+        }
+    }
+    
     @objc func countTime() {
         totalTime += 1
     }
+    
+    func addPositionsToArray(_ eyePosition: CGPoint, _ touchPosition: CGPoint) {
+        let touchPos = [touchPosition.x, touchPosition.y]
+        touchPositions.append(touchPos)
+        
+        let eyePos = [eyePosition.x, eyePosition.y]
+        eyePositions.append(eyePos)
+    }
+    
     
     @objc func activateButton(_ sender: UIButton) {}
     
@@ -105,7 +150,10 @@ class GridTargets: TargetViewController {
             if currentFrames < 7 {
                 
                 self.targets[number].backgroundColor = UIColor.gray
+                self.targets[number].isHidden = true
+                
                 self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
+                self.targets[self.randomNumbers[currentFrames+1]].isHidden = false
                 
                 self.setDataTarget()
                 
@@ -133,12 +181,12 @@ class GridTargets: TargetViewController {
     }
     
     func setDataTarget() {
-        
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
         ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
+       
     }
     
     
@@ -147,14 +195,16 @@ class GridTargets: TargetViewController {
         
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
-        ref.updateChildValues(["\(target) Timestamp": timestamp])
+        ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions])
+        touchPositions.removeAll()
+        eyePositions.removeAll()
     }
     
     func setTotalTime() {
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
         ref.updateChildValues(["Total Time": totalTime])
     }
-    
+   
     
     @objc func finishTask() {
         print("Counter: \(counter)")
