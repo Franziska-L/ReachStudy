@@ -72,8 +72,8 @@ class TargetViewController: UIViewController, TrackerDelegate {
     
     func setCursorPosition(position: CGPoint) {
         
-        let x = EyeTracker.instance.trackerView.frame.size.width / 2 + position.x
-        let y = EyeTracker.instance.trackerView.frame.size.height / 2 + position.y
+        let x = EyeTracker.instance.trackerView.frame.size.width / 2 + position.x - cursorSize/2
+        let y = EyeTracker.instance.trackerView.frame.size.height / 2 + position.y - cursorSize/2
         
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
         cursor.isHidden = false

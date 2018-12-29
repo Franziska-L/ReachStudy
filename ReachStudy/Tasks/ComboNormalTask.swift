@@ -100,7 +100,7 @@ class ComboNormalTask: GridTargets {
         self.frames += 1
     }
     
-    override func activateButton(_ sender: UIButton) {
+    /*override func activateButton(_ sender: UIButton) {
         let number = randomNumbers[frames]
         let currentFrames = frames
         
@@ -118,7 +118,7 @@ class ComboNormalTask: GridTargets {
             }
             self.frames += 1
         }
-    }
+    }*/
     
     func hideViews() {
         for button in self.targets {

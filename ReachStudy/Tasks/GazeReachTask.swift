@@ -25,9 +25,10 @@ class GazeReachTask: GridTargets {
         
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        gazeView.frame = CGRect(x: 0, y: -30, width: view.frame.width, height: topArea)
+        gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: topArea)
         gazeView.backgroundColor = UIColor.red
-        gazeView.layer.cornerRadius = 8
+        gazeView.layer.cornerRadius = 40
+        gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
         self.view.addSubview(gazeView)
         
@@ -59,7 +60,7 @@ class GazeReachTask: GridTargets {
     
     
     
-    override func activateButton(_ sender: UIButton) {
+    /*override func activateButton(_ sender: UIButton) {
         let number = randomNumbers[frames]
         let currentFrames = frames
         
@@ -96,15 +97,14 @@ class GazeReachTask: GridTargets {
             }
             self.frames += 1
         }
-    }
+    }*/
     
     
     
     @objc func updateTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        if eyePosition.y > 0 && eyePosition.y < topArea && eyePosition.x > rightArea && eyePosition.x < UIScreen.main.bounds.width && !viewIsMoved {
-            EyeTracker.instance.trackerView.isHidden = true
+        if eyePosition.y > -30 && eyePosition.y < topArea && eyePosition.x > 0 && eyePosition.x < self.view.frame.width && !viewIsMoved {
             self.view.layer.cornerRadius = 40
             UIView.animate(withDuration: 0.4) {
                 self.view.frame.origin.y += self.moveDistance

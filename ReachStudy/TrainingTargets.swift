@@ -70,11 +70,9 @@ class TrainingTargets: TargetViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
-        
         let position = touch.location(in: self.view)
 
         if frames < 3 {
-            
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {

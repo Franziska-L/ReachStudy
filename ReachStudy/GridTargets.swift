@@ -20,6 +20,8 @@ class GridTargets: TargetViewController {
     
     var eyePositions = [[CGFloat]]()
     var touchPositions = [[CGFloat]]()
+    
+    var repeats = 0
   
     
     override func viewDidLoad() {
@@ -64,14 +66,6 @@ class GridTargets: TargetViewController {
             target.tag = index
             //target.isHidden = true
             
-            /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
-                target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
-            } else if condition == 5 {
-                if index > 3 {
-                    target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
-                }
-            }*/
-
             self.view.addSubview(target)
             targets.append(target)
         }
@@ -135,9 +129,7 @@ class GridTargets: TargetViewController {
         eyePositions.append(eyePos)
     }
     
-    
-    @objc func activateButton(_ sender: UIButton) {}
-    
+        
     func updateScreen() {
         let number = randomNumbers[frames]
         let currentFrames = frames

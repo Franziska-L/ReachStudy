@@ -87,6 +87,10 @@ class ComboGazeTask: GridTargets {
             }
         }
         
+        if frames == 8 {
+            borderView.isHidden = true
+        }
+        
     }
     
     @objc func eyeTrackerActive() {
@@ -103,7 +107,7 @@ class ComboGazeTask: GridTargets {
     }
     
     
-    override func activateButton(_ sender: UIButton) {
+    /*override func activateButton(_ sender: UIButton) {
         let number = randomNumbers[frames]
         let currentFrames = frames
         
@@ -131,6 +135,6 @@ class ComboGazeTask: GridTargets {
             }
             self.frames += 1
         }
-    }
+    }*/
     
 }

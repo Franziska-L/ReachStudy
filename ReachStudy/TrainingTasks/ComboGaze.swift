@@ -41,9 +41,7 @@ class ComboGaze: TrainingTargets {
         trackerPosition = EyeTracker.getTrackerPosition()
         
         if trackerPosition.y < middle {
-            
-           
-            
+
             let x = EyeTracker.instance.trackerView.frame.size.width / 2 + trackerPosition.x - cursorSize/2
             let y = EyeTracker.instance.trackerView.frame.size.height / 2 + trackerPosition.y - cursorSize/2
             

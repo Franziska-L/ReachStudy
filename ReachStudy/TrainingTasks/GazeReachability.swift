@@ -25,9 +25,10 @@ class GazeReachability: TrainingTargets {
         
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTrackerTimer), userInfo: nil, repeats: true)
         
-        gazeView.frame = CGRect(x: 0, y: -30, width: view.frame.width, height: topArea)
+        gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: topArea)
         gazeView.backgroundColor = UIColor.red
-        gazeView.layer.cornerRadius = 8
+        gazeView.layer.cornerRadius = 40
+        gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
         self.view.addSubview(gazeView)
         
@@ -108,7 +109,6 @@ class GazeReachability: TrainingTargets {
         let eyePosition = EyeTracker.getTrackerPosition()
         
         if eyePosition.y > -30 && eyePosition.y < topArea && eyePosition.x > 0 && eyePosition.x < self.view.frame.width && !viewIsMoved {
-            EyeTracker.instance.trackerView.isHidden = true
             self.view.layer.cornerRadius = 40
             UIView.animate(withDuration: 0.4) {
                 self.view.frame.origin.y += self.moveDistance
