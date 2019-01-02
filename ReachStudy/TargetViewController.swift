@@ -23,6 +23,9 @@ class TargetViewController: UIViewController, TrackerDelegate {
     
     var borderView = UIView()
     let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
+    var viewIsMoved: Bool = false
+    let moveDistance: CGFloat = 350
+
 
     
     var trackerPosition: CGPoint = CGPoint()
@@ -39,6 +42,18 @@ class TargetViewController: UIViewController, TrackerDelegate {
         borderView.backgroundColor = UIColor.black
         self.view.addSubview(borderView)
         borderView.isHidden = true
+        
+        if condition == 3 || condition == 2 {
+            let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+            swipeUp.direction = .up
+            self.view.addGestureRecognizer(swipeUp)
+            
+            if condition == 2 {
+                let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+                swipeDown.direction = .down
+                self.view.addGestureRecognizer(swipeDown)
+            }
+        }
 
     }
     
@@ -53,6 +68,26 @@ class TargetViewController: UIViewController, TrackerDelegate {
         cursor.isHidden = true
     }
     
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            if viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.view.frame.origin.y -= self.moveDistance
+                }
+                viewIsMoved = false
+            }
+        }
+        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            if !viewIsMoved {
+                self.view.layer.cornerRadius = 40
+                UIView.animate(withDuration: 0.4) {
+                    self.view.frame.origin.y += self.moveDistance
+                }
+                
+                viewIsMoved = true
+            }
+        }
+    }
     
     func checkPosition(position: CGPoint, target: UIView) -> Bool {
         let frame = target.frame.origin

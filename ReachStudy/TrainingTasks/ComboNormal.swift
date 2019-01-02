@@ -84,13 +84,15 @@ class ComboNormal: TrainingTargets {
             swipePad.isHidden = false
             cursor.isHidden = false
         }
+        print("hi")
     }
     
     @objc func handleTap(sender: UIGestureRecognizer) {
         let position = cursor.frame.origin
+        print("test")
         if frames <= 2 {
             if targets[randomNumbers[frames]].tag > 1 {
-                
+                print("hesesese")
             } else {
                 let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
                 

@@ -63,22 +63,35 @@ class ComboGazeTask: GridTargets {
         let y = cursorPosition.y + distY
         
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+        
+        let eyePosition = EyeTracker.getTrackerPosition()
+        addPositionsToArray(eyePosition, newLocation)
+        
+        if trackerActive {
+            cursorPositions.append([x, y])
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
+        let touch: UITouch! = touches.first
+        
+        let touchPosition = touch.location(in: self.view)
+        let eyePosition = EyeTracker.getTrackerPosition()
+        
         if trackerActive && frames < 8 {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            cursorPositions.append([position.x, position.y])
+            addPositionsToArray(eyePosition, touchPosition)
             
             if isActive {
                 updateScreen()
             }
         } else if !trackerActive && frames < 8 {
-            let touch: UITouch! = touches.first
-            
-            let touchPosition = touch.location(in: self.view)
+            addPositionsToArray(eyePosition, touchPosition)
             
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             
@@ -105,36 +118,5 @@ class ComboGazeTask: GridTargets {
         }
         
     }
-    
-    
-    /*override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        if sender.tag == number && sender.tag > 1 {
-            targets[number].backgroundColor = UIColor.green
-            
-            setTimestamp(for: "Touch")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 7 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                    self.setDataTarget()
-                    
-                } else if currentFrames == 7 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.finishButton.isHidden = false
-                        self.timer.invalidate()
-                        self.setTotalTime()
-                    }
-                }
-            }
-            self.frames += 1
-        }
-    }*/
     
 }

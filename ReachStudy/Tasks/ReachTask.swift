@@ -10,8 +10,6 @@ import UIKit
 
 class ReachTask: GridTargets {
     
-    var viewIsMoved = false
-    let moveDistance: CGFloat = 350
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,25 +26,6 @@ class ReachTask: GridTargets {
     
     
     
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            if viewIsMoved {
-                UIView.animate(withDuration: 0.4) {
-                    self.view.frame.origin.y -= self.moveDistance
-                }
-                viewIsMoved = false
-            }
-        }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            if !viewIsMoved {
-                self.view.layer.cornerRadius = 40
-                UIView.animate(withDuration: 0.4) {
-                    self.view.frame.origin.y += self.moveDistance
-                }
-                
-                viewIsMoved = true
-            }
-        }
-    }
+   
     
 }

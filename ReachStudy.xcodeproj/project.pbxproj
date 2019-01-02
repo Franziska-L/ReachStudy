@@ -37,6 +37,7 @@
 		643D600321B68575004520B0 /* Dataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600221B68575004520B0 /* Dataset.swift */; };
 		643D600521B6857B004520B0 /* EyeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600421B6857B004520B0 /* EyeTracker.swift */; };
 		643D600721B68584004520B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600621B68584004520B0 /* Extensions.swift */; };
+		64791B6221DCB16500CC4E6E /* SCalibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64791B6121DCB16500CC4E6E /* SCalibration.swift */; };
 		64D1F7AC21C0EE4600A0CE83 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		643D600221B68575004520B0 /* Dataset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dataset.swift; sourceTree = "<group>"; };
 		643D600421B6857B004520B0 /* EyeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeTracker.swift; sourceTree = "<group>"; };
 		643D600621B68584004520B0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		64791B6121DCB16500CC4E6E /* SCalibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCalibration.swift; sourceTree = "<group>"; };
 		64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				643D600221B68575004520B0 /* Dataset.swift */,
+				64791B6121DCB16500CC4E6E /* SCalibration.swift */,
 				643D600421B6857B004520B0 /* EyeTracker.swift */,
 				643D600621B68584004520B0 /* Extensions.swift */,
 				6403BB8021B7F37700B8A21F /* Utility.swift */,
@@ -522,6 +525,7 @@
 				64293AD021B6C3F500568C92 /* GridTargets.swift in Sources */,
 				643D600721B68584004520B0 /* Extensions.swift in Sources */,
 				641D913421B98F6D001B3E65 /* BaselineTask.swift in Sources */,
+				64791B6221DCB16500CC4E6E /* SCalibration.swift in Sources */,
 				641D913E21B98FD0001B3E65 /* ComboGazeTask.swift in Sources */,
 				643D600321B68575004520B0 /* Dataset.swift in Sources */,
 				641D913C21B98FBF001B3E65 /* ComboNormalTask.swift in Sources */,

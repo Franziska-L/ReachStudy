@@ -99,26 +99,7 @@ class ComboNormalTask: GridTargets {
         }
         self.frames += 1
     }
-    
-    /*override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        if sender.tag == number && frames <= 7 {
-            targets[number].backgroundColor = UIColor.green
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 7 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 7 {
-                    self.hideViews()
-                }
-            }
-            self.frames += 1
-        }
-    }*/
+  
     
     func hideViews() {
         for button in self.targets {

@@ -19,6 +19,7 @@ class GridTargets: TargetViewController {
     var totalTime = 0
     
     var eyePositions = [[CGFloat]]()
+    var cursorPositions = [[CGFloat]]()
     var touchPositions = [[CGFloat]]()
     
     var repeats = 0
@@ -106,9 +107,6 @@ class GridTargets: TargetViewController {
         
         if frames < 8 {
             
-            print(touchPositions)
-            print(eyePositions)
-            
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             
             if isActive {
@@ -172,6 +170,7 @@ class GridTargets: TargetViewController {
         self.frames += 1
     }
     
+    
     func setDataTarget() {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
@@ -187,10 +186,12 @@ class GridTargets: TargetViewController {
         
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
-        ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions])
+        ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions, "Cursor Positions": cursorPositions])
         touchPositions.removeAll()
         eyePositions.removeAll()
+        cursorPositions.removeAll()
     }
+    
     
     func setTotalTime() {
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")

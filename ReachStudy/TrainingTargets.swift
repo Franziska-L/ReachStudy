@@ -47,6 +47,7 @@ class TrainingTargets: TargetViewController {
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
+            target.isUserInteractionEnabled = false
             //target.isHidden = true
             
             /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {

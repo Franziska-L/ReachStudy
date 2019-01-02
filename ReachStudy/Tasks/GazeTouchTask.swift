@@ -10,13 +10,6 @@ import UIKit
 
 class GazeTouchTask: GridTargets {
     
-  
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //EyeTracker.delegate = self
-    }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let trackerPosition = EyeTracker.getTrackerPosition()
@@ -38,6 +31,11 @@ class GazeTouchTask: GridTargets {
         let y = cursorPosition.y + distY
         
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+
+        let eyePosition = EyeTracker.getTrackerPosition()
+        
+        addPositionsToArray(eyePosition, newLocation)
+        cursorPositions.append([x, y])
     }
     
     
