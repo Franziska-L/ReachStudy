@@ -170,7 +170,6 @@ class SCalibration{
      Used to clear the calibration data
      */
     static func clear(){
-        SCalibration.regions = 0
         SCalibration.offset.removeAll()
     }
     

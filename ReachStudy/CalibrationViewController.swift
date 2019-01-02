@@ -32,6 +32,7 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
 
         start.isHidden = true
         self.reset()
+        SCalibration.clear()
 
     }
     

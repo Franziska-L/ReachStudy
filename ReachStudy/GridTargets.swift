@@ -65,7 +65,7 @@ class GridTargets: TargetViewController {
             target.backgroundColor = UIColor.gray
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
-            //target.isHidden = true
+            target.isHidden = true
             
             self.view.addSubview(target)
             targets.append(target)

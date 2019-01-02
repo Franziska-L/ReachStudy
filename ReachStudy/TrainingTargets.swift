@@ -48,7 +48,7 @@ class TrainingTargets: TargetViewController {
             target.layer.cornerRadius = targetSize.width / 2
             target.tag = index
             target.isUserInteractionEnabled = false
-            //target.isHidden = true
+            target.isHidden = true
             
             /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
                 target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
