@@ -16,6 +16,7 @@ class ComboNormal: TrainingTargets {
     var swipePadX: CGFloat = CGFloat()
     var swipePadY: CGFloat = CGFloat()
     
+    var swipePadActive = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,25 +43,6 @@ class ComboNormal: TrainingTargets {
         cursor.backgroundColor = UIColor.blue
     }
     
-    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-     let touch: UITouch! = touches.first
-     let currentPosition = touch.location(in: self.view)
-     
-     swipePadX = currentPosition.x - (swipePadSize / 2)
-     swipePadY = currentPosition.y - (swipePadSize / 2)
-     swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
-     
-     let distance: CGFloat = 400
-     let x = currentPosition.x - 30.0
-     let y = currentPosition.y - distance
-     
-     cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
-     
-     if swipePad.isHidden {
-     swipePad.isHidden = false
-     cursor.isHidden = false
-     }
-     }*/
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
@@ -68,57 +50,44 @@ class ComboNormal: TrainingTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        swipePadX = newLocation.x - (swipePadSize / 2)
-        swipePadY = newLocation.y - (swipePadSize / 2)
-        
-        let distX: CGFloat = newLocation.x - prevLocaiton.x
-        let distY: CGFloat = newLocation.y - prevLocaiton.y
-        
-        let x = swipePadX + distX
-        let y = swipePadY + distY - 350.0
-        
-        swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
-        cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
-        
-        if swipePad.isHidden {
-            swipePad.isHidden = false
-            cursor.isHidden = false
+        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
+            swipePadX = newLocation.x - (swipePadSize / 2)
+            swipePadY = newLocation.y - (swipePadSize / 2)
+            
+            let distX: CGFloat = newLocation.x - prevLocaiton.x
+            let distY: CGFloat = newLocation.y - prevLocaiton.y
+            
+            let x = swipePadX + distX
+            let y = swipePadY + distY - 350.0
+            
+            swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
+            cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+            
+            if swipePad.isHidden {
+                swipePad.isHidden = false
+                cursor.isHidden = false
+            }
         }
-        print("hi")
     }
     
+    
     @objc func handleTap(sender: UIGestureRecognizer) {
-        let position = cursor.frame.origin
-        print("test")
-        if frames <= 2 {
-            if targets[randomNumbers[frames]].tag > 1 {
-                print("hesesese")
-            } else {
-                let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-                
-                if isActive {
-                    updateScreen()
-                }
+
+        if targets[randomNumbers[frames]].tag < 2 && frames < 3 {
+            let position = cursor.frame.origin
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
+        } else if targets[randomNumbers[frames]].tag == 2 && frames < 3 {
+            let position = sender.location(in: self.view)
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
             }
         }
-        
-    }
-    override func updateScreen() {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        targets[number].backgroundColor = UIColor.green
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if currentFrames < 2 {
-                
-                self.targets[number].backgroundColor = UIColor.gray
-                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                
-            } else if currentFrames == 2 {
-                self.hideViews()
-            }
-        }
-        self.frames += 1
     }
     
     
@@ -126,6 +95,7 @@ class ComboNormal: TrainingTargets {
         for button in self.targets {
             button.isHidden = true
             self.startTaskButton.isHidden = false
+            self.borderView.isHidden = true
             self.cursor.isHidden = true
             self.swipePad.isHidden = true
         }

@@ -99,6 +99,7 @@ class TrainingTargets: TargetViewController {
             } else if currentFrames == 2 {
                 self.targets[number].isHidden = true
                 self.startTaskButton.isHidden = false
+                self.borderView.isHidden = true
                 //for button in self.targets {
                 //    button.isHidden = true
                 //}

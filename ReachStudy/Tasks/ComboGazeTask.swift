@@ -99,11 +99,6 @@ class ComboGazeTask: GridTargets {
                 updateScreen()
             }
         }
-        
-        if frames == 8 {
-            borderView.isHidden = true
-        }
-        
     }
     
     @objc func eyeTrackerActive() {

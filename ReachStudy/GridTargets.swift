@@ -151,6 +151,7 @@ class GridTargets: TargetViewController {
                 for button in self.targets {
                     button.isHidden = true
                     self.finishButton.isHidden = false
+                    self.borderView.isHidden = true
                     
                     self.timer.invalidate()
                     self.setTotalTime()

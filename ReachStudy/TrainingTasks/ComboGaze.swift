@@ -95,10 +95,6 @@ class ComboGaze: TrainingTargets {
                 updateScreen()
             }
         }
-        
-        if frames == 3 {
-            borderView.isHidden = true
-        }
     }
     
     @objc func eyeTrackerActive() {
@@ -111,8 +107,6 @@ class ComboGaze: TrainingTargets {
             EyeTracker.instance.trackerView.alpha = 0.2
             EyeTracker.instance.trackerView.backgroundColor = UIColor.gray
         }
-        
-        //trackerActive = checkPosition(position: eyePosition, target: targets[randomNumbers[frames]])
         
     }
     

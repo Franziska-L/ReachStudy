@@ -32,7 +32,7 @@ class ComboNormalTask: GridTargets {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         tap.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tap)
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,28 +47,39 @@ class ComboNormalTask: GridTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        swipePadX = newLocation.x - (swipePadSize / 2)
-        swipePadY = newLocation.y - (swipePadSize / 2)
-        
-        let distX: CGFloat = newLocation.x - prevLocaiton.x
-        let distY: CGFloat = newLocation.y - prevLocaiton.y
-        
-        let x = swipePadX + distX
-        let y = swipePadY + distY - 350.0
-        
-        swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
-        cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
-        
-        if swipePad.isHidden {
-            swipePad.isHidden = false
-            cursor.isHidden = false
+        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
+            swipePadX = newLocation.x - (swipePadSize / 2)
+            swipePadY = newLocation.y - (swipePadSize / 2)
+            
+            let distX: CGFloat = newLocation.x - prevLocaiton.x
+            let distY: CGFloat = newLocation.y - prevLocaiton.y
+            
+            let x = swipePadX + distX
+            let y = swipePadY + distY - 350.0
+            
+            swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
+            cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+            
+            if swipePad.isHidden {
+                swipePad.isHidden = false
+                cursor.isHidden = false
+            }
+            
         }
     }
     
     @objc func handleTap(sender: UIGestureRecognizer) {
-        let position = cursor.frame.origin
         
-        if frames <= 7 {
+        
+        if frames < 8 && targets[randomNumbers[frames]].tag < 4 {
+            let position = cursor.frame.origin
+            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            
+            if isActive {
+                updateScreen()
+            }
+        } else {
+            let position = sender.location(in: self.view)
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
@@ -107,6 +118,7 @@ class ComboNormalTask: GridTargets {
             self.finishButton.isHidden = false
             self.cursor.isHidden = true
             self.swipePad.isHidden = true
+            self.borderView.isHidden = true 
             
             self.timer.invalidate()
             self.setTotalTime()
