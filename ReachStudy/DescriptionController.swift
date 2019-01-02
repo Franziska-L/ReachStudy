@@ -29,69 +29,12 @@ class DescriptionController: UIViewController {
     }
     
     @IBAction func startTraining(_ sender: Any) {
-        switch sequence[counter] {
-        case 1:
-            //Baseline
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Baseline") as? Baseline {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 2:
-            //Reachability
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reachability") as? Reachability {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 3:
-            //Gazebased reachbility
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachability") as? GazeReachability {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 4:
-            //Gazebased indirect touch
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouch") as? GazeTouch {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 5:
-            //Combo
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormal") as? ComboNormal {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 6:
-            //Combo with gaze
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGaze") as? ComboGaze {
-                vc.data = data!
-                vc.condition = sequence[counter]
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        default:
-            break
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calibration") as? CalibrationViewController {
+            vc.data = data!
+            vc.condition = sequence[counter]
+            vc.counter = counter
+            
+            present(vc, animated: true, completion: nil)
         }
     }
     

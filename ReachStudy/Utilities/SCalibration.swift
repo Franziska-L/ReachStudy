@@ -201,12 +201,14 @@ class SCalibration{
         let midS = SCalibration.getRegionMid(region: s)
         let midE = SCalibration.getRegionMid(region: e)
         
+        let side = abs(midS.x - midE.x) > abs(midS.y - midE.y)
+        
         if midS.x > midE.x && midS.y > midE.y {
-            return "right-down"
+            return side ? "ri" : "do"
         } else if midS.x == midE.x && midS.y > midE.y {
             return "down"
         } else if midS.x < midE.x && midS.y > midE.y {
-            return "left-down"
+            return side ? "lf" : "do"
         } else if midS.x > midE.x && midS.y == midE.y {
             return "left"
         } else if midS.x == midE.x && midS.y == midE.y {
@@ -214,52 +216,30 @@ class SCalibration{
         } else if midS.x < midE.x && midS.y == midE.y {
             return "right"
         } else if midS.x > midE.x && midS.y < midE.y {
-            return "right-up"
+            return side ? "ri" : "up"
         } else if midS.x == midE.x && midS.y < midE.y {
             return "up"
         } else if midS.x < midE.x && midS.y < midE.y {
-            return "left-up"
+            return side ? "lf" : "up"
         }
         
         return "0"
     }
     
-    /*
-     functionality to detect the vertical eye movement between two regions
-     */
-    static func getRegionMovementW(s: [CGPoint], e: [CGPoint]) -> String {
-        let midS = SCalibration.getRegionMid(region: s)
-        let midE = SCalibration.getRegionMid(region: e)
-        
-        if midS.x > midE.x {
-            return "right"
-        } else if midS.x == midE.x {
-            return "same"
-        } else if midS.x < midE.x {
-            return "left"
-        }
-        
-        return "0"
-    }
-    
-    /*
-     functionality to detect the horizontal eye movement between two regions
-     */
-    static func getRegionMovementH(s: [CGPoint], e: [CGPoint]) -> String {
-        let midS = SCalibration.getRegionMid(region: s)
-        let midE = SCalibration.getRegionMid(region: e)
-        
-        if midS.y > midE.y {
-            return "down"
-        } else if midS.y == midE.y {
-            return "same"
-        } else if midS.y < midE.y {
+    static func getRandomDirection() -> String{
+        switch Int.random(in: 0 ... 3) {
+        case 0:
+            return "ri"
+        case 1:
+            return "lf"
+        case 2:
             return "up"
+        case 3:
+            return "do"
+        default:
+            return "s"
         }
-        
-        return "0"
     }
-    
     
     /*
      Used ot get a random point in a defined region
@@ -275,26 +255,3 @@ class SCalibration{
 }
 
 
-public extension Float {
-    public static var random: Float {
-        return Float(arc4random()) / 0xFFFFFFFF
-    }
-    
-    public static func random(min: Float, max: Float) -> Float {
-        return Float.random * (max - min) + min
-    }
-}
-
-public extension CGFloat {
-    public static var randomSign: CGFloat {
-        return (arc4random_uniform(2) == 0) ? 1.0 : -1.0
-    }
-    
-    public static var random: CGFloat {
-        return CGFloat(Float.random)
-    }
-    
-    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
-        return CGFloat.random * (max - min) + min
-    }
-}

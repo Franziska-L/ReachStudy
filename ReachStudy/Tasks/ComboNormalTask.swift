@@ -47,7 +47,10 @@ class ComboNormalTask: GridTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
+        let eyePosition = EyeTracker.getTrackerPosition()
+        addPositionsToArray(eyePosition, newLocation)
+        
+        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) && frames < 8 {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
             
@@ -60,6 +63,8 @@ class ComboNormalTask: GridTargets {
             swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             
+            cursorPositions.append([x, y])
+            
             if swipePad.isHidden {
                 swipePad.isHidden = false
                 cursor.isHidden = false
@@ -70,6 +75,7 @@ class ComboNormalTask: GridTargets {
     
     @objc func handleTap(sender: UIGestureRecognizer) {
         
+        let currFrame = frames
         
         if frames < 8 && targets[randomNumbers[frames]].tag < 4 {
             let position = cursor.frame.origin
@@ -86,32 +92,14 @@ class ComboNormalTask: GridTargets {
                 updateScreen()
             }
         }
-    }
-    
-    override func updateScreen() {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
         
-        targets[number].backgroundColor = UIColor.green
-        
-        setTimestamp(for: "Touch")
-                
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if currentFrames < 7 {
-                
-                self.targets[number].backgroundColor = UIColor.gray
-                self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                
-                self.setDataTarget()
-                
-            } else if currentFrames == 7 {
+        if currFrame == 7 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.hideViews()
             }
         }
-        self.frames += 1
     }
-  
-    
+
     func hideViews() {
         for button in self.targets {
             button.isHidden = true

@@ -9,15 +9,7 @@
 import UIKit
 
 class Reachability: TrainingTargets {
-    
-    //var viewIsMoved = false
-    //let moveDistance: CGFloat = 350
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-   
+  
 
     override func startTask() {
         

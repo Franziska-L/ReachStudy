@@ -51,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="15" y="130"/>
         </scene>
         <!--Description Controller-->
         <scene sceneID="bRS-Mc-OqP">
@@ -71,9 +71,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8R-OC-PlZ">
                                 <rect key="frame" x="89" y="554" width="197" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Starte Übung"/>
+                                <state key="normal" title="Starte Kalibrierung"/>
                                 <connections>
-                                    <action selector="startTraining:" destination="0E9-Ve-HjL" eventType="touchUpInside" id="gvc-2b-eqA"/>
+                                    <action selector="startTraining:" destination="0E9-Ve-HjL" eventType="touchUpInside" id="o7v-lg-OrG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,7 +86,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c3D-bi-Fxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077.5999999999999" y="132.26600985221674"/>
+            <point key="canvasLocation" x="959" y="129"/>
+        </scene>
+        <!--Calibration View Controller-->
+        <scene sceneID="nfB-hT-ecJ">
+            <objects>
+                <viewController storyboardIdentifier="Calibration" id="MJ7-9K-3H4" customClass="CalibrationViewController" customModule="ReachStudy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X1h-Wn-FiM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qbj-Aq-H8i">
+                                <rect key="frame" x="52" y="107" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HN-VO-0GS">
+                                <rect key="frame" x="141" y="572" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Starte Übung"/>
+                                <connections>
+                                    <action selector="startTraining:" destination="MJ7-9K-3H4" eventType="touchUpInside" id="Jgi-WN-kuZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6wJ-mt-m01"/>
+                    </view>
+                    <connections>
+                        <outlet property="checkpoint" destination="Qbj-Aq-H8i" id="CQS-JN-Cqs"/>
+                        <outlet property="start" destination="2HN-VO-0GS" id="oIa-pZ-ZP1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6jS-ls-Wv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1878" y="129"/>
         </scene>
         <!--Gaze Reachability-->
         <scene sceneID="lAz-p2-d14">
@@ -104,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAo-WA-LtR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="106"/>
+            <point key="canvasLocation" x="2876" y="130"/>
         </scene>
         <!--Gaze Reach Task-->
         <scene sceneID="TTZ-jm-BbZ">
@@ -119,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrC-LQ-fJJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="106"/>
+            <point key="canvasLocation" x="4058" y="130"/>
         </scene>
         <!--Reachability-->
         <scene sceneID="9Ct-da-QGD">
@@ -137,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oDb-sV-EnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="-672"/>
+            <point key="canvasLocation" x="2876" y="-648"/>
         </scene>
         <!--Combo Gaze-->
         <scene sceneID="mMz-Qx-Wtq">
@@ -155,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44H-1H-VYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="2427"/>
+            <point key="canvasLocation" x="2876" y="2451"/>
         </scene>
         <!--Gaze Touch-->
         <scene sceneID="5W9-Yn-rxd">
@@ -173,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGD-vm-f6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="865"/>
+            <point key="canvasLocation" x="2876" y="889"/>
         </scene>
         <!--Gaze Touch Task-->
         <scene sceneID="yIQ-6b-dpn">
@@ -188,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WY5-Jm-deK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="865"/>
+            <point key="canvasLocation" x="4058" y="889"/>
         </scene>
         <!--Combo Normal-->
         <scene sceneID="0X1-EO-Yio">
@@ -206,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yG-3f-XKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="1578"/>
+            <point key="canvasLocation" x="2876" y="1602"/>
         </scene>
         <!--Baseline-->
         <scene sceneID="LRh-g3-MXm">
@@ -233,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ef-dN-8gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="-1428"/>
+            <point key="canvasLocation" x="2876" y="-1404"/>
         </scene>
         <!--Baseline Task-->
         <scene sceneID="Kmh-vv-Dxs">
@@ -259,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CsY-Q9-cjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="-1428"/>
+            <point key="canvasLocation" x="4058" y="-1404"/>
         </scene>
         <!--Combo Normal Task-->
         <scene sceneID="Tl3-ek-1Yb">
@@ -274,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6L-gP-yLB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="1578"/>
+            <point key="canvasLocation" x="4058" y="1602"/>
         </scene>
         <!--Reach Task-->
         <scene sceneID="QkF-mM-keK">
@@ -289,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbQ-XL-LVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="-672"/>
+            <point key="canvasLocation" x="4058" y="-648"/>
         </scene>
         <!--Combo Gaze Task-->
         <scene sceneID="yhR-1t-bze">
@@ -304,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiG-Ku-QbR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="2427"/>
+            <point key="canvasLocation" x="4058" y="2451"/>
         </scene>
     </scenes>
 </document>

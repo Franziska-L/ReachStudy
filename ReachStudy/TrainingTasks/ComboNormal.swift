@@ -50,7 +50,7 @@ class ComboNormal: TrainingTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
+        if frames < 3 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
             
@@ -72,7 +72,9 @@ class ComboNormal: TrainingTargets {
     
     
     @objc func handleTap(sender: UIGestureRecognizer) {
-
+        
+        let currFrame = frames
+        
         if targets[randomNumbers[frames]].tag < 2 && frames < 3 {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
@@ -86,6 +88,12 @@ class ComboNormal: TrainingTargets {
             
             if isActive {
                 updateScreen()
+            }
+        }
+        
+        if currFrame == 2 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.hideViews()
             }
         }
     }

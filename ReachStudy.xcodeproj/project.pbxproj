@@ -38,6 +38,7 @@
 		643D600521B6857B004520B0 /* EyeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600421B6857B004520B0 /* EyeTracker.swift */; };
 		643D600721B68584004520B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643D600621B68584004520B0 /* Extensions.swift */; };
 		64791B6221DCB16500CC4E6E /* SCalibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64791B6121DCB16500CC4E6E /* SCalibration.swift */; };
+		64791B6421DCCC8C00CC4E6E /* CalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64791B6321DCCC8C00CC4E6E /* CalibrationViewController.swift */; };
 		64D1F7AC21C0EE4600A0CE83 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		643D600421B6857B004520B0 /* EyeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeTracker.swift; sourceTree = "<group>"; };
 		643D600621B68584004520B0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		64791B6121DCB16500CC4E6E /* SCalibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCalibration.swift; sourceTree = "<group>"; };
+		64791B6321DCCC8C00CC4E6E /* CalibrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationViewController.swift; sourceTree = "<group>"; };
 		64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		66A023AFBAB9318530901A76 /* Pods_ReachStudyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReachStudyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF490CB353F6B6D210A51EE /* Pods-ReachStudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReachStudyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReachStudyTests/Pods-ReachStudyTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				643D5FD221B68144004520B0 /* AppDelegate.swift */,
 				643D5FD421B68144004520B0 /* ViewController.swift */,
 				64293ACD21B6B63D00568C92 /* DescriptionController.swift */,
+				64791B6321DCCC8C00CC4E6E /* CalibrationViewController.swift */,
 				64D1F7AB21C0EE4600A0CE83 /* TargetViewController.swift */,
 				6403BB7E21B7ABF800B8A21F /* TrainingTargets.swift */,
 				64293ACF21B6C3F500568C92 /* GridTargets.swift */,
@@ -518,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6403BB7921B7A6D600B8A21F /* GazeTouch.swift in Sources */,
+				64791B6421DCCC8C00CC4E6E /* CalibrationViewController.swift in Sources */,
 				64293ACE21B6B63D00568C92 /* DescriptionController.swift in Sources */,
 				641D913821B98F98001B3E65 /* GazeReachTask.swift in Sources */,
 				641D913A21B98FAB001B3E65 /* GazeTouchTask.swift in Sources */,

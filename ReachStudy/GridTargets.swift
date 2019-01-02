@@ -148,23 +148,21 @@ class GridTargets: TargetViewController {
                 self.setDataTarget()
                 
             } else if currentFrames == 7 {
-                for button in self.targets {
-                    button.isHidden = true
-                    self.finishButton.isHidden = false
-                    self.borderView.isHidden = true
+                self.targets[number].isHidden = true
+                self.finishButton.isHidden = false
+                self.borderView.isHidden = true
                     
-                    self.timer.invalidate()
-                    self.setTotalTime()
-                    if self.counter == 5 {
-                        let label = UILabel()
-                        label.frame = CGRect(x: 0, y: 200, width: self.view.frame.width, height: 120)
-                        label.numberOfLines = 2
-                        label.textAlignment = .center
-                        label.center.x = self.view.center.x
-                        label.text = "Du hast es geschafft! \nDanke für deine Teilnahme."
-                        label.textColor = UIColor.blue
-                        self.view.addSubview(label)
-                    }
+                self.timer.invalidate()
+                self.setTotalTime()
+                if self.counter == 5 {
+                    let label = UILabel()
+                    label.frame = CGRect(x: 0, y: 200, width: self.view.frame.width, height: 120)
+                    label.numberOfLines = 2
+                    label.textAlignment = .center
+                    label.center.x = self.view.center.x
+                    label.text = "Du hast es geschafft! \nDanke für deine Teilnahme."
+                    label.textColor = UIColor.blue
+                    self.view.addSubview(label)
                 }
             }
         }

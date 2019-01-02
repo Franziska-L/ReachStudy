@@ -10,8 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-protocol TrackerDelegate {
+@objc protocol TrackerDelegate {
     func getView() -> UIView
+    @objc optional func execute(_ frame: CGRect)
 }
 
 class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
@@ -124,6 +125,8 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
         leftEye.simdTransform = anchor.leftEyeTransform
         DispatchQueue.main.async {
             self.mapPositionOnScreen()
+            guard let delegate = EyeTracker.delegate else { return }
+            delegate.execute?(EyeTracker.getTrackerRect())
         }
     }
     
@@ -149,8 +152,13 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
         self.eyeLookAtPositionXs = Array(self.eyeLookAtPositionXs.suffix(smoothThresholdNumber))
         self.eyeLookAtPositionYs = Array(self.eyeLookAtPositionYs.suffix(smoothThresholdNumber))
         
-        let x = self.eyeLookAtPositionXs.average! + self.phoneScreenSize.width / 2
-        let y = self.eyeLookAtPositionYs.average! + self.phoneScreenSize.height / 2 
+        var x = self.eyeLookAtPositionXs.average! + self.phoneScreenSize.width / 2
+        var y = self.eyeLookAtPositionYs.average! + self.phoneScreenSize.height / 2
+        
+        let offset = SCalibration.getOffsetY(x: x, y: y)
+        
+        x = offset.x
+        y = offset.y
         
         positionOnScreen = CGPoint(x: x, y: y)
         trackerView.transform = CGAffineTransform(translationX: x, y: y)
@@ -158,6 +166,10 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     
     static func getTrackerPosition() -> CGPoint {
         return EyeTracker.instance.positionOnScreen
+    }
+    
+    static func getTrackerRect() -> CGRect {
+        return EyeTracker.instance.trackerView.frame
     }
     
     private func calculateY(_ point: Float) -> CGFloat {

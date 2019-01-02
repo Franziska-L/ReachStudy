@@ -40,6 +40,31 @@ extension Collection where Element == CGFloat, Index == Int {
     }
 }
 
+public extension Float {
+    public static var random: Float {
+        return Float(arc4random()) / 0xFFFFFFFF
+    }
+    
+    public static func random(min: Float, max: Float) -> Float {
+        return Float.random * (max - min) + min
+    }
+}
+
+public extension CGFloat {
+    public static var randomSign: CGFloat {
+        return (arc4random_uniform(2) == 0) ? 1.0 : -1.0
+    }
+    
+    public static var random: CGFloat {
+        return CGFloat(Float.random)
+    }
+    
+    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return CGFloat.random * (max - min) + min
+    }
+}
+
+
 extension Date {
     var millisecondsSince1970:Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
