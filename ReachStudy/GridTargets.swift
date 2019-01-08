@@ -13,6 +13,7 @@ class GridTargets: TargetViewController {
     
     var ref: DatabaseReference!
     var finishButton: UIButton = UIButton()
+    var continueButton: UIButton = UIButton()
     
     
     var timer = Timer()
@@ -23,6 +24,7 @@ class GridTargets: TargetViewController {
     var touchPositions = [[CGFloat]]()
     
     var block = 1
+    var targetNumber = 1
   
     
     override func viewDidLoad() {
@@ -36,6 +38,14 @@ class GridTargets: TargetViewController {
         self.view.addSubview(finishButton)
         
         finishButton.isHidden = true
+        
+        continueButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
+        continueButton.center = self.view.center
+        continueButton.setTitle("Continue", for: .normal)
+        continueButton.setTitleColor(UIColor.blue, for: .normal)
+        continueButton.addTarget(self, action: #selector(continueTask), for: .touchUpInside)
+        self.view.addSubview(continueButton)
+        continueButton.isHidden = true
         
         randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
         
@@ -59,6 +69,7 @@ class GridTargets: TargetViewController {
          CGPoint(x: x2, y: y4)]
         
     
+        
         for index in 0...targetPositions.count - 1 {
             let target: UIView = UIView()
             target.frame = CGRect(origin: targetPositions[index], size: targetSize)
@@ -137,7 +148,7 @@ class GridTargets: TargetViewController {
         setTimestamp(for: "Touch")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if currentFrames < 7 {
+            if currentFrames < 7 && self.block < 5 {
                 
                 self.targets[number].backgroundColor = UIColor.gray
                 self.targets[number].isHidden = true
@@ -147,7 +158,12 @@ class GridTargets: TargetViewController {
                 
                 self.setDataTarget()
                 
-            } else if currentFrames == 7 {
+            } else if currentFrames == 7 && self.block < 5 {
+                self.targets[number].isHidden = true
+                self.frames = 0
+                self.randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
+                self.continueButton.isHidden = false
+            } else if currentFrames == 7 && self.block == 5 {
                 self.targets[number].isHidden = true
                 self.finishButton.isHidden = false
                 self.borderView.isHidden = true
@@ -167,6 +183,7 @@ class GridTargets: TargetViewController {
             }
         }
         self.frames += 1
+        self.targetNumber += 1
     }
     
     
@@ -174,8 +191,9 @@ class GridTargets: TargetViewController {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
         
-        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
-        ref.updateChildValues(["Highlight Timestamp": timestamp, "Target Position": position])
+        let id = String(format: "%02d", targetNumber)
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
+        ref.updateChildValues(["Target ID": targets[randomNumbers[frames]].tag, "Highlight Timestamp": timestamp, "Target Position": position])
        
     }
     
@@ -183,8 +201,9 @@ class GridTargets: TargetViewController {
     func setTimestamp(for target: String) {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         
-        
-        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(data.conditions[counter].targetProperties[randomNumbers[frames]].targetId)")
+        let id = String(format: "%02d", targetNumber)
+        print(id)
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
         ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions, "Cursor Positions": cursorPositions])
         touchPositions.removeAll()
         eyePositions.removeAll()
@@ -205,6 +224,16 @@ class GridTargets: TargetViewController {
             vc.counter = counter
             
             present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func continueTask() {
+        continueButton.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.targets[self.randomNumbers[0]].isHidden = false
+            self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
+            
+            self.setDataTarget()
         }
     }
    

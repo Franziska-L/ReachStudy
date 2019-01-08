@@ -53,7 +53,8 @@ class ViewController: UIViewController {
             data.participantID = participantIDLabel.text!
             
             setSequence()
-            
+            let participantID = String(format: "%02d", participantIDLabel.text!)
+            print(participantID)
             
             ref.setValue(["Participant ID": participantIDLabel.text])
             for i in 0 ..< data.conditions.count {
@@ -61,19 +62,20 @@ class ViewController: UIViewController {
                 ref.setValue([
                     "Condition ID": data.conditions[i].conditionId,
                     "Total Time": 0])
-                for targetID in 0...7 {
-                    ref.child("Target \(targetID)").setValue([
-                        "Target ID": targetID,
+                for targetID in 1...40 {
+                    let id = String(format: "%02d", targetID)
+                    print(id)
+                    ref.child("Target \(id)").setValue([
+                        "Target ID": "",
                         "Highlight Timestamp": "",
                         "Touch Timestamp": "",
                         "Target Position": [],
                         "Touch Positions": [],
-                        "Eye Positions": [],
-                        "Touch In Target": false,
-                        "Distance": ""
-                        ])
+                        "Eye Positions": []                        ])
                     let targetProperty = TargetProperty(targetId: String(targetID))
                     data.conditions[i].targetProperties.append(targetProperty)
+                    
+                    
                 }
             }
             self.performSegue(withIdentifier: "description", sender: self)
