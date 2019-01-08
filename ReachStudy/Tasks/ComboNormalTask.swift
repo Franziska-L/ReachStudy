@@ -55,7 +55,7 @@ class ComboNormalTask: GridTargets {
         let eyePosition = EyeTracker.getTrackerPosition()
         addPositionsToArray(eyePosition, newLocation)
         
-        if !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) && frames < 8 {
+        if frames < 8 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
             
@@ -95,12 +95,6 @@ class ComboNormalTask: GridTargets {
             
             if isActive {
                 updateScreen()
-            }
-        }
-        
-        if currFrame == 7 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.hideViews()
             }
         }
     }

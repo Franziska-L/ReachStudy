@@ -45,10 +45,6 @@ class ComboGaze: TrainingTargets {
             let x = EyeTracker.instance.trackerView.frame.size.width / 2 + trackerPosition.x - cursorSize/2
             let y = EyeTracker.instance.trackerView.frame.size.height / 2 + trackerPosition.y - cursorSize/2
             
-            print(trackerPosition)
-            print(x)
-            print(y)
-            
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             cursor.isHidden = false
             trackerActive = true
@@ -77,14 +73,14 @@ class ComboGaze: TrainingTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cursor.isHidden = true
         
-        if trackerActive && frames < 3 {
+        if frames < 3 && trackerActive {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
                 updateScreen()
             }
-        } else if !trackerActive && frames < 3 && targets[randomNumbers[frames]].tag > 1 {
+        } else if frames < 3 && !trackerActive && targets[randomNumbers[frames]].tag > 1 {
             let touch: UITouch! = touches.first
             
             let touchPosition = touch.location(in: self.view)
@@ -117,8 +113,10 @@ class ComboGaze: TrainingTargets {
             vc.data = data
             vc.condition = condition
             vc.counter = counter
-            
-            present(vc, animated: true, completion: nil)
+            vc.modalPresentationStyle = .fullScreen
+
+            show(vc, sender: self)
+            //present(vc, animated: true, completion: nil)
         }
     }
     

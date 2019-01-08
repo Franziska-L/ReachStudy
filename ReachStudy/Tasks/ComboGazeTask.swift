@@ -23,11 +23,6 @@ class ComboGazeTask: GridTargets {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //EyeTracker.delegate = self
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,7 +79,7 @@ class ComboGazeTask: GridTargets {
         let touchPosition = touch.location(in: self.view)
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        if trackerActive && frames < 8 {
+        if frames < 8 && trackerActive {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
@@ -94,7 +89,7 @@ class ComboGazeTask: GridTargets {
             if isActive {
                 updateScreen()
             }
-        } else if !trackerActive && frames < 8 {
+        } else if frames < 8 && !trackerActive {
             addPositionsToArray(eyePosition, touchPosition)
             
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])

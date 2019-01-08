@@ -49,7 +49,7 @@ class ComboNormal: TrainingTargets {
         
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
-        
+        print(frames)
         if frames < 3 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
@@ -75,25 +75,19 @@ class ComboNormal: TrainingTargets {
         
         let currFrame = frames
         
-        if targets[randomNumbers[frames]].tag < 2 && frames < 3 {
+        if frames < 3 && targets[randomNumbers[frames]].tag < 2 {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
                 updateScreen()
             }
-        } else if targets[randomNumbers[frames]].tag == 2 && frames < 3 {
+        } else if frames < 3 && targets[randomNumbers[frames]].tag == 2 {
             let position = sender.location(in: self.view)
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             if isActive {
                 updateScreen()
-            }
-        }
-        
-        if currFrame == 2 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.hideViews()
             }
         }
     }
