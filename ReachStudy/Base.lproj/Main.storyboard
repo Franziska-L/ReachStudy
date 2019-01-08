@@ -40,8 +40,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uc-lm-Voj">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="kN5-ro-XmY"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8uc-lm-Voj" secondAttribute="trailing" id="3Ve-wK-2mW"/>
+                            <constraint firstItem="8uc-lm-Voj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dtY-hT-DfL"/>
+                            <constraint firstItem="8uc-lm-Voj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="e84-Lg-hQE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -76,8 +92,24 @@
                                     <action selector="startTraining:" destination="0E9-Ve-HjL" eventType="touchUpInside" id="o7v-lg-OrG"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-cw-qqW">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="guR-Pk-dAV"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dXP-Qu-ajl" firstAttribute="trailing" secondItem="RhE-cw-qqW" secondAttribute="trailing" id="6Fl-Ou-j4C"/>
+                            <constraint firstItem="RhE-cw-qqW" firstAttribute="top" secondItem="dXP-Qu-ajl" secondAttribute="top" id="7pl-dp-yuK"/>
+                            <constraint firstItem="RhE-cw-qqW" firstAttribute="leading" secondItem="dXP-Qu-ajl" secondAttribute="leading" id="ykc-Xh-km4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dXP-Qu-ajl"/>
                     </view>
                     <connections>
@@ -119,11 +151,25 @@
                                     <constraint firstAttribute="width" constant="40" id="rOn-Tb-Iru"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBe-SE-Hsu">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="XJH-wL-LTU"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="UBe-SE-Hsu" firstAttribute="leading" secondItem="6wJ-mt-m01" secondAttribute="leading" id="5a5-BL-Dyu"/>
                             <constraint firstItem="Qbj-Aq-H8i" firstAttribute="leading" secondItem="6wJ-mt-m01" secondAttribute="leading" constant="90" id="Eer-zK-pPf"/>
+                            <constraint firstItem="6wJ-mt-m01" firstAttribute="trailing" secondItem="UBe-SE-Hsu" secondAttribute="trailing" id="EuZ-vp-Phn"/>
                             <constraint firstItem="Qbj-Aq-H8i" firstAttribute="top" secondItem="6wJ-mt-m01" secondAttribute="top" constant="90" id="SXf-cO-LlJ"/>
+                            <constraint firstItem="UBe-SE-Hsu" firstAttribute="top" secondItem="6wJ-mt-m01" secondAttribute="top" id="Z0i-vN-br5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6wJ-mt-m01"/>
                     </view>
