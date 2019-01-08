@@ -54,7 +54,9 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
    
     func execute(_ frame: CGRect) {
         
-        if self.frames < 100 {
+        if self.frames < 20 {
+            self.checkpoint.backgroundColor = UIColor.red
+        } else if self.frames < 100 {
             self.checkpoint.backgroundColor = UIColor.yellow
         } else if self.frames >= 100 && self.frames < 200 {
             self.checkpoint.backgroundColor = UIColor.green

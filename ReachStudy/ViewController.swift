@@ -32,8 +32,9 @@ class ViewController: UIViewController {
                 if snapshot.hasChild("Participant \(self.participantIDLabel.text!)") {
                     
                     print("true rooms exist")
+                    self.errorField(self.participantIDLabel)
                     
-                }else{
+                } else {
                     
                     print("false room doesn't exist")
                 }

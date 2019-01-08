@@ -231,7 +231,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 3: Aufgabe" id="Gso-yY-CHP">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6gd-Ip-LN4"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6gd-Ip-LN4">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="rOF-0s-Ngo" id="JUV-QH-RAz"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -374,7 +378,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 4: Aufgabe" id="3lz-1Z-eoV">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="AoV-8b-XjD"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="AoV-8b-XjD">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="RMh-9H-M2p" id="FHc-Jh-164"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -444,14 +452,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmR-oG-8fj">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Methode 1: Training" id="6Vf-4n-yyN">
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </navigationItem>
+                                    <navigationItem title="Methode 1: Training" id="6Vf-4n-yyN"/>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -482,7 +489,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 1: Aufgabe" id="9yX-h2-xRK">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="gSE-K5-PUp"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="HS3-rd-353">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="Mem-vF-Aec" id="8Tv-Pk-ZER"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -517,7 +528,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 5: Aufgabe" id="mZ9-jR-l1B">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="JVa-9V-ZSF"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="JVa-9V-ZSF">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="ZkL-jy-cet" id="JUI-fs-xqa"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -552,7 +567,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 2: Aufgabe" id="0dW-1K-uIC">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="MO4-bX-F7e"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="MO4-bX-F7e">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="5s0-Jo-Tw9" id="6v3-Vg-tam"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>
@@ -587,7 +606,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Methode 6: Aufgabe" id="EUd-pO-rYB">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="g6j-nq-dQ8"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="g6j-nq-dQ8">
+                                            <connections>
+                                                <action selector="refreshCalibration:" destination="BQc-SA-69e" id="6b2-x4-Kdn"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <userDefinedRuntimeAttributes>

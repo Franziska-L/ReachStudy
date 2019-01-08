@@ -34,6 +34,9 @@ class GazeReachTask: GridTargets {
         
     }
     
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
     
     @objc func updateTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()

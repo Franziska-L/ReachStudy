@@ -11,6 +11,10 @@ import UIKit
 class GazeTouchTask: GridTargets {
     
     
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let trackerPosition = EyeTracker.getTrackerPosition()
         setCursorPosition(position: trackerPosition)

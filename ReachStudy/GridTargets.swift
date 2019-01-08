@@ -196,6 +196,17 @@ class GridTargets: TargetViewController {
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
         ref.updateChildValues(["Total Time": totalTime])
     }
+    
+    
+    @objc func refresh() {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calibration") as? CalibrationViewController {
+            vc.data = data
+            vc.condition = condition
+            vc.counter = counter
+            
+            present(vc, animated: true, completion: nil)
+        }
+    }
    
     
     @objc func finishTask() {

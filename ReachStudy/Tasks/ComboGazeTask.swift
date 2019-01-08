@@ -37,6 +37,10 @@ class ComboGazeTask: GridTargets {
         EyeTracker.instance.trackerView.alpha = 0.5
     }
     
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let trackerPosition = EyeTracker.getTrackerPosition()
 

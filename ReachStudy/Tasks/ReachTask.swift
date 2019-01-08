@@ -23,7 +23,10 @@ class ReachTask: GridTargets {
         EyeTracker.instance.trackerView.isHidden = true
     }
     
-   
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
         let position = touch.location(in: self.view)

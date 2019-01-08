@@ -17,5 +17,10 @@ class BaselineTask: GridTargets {
         
         EyeTracker.instance.trackerView.isHidden = true
     }
-   
+    
+    
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
+    
 }

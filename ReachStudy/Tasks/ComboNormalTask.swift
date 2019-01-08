@@ -42,6 +42,9 @@ class ComboNormalTask: GridTargets {
         cursor.backgroundColor = UIColor.blue
     }
     
+    @IBAction func refreshCalibration(_ sender: Any) {
+        refresh()
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
