@@ -106,6 +106,13 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbj-Aq-H8i">
                                 <rect key="frame" x="90" y="134" width="40" height="40"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-QR-KbK">
+                                        <rect key="frame" x="15" y="15" width="10" height="10"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dUc-wF-NrH"/>
@@ -122,12 +129,13 @@
                     </view>
                     <connections>
                         <outlet property="checkpoint" destination="Qbj-Aq-H8i" id="CQS-JN-Cqs"/>
+                        <outlet property="checkpointMiddle" destination="LD1-QR-KbK" id="V4g-IC-mY6"/>
                         <outlet property="start" destination="2HN-VO-0GS" id="oIa-pZ-ZP1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jS-ls-Wv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="129"/>
+            <point key="canvasLocation" x="1877.5999999999999" y="128.57142857142858"/>
         </scene>
         <!--Gaze Reachability-->
         <scene sceneID="lAz-p2-d14">
@@ -136,7 +144,25 @@
                     <view key="view" contentMode="scaleToFill" id="tC9-4N-ee7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W27-Wv-sgp">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 3: Training" id="0YF-fx-UXb"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YND-MK-q5Q" firstAttribute="trailing" secondItem="W27-Wv-sgp" secondAttribute="trailing" id="HeD-uM-6jh"/>
+                            <constraint firstItem="W27-Wv-sgp" firstAttribute="leading" secondItem="YND-MK-q5Q" secondAttribute="leading" id="KOf-Dy-caK"/>
+                            <constraint firstItem="W27-Wv-sgp" firstAttribute="top" secondItem="YND-MK-q5Q" secondAttribute="top" id="VeH-KV-M8d"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="YND-MK-q5Q"/>
                     </view>
                     <connections>
@@ -154,7 +180,27 @@
                     <view key="view" contentMode="scaleToFill" id="6ek-fw-FGU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ers-Yo-cPT">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 3: Aufgabe" id="Gso-yY-CHP">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6gd-Ip-LN4"/>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ers-Yo-cPT" firstAttribute="top" secondItem="37F-Kj-DbZ" secondAttribute="top" id="BIU-Z7-df5"/>
+                            <constraint firstItem="37F-Kj-DbZ" firstAttribute="trailing" secondItem="ers-Yo-cPT" secondAttribute="trailing" id="OtR-iJ-wsu"/>
+                            <constraint firstItem="ers-Yo-cPT" firstAttribute="leading" secondItem="37F-Kj-DbZ" secondAttribute="leading" id="nrR-RS-Rgt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="37F-Kj-DbZ"/>
                     </view>
                 </viewController>
@@ -169,7 +215,25 @@
                     <view key="view" contentMode="scaleToFill" id="S7y-0n-S1X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPR-GH-phP">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 2: Training" id="qnV-9t-xZN"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iPR-GH-phP" firstAttribute="leading" secondItem="Frs-xK-SSV" secondAttribute="leading" id="Bhg-w7-CJT"/>
+                            <constraint firstItem="iPR-GH-phP" firstAttribute="top" secondItem="Frs-xK-SSV" secondAttribute="top" id="Sb2-QD-Cad"/>
+                            <constraint firstItem="Frs-xK-SSV" firstAttribute="trailing" secondItem="iPR-GH-phP" secondAttribute="trailing" id="Ywg-oO-HGW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Frs-xK-SSV"/>
                     </view>
                     <connections>
@@ -187,7 +251,25 @@
                     <view key="view" contentMode="scaleToFill" id="6td-tq-rBR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAR-6S-Ga8">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 6: Training" id="mBa-no-I7b"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GAR-6S-Ga8" firstAttribute="leading" secondItem="0jE-4w-Xx8" secondAttribute="leading" id="Qwa-Oy-v1U"/>
+                            <constraint firstItem="0jE-4w-Xx8" firstAttribute="trailing" secondItem="GAR-6S-Ga8" secondAttribute="trailing" id="s5h-9Z-szQ"/>
+                            <constraint firstItem="GAR-6S-Ga8" firstAttribute="top" secondItem="0jE-4w-Xx8" secondAttribute="top" id="xdH-cO-LTR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0jE-4w-Xx8"/>
                     </view>
                     <connections>
@@ -205,7 +287,25 @@
                     <view key="view" contentMode="scaleToFill" id="sCw-KI-RTz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKH-jX-gWz">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 4: Training" id="Xuv-fT-i90"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YKH-jX-gWz" firstAttribute="leading" secondItem="hJf-6U-llD" secondAttribute="leading" id="BBq-OX-acN"/>
+                            <constraint firstItem="YKH-jX-gWz" firstAttribute="top" secondItem="hJf-6U-llD" secondAttribute="top" id="M0G-FX-oBV"/>
+                            <constraint firstItem="hJf-6U-llD" firstAttribute="trailing" secondItem="YKH-jX-gWz" secondAttribute="trailing" id="lYB-lF-I4G"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hJf-6U-llD"/>
                     </view>
                     <connections>
@@ -223,7 +323,27 @@
                     <view key="view" contentMode="scaleToFill" id="hUj-w5-dJA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-WM-cvD">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 4: Aufgabe" id="3lz-1Z-eoV">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="AoV-8b-XjD"/>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="C6t-WM-cvD" firstAttribute="leading" secondItem="Fjk-e1-6xi" secondAttribute="leading" id="3Pl-Qv-wHY"/>
+                            <constraint firstItem="Fjk-e1-6xi" firstAttribute="trailing" secondItem="C6t-WM-cvD" secondAttribute="trailing" id="Qfk-zr-t9R"/>
+                            <constraint firstItem="C6t-WM-cvD" firstAttribute="top" secondItem="Fjk-e1-6xi" secondAttribute="top" id="rrd-Gi-Aks"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Fjk-e1-6xi"/>
                     </view>
                 </viewController>
@@ -238,7 +358,25 @@
                     <view key="view" contentMode="scaleToFill" id="p2e-0G-mtU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3u-MH-QAu">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 5: Training" id="WE9-mQ-61X"/>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="noV-nk-Wc7" firstAttribute="trailing" secondItem="Z3u-MH-QAu" secondAttribute="trailing" id="BzE-8o-GOV"/>
+                            <constraint firstItem="Z3u-MH-QAu" firstAttribute="leading" secondItem="noV-nk-Wc7" secondAttribute="leading" id="YaB-6L-wrS"/>
+                            <constraint firstItem="Z3u-MH-QAu" firstAttribute="top" secondItem="noV-nk-Wc7" secondAttribute="top" id="sAg-D4-Rcp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="noV-nk-Wc7"/>
                     </view>
                     <connections>
@@ -257,16 +395,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zkg-g6-1kc">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmR-oG-8fj">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Methode 1 Training" id="1FZ-8E-H5e"/>
+                                    <navigationItem title="Methode 1: Training" id="6Vf-4n-yyN">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BZ1-rO-HT8" firstAttribute="trailing" secondItem="GmR-oG-8fj" secondAttribute="trailing" id="OQZ-u6-RPb"/>
+                            <constraint firstItem="GmR-oG-8fj" firstAttribute="leading" secondItem="BZ1-rO-HT8" secondAttribute="leading" id="Ptk-4K-fzU"/>
+                            <constraint firstItem="GmR-oG-8fj" firstAttribute="top" secondItem="BZ1-rO-HT8" secondAttribute="top" id="d5N-S8-KAf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BZ1-rO-HT8"/>
                     </view>
                     <connections>
@@ -285,17 +432,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFA-6a-W0P">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFA-6a-W0P">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Methode 1 Aufgabe" id="9yX-h2-xRK">
+                                    <navigationItem title="Methode 1: Aufgabe" id="9yX-h2-xRK">
                                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="gSE-K5-PUp"/>
                                     </navigationItem>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i2z-kA-NfC" firstAttribute="trailing" secondItem="gFA-6a-W0P" secondAttribute="trailing" id="G8v-kM-kEX"/>
+                            <constraint firstItem="gFA-6a-W0P" firstAttribute="top" secondItem="i2z-kA-NfC" secondAttribute="top" id="KUp-CG-MJL"/>
+                            <constraint firstItem="gFA-6a-W0P" firstAttribute="leading" secondItem="i2z-kA-NfC" secondAttribute="leading" id="TvN-ey-txO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="i2z-kA-NfC"/>
                     </view>
                 </viewController>
@@ -310,7 +466,27 @@
                     <view key="view" contentMode="scaleToFill" id="xma-Mj-sEo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSH-eM-lnX">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 5: Aufgabe" id="mZ9-jR-l1B">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="JVa-9V-ZSF"/>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xo5-j3-Rtt" firstAttribute="trailing" secondItem="vSH-eM-lnX" secondAttribute="trailing" id="5Kf-9O-Vme"/>
+                            <constraint firstItem="vSH-eM-lnX" firstAttribute="leading" secondItem="xo5-j3-Rtt" secondAttribute="leading" id="GUh-fc-aT1"/>
+                            <constraint firstItem="vSH-eM-lnX" firstAttribute="top" secondItem="xo5-j3-Rtt" secondAttribute="top" id="QE0-Cg-kx9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xo5-j3-Rtt"/>
                     </view>
                 </viewController>
@@ -325,7 +501,27 @@
                     <view key="view" contentMode="scaleToFill" id="oKM-Jd-qSC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGQ-fL-2qS">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 2: Aufgabe" id="0dW-1K-uIC">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="MO4-bX-F7e"/>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BbG-Cu-gZp" firstAttribute="trailing" secondItem="ZGQ-fL-2qS" secondAttribute="trailing" id="5yV-xc-A4z"/>
+                            <constraint firstItem="ZGQ-fL-2qS" firstAttribute="leading" secondItem="BbG-Cu-gZp" secondAttribute="leading" id="FMR-9X-C0E"/>
+                            <constraint firstItem="ZGQ-fL-2qS" firstAttribute="top" secondItem="BbG-Cu-gZp" secondAttribute="top" id="WWv-4s-6Nx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BbG-Cu-gZp"/>
                     </view>
                 </viewController>
@@ -340,7 +536,27 @@
                     <view key="view" contentMode="scaleToFill" id="z1H-BQ-Bjz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-cq-bVW">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Methode 6: Aufgabe" id="EUd-pO-rYB">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="g6j-nq-dQ8"/>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gxA-W5-N2H" firstAttribute="trailing" secondItem="UZf-cq-bVW" secondAttribute="trailing" id="33c-YM-ZQ2"/>
+                            <constraint firstItem="UZf-cq-bVW" firstAttribute="top" secondItem="gxA-W5-N2H" secondAttribute="top" id="bVw-be-if4"/>
+                            <constraint firstItem="UZf-cq-bVW" firstAttribute="leading" secondItem="gxA-W5-N2H" secondAttribute="leading" id="vdj-me-ZIR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gxA-W5-N2H"/>
                     </view>
                 </viewController>

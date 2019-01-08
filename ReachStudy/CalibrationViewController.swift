@@ -12,6 +12,7 @@ import Firebase
 class CalibrationViewController: UIViewController, TrackerDelegate {
 
     @IBOutlet weak var checkpoint: UIView!
+    @IBOutlet weak var checkpointMiddle: UIView!
     @IBOutlet weak var start: UIButton!
     
     var offsetX: CGFloat = CGFloat()
@@ -32,6 +33,11 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        checkpoint.backgroundColor = UIColor.red
+        checkpoint.layer.cornerRadius = 20
+        
+        checkpointMiddle.layer.cornerRadius = 5
 
         start.isHidden = true
         SCalibration.clear()
