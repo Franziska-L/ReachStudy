@@ -14,18 +14,30 @@ class ReachTask: GridTargets {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
-        
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeDown.direction = .down
-        self.view.addGestureRecognizer(swipeDown)
+        borderView.isHidden = false
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EyeTracker.instance.trackerView.isHidden = true
+    }
     
    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let position = touch.location(in: self.view)
+        
+        if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
+        } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
+            
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
+        }
+    }
     
 }

@@ -22,7 +22,7 @@ class GridTargets: TargetViewController {
     var cursorPositions = [[CGFloat]]()
     var touchPositions = [[CGFloat]]()
     
-    var repeats = 0
+    var block = 1
   
     
     override func viewDidLoad() {

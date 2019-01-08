@@ -9,7 +9,6 @@
 import UIKit
 
 class Baseline: TrainingTargets {
-
     
     override func startTask() {
         

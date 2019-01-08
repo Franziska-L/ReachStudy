@@ -50,14 +50,6 @@ class TrainingTargets: TargetViewController {
             target.isUserInteractionEnabled = false
             target.isHidden = true
             
-            /*if condition == 1 || condition == 2 || condition == 3 || condition == 6 {
-                target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
-            } else if condition == 5 {
-                if index > 1 {
-                    target.addTarget(self, action: #selector(activateButton), for: .touchUpInside)
-                }
-            }*/
-
             self.view.addSubview(target)
             targets.append(target)
         }
@@ -100,9 +92,6 @@ class TrainingTargets: TargetViewController {
                 self.targets[number].isHidden = true
                 self.startTaskButton.isHidden = false
                 self.borderView.isHidden = true
-                //for button in self.targets {
-                //    button.isHidden = true
-                //}
             }
         }
         self.frames += 1

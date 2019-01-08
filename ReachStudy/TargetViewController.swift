@@ -16,7 +16,7 @@ class TargetViewController: UIViewController, TrackerDelegate {
     let targetSize: CGSize = CGSize(width: 70, height: 70)
     
     var cursor: UIView = UIView()
-    let cursorSize:CGFloat = 10
+    let cursorSize:CGFloat = 12
     
     var randomNumbers = [Int]()
     var frames = 0

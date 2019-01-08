@@ -25,6 +25,27 @@ class ViewController: UIViewController {
         if participantIDLabel.text == "" {
             errorField(participantIDLabel)
         } else {
+            ref = Database.database().reference()
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.hasChild("Participant \(self.participantIDLabel.text!)") {
+                    
+                    print("true rooms exist")
+                    
+                }else{
+                    
+                    print("false room doesn't exist")
+                }
+                
+                
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+            
+            
+            
+            
             ref = Database.database().reference().child("Participant \(participantIDLabel.text!)")
             let key = ref.key
             

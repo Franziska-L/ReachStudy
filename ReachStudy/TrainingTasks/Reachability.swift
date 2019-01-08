@@ -9,6 +9,13 @@
 import UIKit
 
 class Reachability: TrainingTargets {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        borderView.isHidden = false
+    }
   
 
     override func startTask() {
@@ -19,6 +26,22 @@ class Reachability: TrainingTargets {
             vc.counter = counter
             
             present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let position = touch.location(in: self.view)
+        
+        if frames < 3 && viewIsMoved && targets[randomNumbers[frames]].tag < 2 {
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
+        } else if frames < 3 && !viewIsMoved && targets[randomNumbers[frames]].tag == 2 {
+            
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
         }
     }
 }

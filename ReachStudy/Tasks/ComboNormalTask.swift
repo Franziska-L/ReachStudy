@@ -38,8 +38,10 @@ class ComboNormalTask: GridTargets {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        EyeTracker.instance.trackerView.isHidden = true
         cursor.backgroundColor = UIColor.blue
     }
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
@@ -84,7 +86,7 @@ class ComboNormalTask: GridTargets {
             if isActive {
                 updateScreen()
             }
-        } else {
+        } else if frames < 8 && targets[randomNumbers[frames]].tag >= 4 {
             let position = sender.location(in: self.view)
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             

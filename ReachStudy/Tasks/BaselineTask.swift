@@ -11,5 +11,11 @@ import Firebase
 
 class BaselineTask: GridTargets {
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        EyeTracker.instance.trackerView.isHidden = true
+    }
    
 }

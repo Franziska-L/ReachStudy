@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CalibrationViewController: UIViewController, TrackerDelegate {
 
@@ -19,19 +20,20 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     var skip = 0
     var frames = 0
     
-    var offX: [Int] = [0]
-    var offY: [Int] = [0]
+    var offX: [Int] = [Int]()
+    var offY: [Int] = [Int]()
     
     var condition: Int?
     var counter: Int = Int()
     var data: Dataset = Dataset()
-    
+   
+    var ref: DatabaseReference!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         start.isHidden = true
-        self.reset()
         SCalibration.clear()
 
     }
@@ -40,25 +42,7 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
         super.viewWillAppear(animated)
         
         EyeTracker.delegate = self
-    }
-    
-    func reset(){
-        /*if SCalibration.offsetContinue() {
-            self.frames = 0
-            self.offX = [0]
-            self.offY = [0]
-            
-            self.checkpoint.isHidden = false
-        } else {
-            self.checkpoint.isHidden = true
-        }*/
-        
-        self.frames = 0
-        self.offX = [0]
-        self.offY = [0]
-        
-        self.checkpoint.isHidden = false
-        
+        EyeTracker.instance.trackerView.isHidden = true
     }
     
    
@@ -70,10 +54,15 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             self.checkpoint.backgroundColor = UIColor.green
             self.adjustXY()
         } else if self.frames == 200 {
-            SCalibration.setOffset(self.averageOffset(self.offX), y: self.averageOffset(self.offY))
+            let averageX = self.averageOffset(self.offX)
+            let averageY = self.averageOffset(self.offY)
+            
+            SCalibration.setOffset(averageX, y: averageY)
+            setOffsetData(estimatedPoint: EyeTracker.getTrackerPosition(), calibrationPoint: checkpoint.frame.origin, offX: averageX, offY: averageY)
+            
+            EyeTracker.instance.trackerView.isHidden = false
             self.start.isHidden = false
             self.checkpoint.isHidden = true
-            //self.reset()
         }
         
         self.frames += 1
@@ -91,6 +80,18 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
         self.offY.append(Int(self.checkpoint.frame.midY - eyePosition.y))
     }
     
+    func setOffsetData(estimatedPoint: CGPoint, calibrationPoint: CGPoint, offX: Int, offY: Int) {
+        
+        let estPoint = [estimatedPoint.x, estimatedPoint.y]
+        let calibPoint = [calibrationPoint.x, 90.0]
+        let offXY = [offX, offY]
+        
+        ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
+        ref.updateChildValues(["Estimated Point": estPoint, "Calibration Point": calibPoint, "Offset": offXY])
+        
+    }
+    
+    
     func getView() -> UIView {
         return self.view
     }
@@ -98,7 +99,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     @IBAction func startTraining(_ sender: Any) {
         switch condition {
         case 1:
-            //Baseline
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Baseline") as? Baseline {
                 vc.data = data
                 vc.condition = condition
@@ -108,7 +108,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             }
             break
         case 2:
-            //Reachability
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reachability") as? Reachability {
                 vc.data = data
                 vc.condition = condition
@@ -118,7 +117,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             }
             break
         case 3:
-            //Gazebased reachbility
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachability") as? GazeReachability {
                 vc.data = data
                 vc.condition = condition
@@ -128,7 +126,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             }
             break
         case 4:
-            //Gazebased indirect touch
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouch") as? GazeTouch {
                 vc.data = data
                 vc.condition = condition
@@ -138,7 +135,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             }
             break
         case 5:
-            //Combo
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormal") as? ComboNormal {
                 vc.data = data
                 vc.condition = condition
@@ -148,7 +144,6 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             }
             break
         case 6:
-            //Combo with gaze
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGaze") as? ComboGaze {
                 vc.data = data
                 vc.condition = condition

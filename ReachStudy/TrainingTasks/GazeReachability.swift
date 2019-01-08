@@ -30,6 +30,8 @@ class GazeReachability: TrainingTargets {
         gazeView.alpha = 0.3
         self.view.addSubview(gazeView)
         
+        borderView.isHidden = false
+        
 
     }
     
@@ -39,55 +41,6 @@ class GazeReachability: TrainingTargets {
         EyeTracker.delegate = self
 
     }
-    
-    
-    
-    /*override func activateButton(_ sender: UIButton) {
-        let number = randomNumbers[frames]
-        let currentFrames = frames
-        
-        if sender.tag == number {
-            targets[number].backgroundColor = UIColor.green
-            if viewIsMoved {
-                viewIsMoved = false
-                EyeTracker.instance.trackerView.isHidden = false
-                UIView.animate(withDuration: 0.4) {
-                    self.view.frame.origin.y -= self.moveDistance
-                }
-                //EyeTracker.instance.trackerView.frame = CGRect(x: -50, y: -50, width: 50, height: 50)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if currentFrames < 2 {
-                    
-                    self.targets[number].backgroundColor = UIColor.gray
-                    self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
-                    
-                } else if currentFrames == 2 {
-                    for button in self.targets {
-                        button.isHidden = true
-                        self.startTaskButton.isHidden = false
-                        self.gazeView.isHidden = true
-                        
-                        self.trackerTimer.invalidate()
-                    }
-                }
-            }
-            self.frames += 1
-        }
-    }*/
-    
-    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if viewIsMoved {
-            UIView.animate(withDuration: 0.4) {
-                self.view.frame.origin.y -= self.moveDistance
-            }
-            viewIsMoved = false
-            EyeTracker.instance.trackerView.isHidden = false
-            //EyeTracker.instance.trackerView.frame = CGRect(x: -50, y: -50, width: 50, height: 50)
-        }
-    }*/
-    
-  
     
     
     @objc func updateTrackerTimer() {
@@ -110,6 +63,23 @@ class GazeReachability: TrainingTargets {
             vc.counter = counter
             
             present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let position = touch.location(in: self.view)
+        
+        if frames < 3 && viewIsMoved && targets[randomNumbers[frames]].tag < 2 {
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
+        } else if frames < 3 && !viewIsMoved && targets[randomNumbers[frames]].tag == 2 {
+            
+            if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
+                updateScreen()
+            }
         }
     }
     
