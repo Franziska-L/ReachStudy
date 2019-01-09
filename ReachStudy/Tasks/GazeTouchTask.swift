@@ -31,6 +31,12 @@ class GazeTouchTask: GridTargets {
         
         let cursorPosition = cursor.frame.origin
         
+        if frames < 8 && checkPosition(position: cursorPosition, target: targets[randomNumbers[frames]]) {
+            targets[randomNumbers[frames]].backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 91/255, alpha: 1)
+        } else {
+            targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
+        }
+        
         let x = cursorPosition.x + distX
         let y = cursorPosition.y + distY
         

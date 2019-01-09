@@ -63,6 +63,12 @@ class ComboNormal: TrainingTargets {
             swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             
+            if frames < 3 && checkPosition(position: CGPoint(x: x, y: y), target: targets[randomNumbers[frames]]) {
+                targets[randomNumbers[frames]].backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 91/255, alpha: 1)
+            } else {
+                targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
+            }
+            
             if swipePad.isHidden {
                 swipePad.isHidden = false
                 cursor.isHidden = false

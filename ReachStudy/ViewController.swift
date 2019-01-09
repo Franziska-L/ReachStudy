@@ -18,54 +18,45 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        ref = Database.database().reference()
     }
     
     @IBAction func start(_ sender: Any) {
         if participantIDLabel.text == "" {
             errorField(participantIDLabel)
         } else {
-            ref = Database.database().reference()
+            let participantID = String(format: "%02d", Int(participantIDLabel.text!)!)
+            data.participantID = participantID
+            
+            setSequence()
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                if snapshot.hasChild("Participant \(self.participantIDLabel.text!)") {
-                    
-                    print("true rooms exist")
+                if snapshot.hasChild("Participant \(participantID)") {
                     self.errorField(self.participantIDLabel)
                     
                 } else {
                     
-                    print("false room doesn't exist")
+                   
+                    
+                    
                 }
-                
-                
             }) { (error) in
                 print(error.localizedDescription)
             }
             
+            self.ref = self.ref.child("Participant \(participantID)")
+            self.ref.setValue(["Participant ID": participantID])
             
-            
-            
-            ref = Database.database().reference().child("Participant \(participantIDLabel.text!)")
-            let key = ref.key
-            
-            data.participantID = participantIDLabel.text!
-            
-            setSequence()
-            let participantID = String(format: "%02d", participantIDLabel.text!)
-            print(participantID)
-            
-            ref.setValue(["Participant ID": participantIDLabel.text])
-            for i in 0 ..< data.conditions.count {
-                ref = Database.database().reference().child(key!).child("Condition \(data.conditions[i].conditionId)")
-                ref.setValue([
-                    "Condition ID": data.conditions[i].conditionId,
+            for i in 0 ..< self.data.conditions.count {
+                self.ref = Database.database().reference().child("Participant \(participantID)").child("Condition \(self.data.conditions[i].conditionId)")
+                self.ref.setValue([
+                    "Condition ID": self.data.conditions[i].conditionId,
                     "Total Time": 0])
                 for targetID in 1...40 {
                     let id = String(format: "%02d", targetID)
-                    print(id)
-                    ref.child("Target \(id)").setValue([
+                    self.ref.child("Target \(id)").setValue([
                         "Target ID": "",
                         "Highlight Timestamp": "",
                         "Touch Timestamp": "",
@@ -73,7 +64,7 @@ class ViewController: UIViewController {
                         "Touch Positions": [],
                         "Eye Positions": []                        ])
                     let targetProperty = TargetProperty(targetId: String(targetID))
-                    data.conditions[i].targetProperties.append(targetProperty)
+                    self.data.conditions[i].targetProperties.append(targetProperty)
                     
                     
                 }

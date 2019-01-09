@@ -59,15 +59,23 @@ class ComboGaze: TrainingTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        let distX: CGFloat = newLocation.x - prevLocaiton.x
-        let distY: CGFloat = newLocation.y - prevLocaiton.y
-        
-        let cursorPosition = cursor.frame.origin
-        
-        let x = cursorPosition.x + distX
-        let y = cursorPosition.y + distY
-        
-        cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+        if trackerActive {
+            let distX: CGFloat = newLocation.x - prevLocaiton.x
+            let distY: CGFloat = newLocation.y - prevLocaiton.y
+            
+            let cursorPosition = cursor.frame.origin
+            
+            if frames < 3 && checkPosition(position: cursorPosition, target: targets[randomNumbers[frames]]) {
+                targets[randomNumbers[frames]].backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 91/255, alpha: 1)
+            } else {
+                targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
+            }
+            
+            let x = cursorPosition.x + distX
+            let y = cursorPosition.y + distY
+            
+            cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
