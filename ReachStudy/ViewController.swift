@@ -12,6 +12,8 @@ import Firebase
 class ViewController: UIViewController {
    
     @IBOutlet weak var participantIDLabel: UITextField!
+    @IBOutlet weak var emptyIDLabel: UILabel!
+    @IBOutlet weak var existingIDLabel: UILabel!
     
     var ref: DatabaseReference!
     let data = Dataset()
@@ -20,12 +22,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         ref = Database.database().reference()
+        emptyIDLabel.isHidden = true
+        existingIDLabel.isHidden = true
     }
     
     @IBAction func start(_ sender: Any) {
         if participantIDLabel.text == "" {
-            errorField(participantIDLabel)
+            errorField(participantIDLabel, 0)
         } else {
+            emptyIDLabel.isHidden = true
             let participantID = String(format: "%02d", Int(participantIDLabel.text!)!)
             data.participantID = participantID
             
@@ -34,11 +39,11 @@ class ViewController: UIViewController {
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if snapshot.hasChild("Participant \(participantID)") {
-                    self.errorField(self.participantIDLabel)
+                    self.errorField(self.participantIDLabel, 1)
                     
                 } else {
                     
-                   
+                   self.existingIDLabel.isHidden = true
                     
                     
                 }
@@ -73,11 +78,15 @@ class ViewController: UIViewController {
         }
     }
     
-    func errorField(_ textField: UITextField){
+    func errorField(_ textField: UITextField, _ error: Int){
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 5
         textField.layer.borderColor = UIColor.red.cgColor
-        
+        if error == 0 {
+            emptyIDLabel.isHidden = false
+        } else if error == 1 {
+            existingIDLabel.isHidden = false
+        }
     }
     
     func setSequence() {
