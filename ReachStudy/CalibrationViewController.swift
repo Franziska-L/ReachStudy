@@ -35,7 +35,8 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
         super.viewDidLoad()
 
         checkpoint.backgroundColor = UIColor.red
-        checkpoint.layer.cornerRadius = 20
+        self.checkpointMiddle.backgroundColor = UIColor(red: 127/255, green: 0, blue: 0, alpha: 1)
+        checkpoint.layer.cornerRadius = 25
         
         checkpointMiddle.layer.cornerRadius = 5
 
@@ -56,10 +57,13 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
         
         if self.frames < 20 {
             self.checkpoint.backgroundColor = UIColor.red
+            self.checkpointMiddle.backgroundColor = UIColor(red: 127/255, green: 0, blue: 0, alpha: 1)
         } else if self.frames < 100 {
             self.checkpoint.backgroundColor = UIColor.yellow
+            self.checkpointMiddle.backgroundColor = UIColor(red: 1, green: 234/255, blue: 48/255, alpha: 1)
         } else if self.frames >= 100 && self.frames < 200 {
             self.checkpoint.backgroundColor = UIColor.green
+            self.checkpointMiddle.backgroundColor = UIColor(red: 0, green: 175/255, blue: 5/255, alpha: 1)
             self.adjustXY()
         } else if self.frames == 200 {
             let averageX = self.averageOffset(self.offX)
@@ -91,8 +95,9 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     func setOffsetData(estimatedPoint: CGPoint, calibrationPoint: CGPoint, offX: Int, offY: Int) {
         
         let estPoint = [estimatedPoint.x, estimatedPoint.y]
-        let calibPoint = [calibrationPoint.x, 90.0]
+        let calibPoint = [calibrationPoint.x, 60.0]
         let offXY = [offX, offY]
+        print(calibrationPoint)
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
         ref.updateChildValues(["Estimated Point": estPoint, "Calibration Point": calibPoint, "Offset": offXY])
