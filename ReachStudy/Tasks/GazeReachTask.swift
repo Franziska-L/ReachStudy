@@ -10,10 +10,6 @@ import UIKit
 
 class GazeReachTask: GridTargets {
     
-    let topArea: CGFloat = 1/10 * UIScreen.main.bounds.height
-    let rightArea: CGFloat = 3/4 * UIScreen.main.bounds.width
-    
-  
     let gazeView: UIView = UIView()
     
     var trackerTimer = Timer()
@@ -23,7 +19,7 @@ class GazeReachTask: GridTargets {
         
         trackerTimer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: topArea)
+        gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
         gazeView.backgroundColor = UIColor.red
         gazeView.layer.cornerRadius = 40
         gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -41,7 +37,7 @@ class GazeReachTask: GridTargets {
     @objc func updateTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        if eyePosition.y > -40 && eyePosition.y < topArea && eyePosition.x > -10 && eyePosition.x < self.view.frame.width && !viewIsMoved {
+        if eyePosition.y > -40 && eyePosition.y < navigationBarHeight && eyePosition.x > -10 && eyePosition.x < self.view.frame.width && !viewIsMoved {
             self.view.layer.cornerRadius = 40
             UIView.animate(withDuration: 0.4) {
                 self.view.frame.origin.y += self.moveDistance

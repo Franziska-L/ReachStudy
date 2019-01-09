@@ -25,6 +25,8 @@ class TargetViewController: UIViewController, TrackerDelegate {
     let middle: CGFloat = 1/2 * UIScreen.main.bounds.height
     var viewIsMoved: Bool = false
     let moveDistance: CGFloat = 350
+    
+    let navigationBarHeight: CGFloat = 88
 
 
     

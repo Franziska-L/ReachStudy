@@ -95,9 +95,8 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     func setOffsetData(estimatedPoint: CGPoint, calibrationPoint: CGPoint, offX: Int, offY: Int) {
         
         let estPoint = [estimatedPoint.x, estimatedPoint.y]
-        let calibPoint = [calibrationPoint.x, 60.0]
+        let calibPoint = [calibrationPoint.x, calibrationPoint.y]
         let offXY = [offX, offY]
-        print(calibrationPoint)
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
         ref.updateChildValues(["Estimated Point": estPoint, "Calibration Point": calibPoint, "Offset": offXY])

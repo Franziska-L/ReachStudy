@@ -11,10 +11,11 @@ import UIKit
 class Reachability: TrainingTargets {
     
     @IBOutlet weak var arrowDown: UIImageView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         borderView.isHidden = false
     }
   
