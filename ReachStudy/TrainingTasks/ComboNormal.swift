@@ -65,7 +65,7 @@ class ComboNormal: TrainingTargets {
             
             if frames < 3 && checkPosition(position: CGPoint(x: x, y: y), target: targets[randomNumbers[frames]]) {
                 targets[randomNumbers[frames]].backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 91/255, alpha: 1)
-            } else {
+            } else if frames < 3 && !checkPosition(position: CGPoint(x: x, y: y), target: targets[randomNumbers[frames]]) {
                 targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
             }
             
@@ -78,8 +78,6 @@ class ComboNormal: TrainingTargets {
     
     
     @objc func handleTap(sender: UIGestureRecognizer) {
-        
-        let currFrame = frames
         
         if frames < 3 && targets[randomNumbers[frames]].tag < 2 {
             let position = cursor.frame.origin

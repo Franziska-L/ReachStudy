@@ -148,7 +148,7 @@ class GridTargets: TargetViewController {
         setTimestamp(for: "Touch")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if currentFrames < 7 && self.block < 5 {
+            if currentFrames < 7 && self.block < 6 {
                 
                 self.targets[number].backgroundColor = UIColor.gray
                 self.targets[number].isHidden = true
@@ -161,6 +161,10 @@ class GridTargets: TargetViewController {
             } else if currentFrames == 7 && self.block < 5 {
                 self.targets[number].isHidden = true
                 self.frames = 0
+                self.block += 1
+                if self.condition == 2 || self.condition == 3 || self.condition == 5 || self.condition == 6 {
+                    self.borderView.isHidden = true
+                }
                 self.randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
                 self.continueButton.isHidden = false
             } else if currentFrames == 7 && self.block == 5 {
@@ -202,7 +206,7 @@ class GridTargets: TargetViewController {
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         
         let id = String(format: "%02d", targetNumber)
-        print(id)
+        
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
         ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions, "Cursor Positions": cursorPositions])
         touchPositions.removeAll()
@@ -229,6 +233,9 @@ class GridTargets: TargetViewController {
     
     @objc func continueTask() {
         continueButton.isHidden = true
+        if self.condition == 2 || self.condition == 3 || self.condition == 5 || self.condition == 6 {
+            self.borderView.isHidden = false
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.targets[self.randomNumbers[0]].isHidden = false
             self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow

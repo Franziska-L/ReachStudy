@@ -38,7 +38,7 @@ class GazeTouch: TrainingTargets {
         
         if frames < 3 && checkPosition(position: cursorPosition, target: targets[randomNumbers[frames]]) {
             targets[randomNumbers[frames]].backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 91/255, alpha: 1)
-        } else {
+        } else if frames < 3 && !checkPosition(position: cursorPosition, target: targets[randomNumbers[frames]]) {
             targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
         }
         

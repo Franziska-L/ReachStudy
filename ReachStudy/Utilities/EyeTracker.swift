@@ -173,12 +173,10 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     private func calculateY(_ point: Float) -> CGFloat {
-        //return CGFloat(point) / (self.phoneScreenSize.height / 2) * SCalibration.screenSize.height + 312
         return CGFloat(point) / (self.physicalPhoneScreenSize.height / 2) * self.phoneScreenSize.height + 312
     }
     
     private func calculateX(_ point: Float) -> CGFloat {
-        //return CGFloat(point) / (self.phoneScreenSize.width / 2) * SCalibration.screenSize.width
         return CGFloat(point) / (self.physicalPhoneScreenSize.width / 2) * self.phoneScreenSize.width
     }
     

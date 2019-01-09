@@ -10,6 +10,7 @@ import UIKit
 
 class Reachability: TrainingTargets {
     
+    @IBOutlet weak var arrowDown: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
