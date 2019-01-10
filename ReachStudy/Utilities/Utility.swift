@@ -24,4 +24,13 @@ struct Utility {
     
     
     
+    func initTimestamp() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-MM-dd H:m:ss.SSSSSS"
+        
+        return formatter.string(from: date)
+    }
+    
+    
 }

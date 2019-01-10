@@ -192,7 +192,7 @@ class GridTargets: TargetViewController {
     
     
     func setDataTarget() {
-        let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+        let timestamp = Utility().initTimestamp()
         let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
         
         let id = String(format: "%02d", targetNumber)
@@ -203,7 +203,7 @@ class GridTargets: TargetViewController {
     
     
     func setTimestamp(for target: String) {
-        let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
+        let timestamp = Utility().initTimestamp()
         
         let id = String(format: "%02d", targetNumber)
         
@@ -233,14 +233,15 @@ class GridTargets: TargetViewController {
     
     @objc func continueTask() {
         continueButton.isHidden = true
-        if self.condition == 2 || self.condition == 3 || self.condition == 5 || self.condition == 6 {
-            self.borderView.isHidden = false
-        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.targets[self.randomNumbers[0]].isHidden = false
             self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
             
             self.setDataTarget()
+            if self.condition == 2 || self.condition == 3 || self.condition == 5 || self.condition == 6 {
+                self.borderView.isHidden = false
+            }
         }
     }
    

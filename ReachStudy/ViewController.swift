@@ -20,11 +20,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         ref = Database.database().reference()
         emptyIDLabel.isHidden = true
         existingIDLabel.isHidden = true
     }
+    
     
     @IBAction func start(_ sender: Any) {
         
@@ -52,39 +53,36 @@ class ViewController: UIViewController {
                     self.errorField(self.participantIDLabel, 1)
                     
                 } else {
+                    self.existingIDLabel.isHidden = true
                     
-                   self.existingIDLabel.isHidden = true
+                    self.ref = self.ref.child("Participant \(participantID)")
+                    self.ref.setValue(["Participant ID": participantID])
                     
+                    for i in 0 ..< self.data.conditions.count {
+                        self.ref = Database.database().reference().child("Participant \(participantID)").child("Condition \(self.data.conditions[i].conditionId)")
+                        self.ref.setValue([
+                            "Condition ID": self.data.conditions[i].conditionId,
+                            "Total Time": 0])
+                        for targetID in 1...40 {
+                            let id = String(format: "%02d", targetID)
+                            self.ref.child("Target \(id)").setValue([
+                                "Target ID": "",
+                                "Highlight Timestamp": "",
+                                "Touch Timestamp": "",
+                                "Target Position": [],
+                                "Touch Positions": [],
+                                "Eye Positions": []                        ])
+                            let targetProperty = TargetProperty(targetId: String(targetID))
+                            self.data.conditions[i].targetProperties.append(targetProperty)
+                            
+                        }
+                    }
+                    self.performSegue(withIdentifier: "description", sender: self)
                     
                 }
             }) { (error) in
                 print(error.localizedDescription)
             }
-            
-            self.ref = self.ref.child("Participant \(participantID)")
-            self.ref.setValue(["Participant ID": participantID])
-            
-            for i in 0 ..< self.data.conditions.count {
-                self.ref = Database.database().reference().child("Participant \(participantID)").child("Condition \(self.data.conditions[i].conditionId)")
-                self.ref.setValue([
-                    "Condition ID": self.data.conditions[i].conditionId,
-                    "Total Time": 0])
-                for targetID in 1...40 {
-                    let id = String(format: "%02d", targetID)
-                    self.ref.child("Target \(id)").setValue([
-                        "Target ID": "",
-                        "Highlight Timestamp": "",
-                        "Touch Timestamp": "",
-                        "Target Position": [],
-                        "Touch Positions": [],
-                        "Eye Positions": []                        ])
-                    let targetProperty = TargetProperty(targetId: String(targetID))
-                    self.data.conditions[i].targetProperties.append(targetProperty)
-                    
-                    
-                }
-            }
-            self.performSegue(withIdentifier: "description", sender: self)
         }
     }
     
