@@ -54,11 +54,12 @@ class ReachTask: GridTargets {
         let position = touch.location(in: self.view)
         
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
+            addPositionsToArray(position)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }
         } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
-            
+            addPositionsToArray(position)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }

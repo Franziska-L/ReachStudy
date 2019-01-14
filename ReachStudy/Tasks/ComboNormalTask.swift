@@ -52,8 +52,7 @@ class ComboNormalTask: GridTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        let eyePosition = EyeTracker.getTrackerPosition()
-        addPositionsToArray(eyePosition, newLocation)
+        addPositionsToArray(newLocation)
         
         if frames < 8 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)

@@ -70,9 +70,7 @@ class ComboGazeTask: GridTargets {
             
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             
-            let eyePosition = EyeTracker.getTrackerPosition()
-            addPositionsToArray(eyePosition, newLocation)
-            
+            addPositionsToArray(newLocation)            
             cursorPositions.append([x, y])
         }
     }
@@ -81,22 +79,20 @@ class ComboGazeTask: GridTargets {
         cursor.isHidden = true
         
         let touch: UITouch! = touches.first
-        
         let touchPosition = touch.location(in: self.view)
-        let eyePosition = EyeTracker.getTrackerPosition()
         
         if frames < 8 && trackerActive {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             cursorPositions.append([position.x, position.y])
-            addPositionsToArray(eyePosition, touchPosition)
+            addPositionsToArray(touchPosition)
             
             if isActive {
                 updateScreen()
             }
         } else if frames < 8 && !trackerActive {
-            addPositionsToArray(eyePosition, touchPosition)
+            addPositionsToArray(touchPosition)
             
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             

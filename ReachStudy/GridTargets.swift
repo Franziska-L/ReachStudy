@@ -107,7 +107,7 @@ class GridTargets: TargetViewController {
         
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        addPositionsToArray(eyePosition, touchPosition)
+        addPositionsToArray(touchPosition)
 
     }
     
@@ -117,7 +117,7 @@ class GridTargets: TargetViewController {
         let touchPosition = touch.location(in: self.view)
         let eyePosition = EyeTracker.getTrackerPosition()
         
-        addPositionsToArray(eyePosition, touchPosition)
+        addPositionsToArray(touchPosition)
         
         if frames < 8 {
             
@@ -140,7 +140,7 @@ class GridTargets: TargetViewController {
         totalTime += 1
     }
     
-    func addPositionsToArray(_ eyePosition: CGPoint, _ touchPosition: CGPoint) {
+    func addPositionsToArray(_ touchPosition: CGPoint) {
         let touchPos = [touchPosition.x, touchPosition.y]
         touchPositions.append(touchPos)
     }
@@ -153,7 +153,6 @@ class GridTargets: TargetViewController {
         targets[number].backgroundColor = UIColor.green
         targetActive = false
         
-        print(eyePositions)
         setTimestamp(for: "Touch")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

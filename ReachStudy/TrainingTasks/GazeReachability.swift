@@ -42,7 +42,7 @@ class GazeReachability: TrainingTargets {
     
     @objc func updateTrackerTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
-        
+        self.navigationBar.frame.origin.y = 44
         if eyePosition.y > -40 && eyePosition.y < navigationBarHeight && eyePosition.x > -10 && eyePosition.x < self.view.frame.width && !viewIsMoved {
             self.view.layer.cornerRadius = 40
             UIView.animate(withDuration: 0.4) {

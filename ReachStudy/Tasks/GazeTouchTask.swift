@@ -41,10 +41,8 @@ class GazeTouchTask: GridTargets {
         let y = cursorPosition.y + distY
         
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
-
-        let eyePosition = EyeTracker.getTrackerPosition()
         
-        addPositionsToArray(eyePosition, newLocation)
+        addPositionsToArray(newLocation)
         cursorPositions.append([x, y])
     }
     
@@ -56,7 +54,7 @@ class GazeTouchTask: GridTargets {
        
         if frames < 8 {
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
-            
+           
             if isActive {
                 updateScreen()
             }

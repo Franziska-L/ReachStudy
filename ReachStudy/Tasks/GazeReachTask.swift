@@ -25,7 +25,8 @@ class GazeReachTask: GridTargets {
         //gazeView.layer.cornerRadius = 40
         //gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
-        self.view.sendSubviewToBack(gazeView)
+        //self.view.sendSubviewToBack(gazeView)
+        self.view.addSubview(gazeView)
         
         borderView.isHidden = false
         
@@ -37,7 +38,8 @@ class GazeReachTask: GridTargets {
     
     @objc func updateTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
-        
+        self.navigationBar.frame.origin.y = 44
+
         if eyePosition.y > -40 && eyePosition.y < navigationBarHeight && eyePosition.x > -10 && eyePosition.x < self.view.frame.width && !viewIsMoved {
             self.view.layer.cornerRadius = 40
             UIView.animate(withDuration: 0.4) {
@@ -63,6 +65,8 @@ class GazeReachTask: GridTargets {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
         let position = touch.location(in: self.view)
+        
+        addPositionsToArray(position)
         
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {

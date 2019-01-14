@@ -49,7 +49,7 @@ class ComboNormal: TrainingTargets {
         
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
-        print(frames)
+
         if frames < 3 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
