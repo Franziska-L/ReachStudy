@@ -65,12 +65,7 @@ class ViewController: UIViewController {
                         for targetID in 1...40 {
                             let id = String(format: "%02d", targetID)
                             self.ref.child("Target \(id)").setValue([
-                                "Target ID": "",
-                                "Highlight Timestamp": "",
-                                "Touch Timestamp": "",
-                                "Target Position": [],
-                                "Touch Positions": [],
-                                "Eye Positions": []                        ])
+                                "Target ID": ""                ])
                             let targetProperty = TargetProperty(targetId: String(targetID))
                             self.data.conditions[i].targetProperties.append(targetProperty)
                             

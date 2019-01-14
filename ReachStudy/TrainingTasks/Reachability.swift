@@ -13,13 +13,14 @@ class Reachability: TrainingTargets {
     @IBOutlet weak var arrowDown: UIImageView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        navigationBar.layer.cornerRadius = 40
         borderView.isHidden = false
     }
-  
-
+    
     override func startTask() {
         
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReachTask") as? ReachTask {
@@ -28,6 +29,27 @@ class Reachability: TrainingTargets {
             vc.counter = counter
             
             present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            if viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.navigationBar.frame.origin.y = 44
+                    self.view.frame.origin.y -= self.moveDistance
+                }
+                viewIsMoved = false
+            }
+        }
+        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            if !viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.navigationBar.frame.origin.y = 44
+                    self.view.frame.origin.y += self.moveDistance
+                }
+                viewIsMoved = true
+            }
         }
     }
     

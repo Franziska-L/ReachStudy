@@ -228,6 +228,7 @@
                         <viewLayoutGuide key="safeArea" id="YND-MK-q5Q"/>
                     </view>
                     <connections>
+                        <outlet property="navigationBar" destination="W27-Wv-sgp" id="AIG-Bt-N2T"/>
                         <segue destination="rOF-0s-Ngo" kind="show" identifier="gazereach" id="LXD-rq-63L"/>
                     </connections>
                 </viewController>
@@ -269,6 +270,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="37F-Kj-DbZ"/>
                     </view>
+                    <connections>
+                        <outlet property="navigationBar" destination="ers-Yo-cPT" id="x5h-qd-YjC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrC-LQ-fJJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -606,6 +610,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BbG-Cu-gZp"/>
                     </view>
+                    <connections>
+                        <outlet property="navigationBar" destination="ZGQ-fL-2qS" id="bAY-rK-w90"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbQ-XL-LVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

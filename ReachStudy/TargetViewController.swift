@@ -70,26 +70,7 @@ class TargetViewController: UIViewController, TrackerDelegate {
         cursor.isHidden = true
     }
     
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            if viewIsMoved {
-                UIView.animate(withDuration: 0.4) {
-                    self.view.frame.origin.y -= self.moveDistance
-                }
-                viewIsMoved = false
-            }
-        }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            if !viewIsMoved {
-                self.view.layer.cornerRadius = 40
-                UIView.animate(withDuration: 0.4) {
-                    self.view.frame.origin.y += self.moveDistance
-                }
-                
-                viewIsMoved = true
-            }
-        }
-    }
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {}
     
     func checkPosition(position: CGPoint, target: UIView) -> Bool {
         let frame = target.frame.origin

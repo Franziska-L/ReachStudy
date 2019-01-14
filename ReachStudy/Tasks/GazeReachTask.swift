@@ -10,6 +10,7 @@ import UIKit
 
 class GazeReachTask: GridTargets {
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     let gazeView: UIView = UIView()
     
     var trackerTimer = Timer()
@@ -21,10 +22,10 @@ class GazeReachTask: GridTargets {
         
         gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
         gazeView.backgroundColor = UIColor.red
-        gazeView.layer.cornerRadius = 40
-        gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        //gazeView.layer.cornerRadius = 40
+        //gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
-        self.view.addSubview(gazeView)
+        self.view.sendSubviewToBack(gazeView)
         
         borderView.isHidden = false
         
@@ -43,6 +44,18 @@ class GazeReachTask: GridTargets {
                 self.view.frame.origin.y += self.moveDistance
             }
             viewIsMoved = true
+        }
+    }
+    
+    override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            if viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.navigationBar.frame.origin.y = 44
+                    self.view.frame.origin.y -= self.moveDistance
+                }
+                viewIsMoved = false
+            }
         }
     }
     

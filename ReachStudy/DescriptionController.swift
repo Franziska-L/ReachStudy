@@ -24,7 +24,7 @@ class DescriptionController: UIViewController {
         }
         
         
-        descriptionText.text = "Du startest gleich mit der \(sequence[counter]). Methode\n\nDu wirst immer zuerst drei Übungsziele bekommen mit denen du dich an die an die Technik gewöhnen kannst. Drücke den Button sobald er gelb aufläuchtet.\n Danach bekommst du 8 Ziele die du so genau und so schnell wie möglich anklicken sollst."
+        descriptionText.text = "Du startest gleich mit der \(sequence[counter]). Methode\n\nDu wirst immer zuerst drei Übungsziele bekommen mit denen du dich an die an die Technik gewöhnen kannst. Drücke den Button sobald er gelb aufläuchtet.\n Danach bekommst du 40 Ziele die du so genau und so schnell wie möglich anklicken sollst."
         
     }
     

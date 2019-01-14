@@ -10,6 +10,7 @@ import UIKit
 
 class ReachTask: GridTargets {
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,27 @@ class ReachTask: GridTargets {
     
     @IBAction func refreshCalibration(_ sender: Any) {
         refresh()
+    }
+    
+    override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            if viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.navigationBar.frame.origin.y = 44
+                    self.view.frame.origin.y -= self.moveDistance
+                }
+                viewIsMoved = false
+            }
+        }
+        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            if !viewIsMoved {
+                UIView.animate(withDuration: 0.4) {
+                    self.navigationBar.frame.origin.y = 44
+                    self.view.frame.origin.y += self.moveDistance
+                }
+                viewIsMoved = true
+            }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
