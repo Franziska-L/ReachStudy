@@ -28,7 +28,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func start(_ sender: Any) {
-        
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if snapshot.value as? Bool ?? false {
@@ -43,9 +42,6 @@ class ViewController: UIViewController {
         } else {
             emptyIDLabel.isHidden = true
             let participantID = String(format: "%02d", Int(participantIDLabel.text!)!)
-            data.participantID = participantID
-            
-            setSequence()
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -54,6 +50,9 @@ class ViewController: UIViewController {
                     
                 } else {
                     self.existingIDLabel.isHidden = true
+                    
+                    self.data.participantID = participantID
+                    self.setSequence()
                     
                     self.ref = self.ref.child("Participant \(participantID)")
                     self.ref.setValue(["Participant ID": participantID])

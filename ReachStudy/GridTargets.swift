@@ -23,9 +23,11 @@ class GridTargets: TargetViewController {
     var cursorPositions = [[CGFloat]]()
     var touchPositions = [[CGFloat]]()
     
+    var targetActive = false
+    
     var block = 1
     var targetNumber = 1
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +88,7 @@ class GridTargets: TargetViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.targets[self.randomNumbers[0]].isHidden = false
             self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
+            self.targetActive = true
             
             self.setDataTarget()
         }
@@ -127,15 +130,19 @@ class GridTargets: TargetViewController {
     }
     
     @objc func countTime() {
+        if targetActive {
+            let gazePosition = EyeTracker.getTrackerPosition()
+            let eyePosition = [gazePosition.x, gazePosition.y]
+            eyePositions.append(eyePosition)
+        }
+        
+        
         totalTime += 1
     }
     
     func addPositionsToArray(_ eyePosition: CGPoint, _ touchPosition: CGPoint) {
         let touchPos = [touchPosition.x, touchPosition.y]
         touchPositions.append(touchPos)
-        
-        let eyePos = [eyePosition.x, eyePosition.y]
-        eyePositions.append(eyePos)
     }
     
         
@@ -144,7 +151,9 @@ class GridTargets: TargetViewController {
         let currentFrames = frames
         
         targets[number].backgroundColor = UIColor.green
+        targetActive = false
         
+        print(eyePositions)
         setTimestamp(for: "Touch")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -155,6 +164,7 @@ class GridTargets: TargetViewController {
                 
                 self.targets[self.randomNumbers[currentFrames+1]].backgroundColor = UIColor.yellow
                 self.targets[self.randomNumbers[currentFrames+1]].isHidden = false
+                self.targetActive = true
                 
                 self.setDataTarget()
                 
