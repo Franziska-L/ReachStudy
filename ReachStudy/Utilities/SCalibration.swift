@@ -162,7 +162,6 @@ class SCalibration{
         if self.offset.count <= region  || region == -1{
             return CGPoint(x: 0, y: 0)
         }
-        print(self.offset[region])
         return self.offset[region]
     }
     

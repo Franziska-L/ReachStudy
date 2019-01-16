@@ -28,15 +28,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func start(_ sender: Any) {
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
-            if snapshot.value as? Bool ?? false {
-                print("Connected")
-            } else {
-                print("Not connected")
-            }
-        })
-        
         if participantIDLabel.text == "" {
             errorField(participantIDLabel, 0)
         } else {
@@ -47,7 +38,6 @@ class ViewController: UIViewController {
                 
                 if snapshot.hasChild("Participant \(participantID)") {
                     self.errorField(self.participantIDLabel, 1)
-                    
                 } else {
                     self.existingIDLabel.isHidden = true
                     

@@ -225,8 +225,11 @@ class GridTargets: TargetViewController {
     
     func setDataTarget() {
         let timestamp = Utility().initTimestamp()
-        let position = [targets[randomNumbers[frames]].frame.origin.x, targets[randomNumbers[frames]].frame.origin.y]
+        let position = [targets[randomNumbers[frames]].frame.midX, targets[randomNumbers[frames]].frame.midY]
         
+        print("\(targets[randomNumbers[frames]].frame.origin.x)   \(targets[randomNumbers[frames]].frame.origin.y)")
+        print("\(targets[randomNumbers[frames]].frame.midX)   \(targets[randomNumbers[frames]].frame.midY)")
+
         let id = String(format: "%02d", targetNumber)
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
         ref.updateChildValues(["Target ID": targets[randomNumbers[frames]].tag, "Start Timestamp": timestamp, "Target Position": position])
