@@ -145,9 +145,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HN-VO-0GS">
-                                <rect key="frame" x="141" y="572" width="92" height="30"/>
+                                <rect key="frame" x="152" y="572" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Starte Übung"/>
+                                <state key="normal" title="Los geht's"/>
                                 <connections>
                                     <action selector="startTraining:" destination="MJ7-9K-3H4" eventType="touchUpInside" id="Jgi-WN-kuZ"/>
                                 </connections>
@@ -209,6 +209,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W27-Wv-sgp">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Methode 3: Training" id="0YF-fx-UXb"/>
                                 </items>
@@ -246,6 +247,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ers-Yo-cPT">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Methode 3: Aufgabe" id="Gso-yY-CHP">
                                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6gd-Ip-LN4">
@@ -272,6 +274,7 @@
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="ers-Yo-cPT" id="x5h-qd-YjC"/>
+                        <outlet property="refreshButton" destination="6gd-Ip-LN4" id="sK1-PM-3YI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrC-LQ-fJJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

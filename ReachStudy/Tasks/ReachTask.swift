@@ -29,8 +29,15 @@ class ReachTask: GridTargets {
     }
     
     override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        let pos = gesture.location(in: self.view)
+        
         if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             if viewIsMoved {
+                touchPositions.append([pos.x, pos.y, swipeUp])
+                
+                let timestamp = Date().toMillis()
+                touchPositions_timestamp.append(timestamp)
+                
                 UIView.animate(withDuration: 0.4) {
                     self.navigationBar.frame.origin.y = 44
                     self.view.frame.origin.y -= self.moveDistance
@@ -40,6 +47,11 @@ class ReachTask: GridTargets {
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             if !viewIsMoved {
+                touchPositions.append([pos.x, pos.y, swipeDown])
+                
+                let timestamp = Date().toMillis()
+                touchPositions_timestamp.append(timestamp)
+                
                 UIView.animate(withDuration: 0.4) {
                     self.navigationBar.frame.origin.y = 44
                     self.view.frame.origin.y += self.moveDistance
@@ -54,12 +66,20 @@ class ReachTask: GridTargets {
         let position = touch.location(in: self.view)
         
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
-            addPositionsToArray(position)
+            addPositionsToArray(position, up)
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }
         } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
-            addPositionsToArray(position)
+            addPositionsToArray(position, up)
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }

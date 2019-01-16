@@ -38,9 +38,20 @@ class ComboGazeTask: GridTargets {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let trackerPosition = EyeTracker.getTrackerPosition()
+        
+        let touch: UITouch! = touches.first
+        let touchPosition = touch.location(in: self.view)
+        
+        addPositionsToArray(touchPosition, down)
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
 
         if trackerPosition.y < middle {
             setCursorPosition(position: trackerPosition)
+            let cursorPos = cursor.frame.origin
+            cursorPositions.append([cursorPos.x, cursorPos.y])
+            
             trackerActive = true
         } else {
             trackerActive = false
@@ -52,6 +63,12 @@ class ComboGazeTask: GridTargets {
         
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
+        
+        addPositionsToArray(newLocation, move)
+        
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
         
         if trackerActive {
             let distX: CGFloat = newLocation.x - prevLocaiton.x
@@ -70,7 +87,6 @@ class ComboGazeTask: GridTargets {
             
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             
-            addPositionsToArray(newLocation)            
             cursorPositions.append([x, y])
         }
     }
@@ -86,13 +102,21 @@ class ComboGazeTask: GridTargets {
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
             cursorPositions.append([position.x, position.y])
-            addPositionsToArray(touchPosition)
+            addPositionsToArray(touchPosition, up)
+            
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
             
             if isActive {
                 updateScreen()
             }
         } else if frames < 8 && !trackerActive {
-            addPositionsToArray(touchPosition)
+            addPositionsToArray(touchPosition, up)
+            
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
             
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             

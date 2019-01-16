@@ -114,19 +114,19 @@ class ComboGaze: TrainingTargets {
         
     }
     
-    
-    override func startTask() {
-        
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGazeTask") as? ComboGazeTask {
-            vc.data = data
-            vc.condition = condition
-            vc.counter = counter
-            vc.modalPresentationStyle = .fullScreen
-
-            show(vc, sender: self)
-            //present(vc, animated: true, completion: nil)
-        }
-    }
+//
+//    override func startTask() {
+//
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGazeTask") as? ComboGazeTask {
+//            vc.data = data
+//            vc.condition = condition
+//            vc.counter = counter
+//            vc.modalPresentationStyle = .fullScreen
+//
+//            show(vc, sender: self)
+//            //present(vc, animated: true, completion: nil)
+//        }
+//    }
     
 
 }

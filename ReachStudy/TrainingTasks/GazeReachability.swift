@@ -25,7 +25,8 @@ class GazeReachability: TrainingTargets {
         //gazeView.layer.cornerRadius = 40
         //gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
-        self.view.addSubview(gazeView)
+        self.view.sendSubviewToBack(gazeView)
+        //self.view.addSubview(gazeView)
         
         borderView.isHidden = false
         
@@ -50,6 +51,14 @@ class GazeReachability: TrainingTargets {
             }
             viewIsMoved = true
         }
+        
+        if eyePosition.y < middle {
+            EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+            EyeTracker.instance.trackerView.alpha = 0.5
+        } else {
+            EyeTracker.instance.trackerView.alpha = 0.2
+            EyeTracker.instance.trackerView.backgroundColor = UIColor.gray
+        }
     }
     
     override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -64,17 +73,17 @@ class GazeReachability: TrainingTargets {
         }
     }
     
-    override func startTask() {
-        
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachTask") as? GazeReachTask {
-            vc.data = data
-            vc.condition = condition
-            vc.counter = counter
-            
-            present(vc, animated: true, completion: nil)
-        }
-    }
-    
+//    override func startTask() {
+//        
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachTask") as? GazeReachTask {
+//            vc.data = data
+//            vc.condition = condition
+//            vc.counter = counter
+//            
+//            present(vc, animated: true, completion: nil)
+//        }
+//    }
+//    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first

@@ -52,7 +52,10 @@ class ComboNormalTask: GridTargets {
         let prevLocaiton = touch.previousLocation(in: self.view)
         let newLocation = touch.location(in: self.view)
         
-        addPositionsToArray(newLocation)
+        addPositionsToArray(newLocation, move)
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
         
         if frames < 8 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
@@ -61,7 +64,7 @@ class ComboNormalTask: GridTargets {
             let distX: CGFloat = newLocation.x - prevLocaiton.x
             let distY: CGFloat = newLocation.y - prevLocaiton.y
             
-            let x = swipePadX + distX
+            let x = swipePadX + distX + (swipePadSize / 2) - (cursorSize / 2)
             let y = swipePadY + distY - 350.0
             
             swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
@@ -84,20 +87,31 @@ class ComboNormalTask: GridTargets {
     }
     
     @objc func handleTap(sender: UIGestureRecognizer) {
-        
-        let currFrame = frames
+        let touchPosition = sender.location(in: self.view)
         
         if frames < 8 && targets[randomNumbers[frames]].tag < 4 {
             let position = cursor.frame.origin
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
             
+            addPositionsToArray(touchPosition, tap)
+            cursorPositions.append([position.x, position.y])
+            
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
+            
             if isActive {
                 updateScreen()
             }
         } else if frames < 8 && targets[randomNumbers[frames]].tag >= 4 {
-            let position = sender.location(in: self.view)
-            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             
+            addPositionsToArray(touchPosition, tap)
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
+
             if isActive {
                 updateScreen()
             }

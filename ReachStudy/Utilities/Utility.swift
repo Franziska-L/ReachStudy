@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Utility {
     
@@ -27,10 +28,9 @@ struct Utility {
     func initTimestamp() -> String {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "y-MM-dd H:m:ss.SSSSSS"
+        formatter.dateFormat = "y-MM-dd HH:mm:ss.SSSSSS"
         
         return formatter.string(from: date)
     }
-    
     
 }

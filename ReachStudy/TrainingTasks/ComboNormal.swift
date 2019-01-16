@@ -57,7 +57,7 @@ class ComboNormal: TrainingTargets {
             let distX: CGFloat = newLocation.x - prevLocaiton.x
             let distY: CGFloat = newLocation.y - prevLocaiton.y
             
-            let x = swipePadX + distX
+            let x = swipePadX + distX + (swipePadSize / 2) - (cursorSize / 2)
             let y = swipePadY + distY - 350.0
             
             swipePad.frame = CGRect(x: swipePadX, y: swipePadY, width: swipePadSize, height: swipePadSize)
@@ -107,15 +107,15 @@ class ComboNormal: TrainingTargets {
         }
     }
     
-    override func startTask() {
-        
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTask") as? ComboNormalTask {
-            vc.data = data
-            vc.condition = condition
-            vc.counter = counter
-            
-            present(vc, animated: true, completion: nil)
-        }
-    }
+//    override func startTask() {
+//        
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTask") as? ComboNormalTask {
+//            vc.data = data
+//            vc.condition = condition
+//            vc.counter = counter
+//            
+//            present(vc, animated: true, completion: nil)
+//        }
+//    }
     
 }

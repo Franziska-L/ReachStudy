@@ -17,10 +17,10 @@ class TrainingTargets: TargetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         startTaskButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
         startTaskButton.center = self.view.center
-        startTaskButton.setTitle("Starte Aufgabe", for: .normal)
+        startTaskButton.setTitle("Starte Kalibrierung", for: .normal)
         startTaskButton.setTitleColor(UIColor.blue, for: .normal)
         startTaskButton.addTarget(self, action: #selector(startTask), for: .touchUpInside)
         self.view.addSubview(startTaskButton)
@@ -98,7 +98,16 @@ class TrainingTargets: TargetViewController {
     }
     
     
-    @objc func startTask() {}
+    @objc func startTask() {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Calibration") as? CalibrationViewController {
+            vc.data = data
+            vc.condition = condition
+            vc.counter = counter
+            vc.saveValue = 1
+            
+            present(vc, animated: true, completion: nil)
+        }
+    }
     
  
 }

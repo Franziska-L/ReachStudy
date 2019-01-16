@@ -23,15 +23,25 @@ class GridTargets: TargetViewController {
     var cursorPositions = [[CGFloat]]()
     var touchPositions = [[CGFloat]]()
     
+    var eyePositions_timestamp = [Int64]()
+    var touchPositions_timestamp = [Int64]()
+    
     var targetActive = false
     
     var block = 1
     var targetNumber = 1
     
+    var down: CGFloat = 0.0
+    var move: CGFloat = 1.0
+    var up: CGFloat = 2.0
+    var tap: CGFloat = 3.0
+    var swipeDown: CGFloat = 4.0
+    var swipeUp: CGFloat = 5.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         finishButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
         finishButton.center = self.view.center
         finishButton.setTitle("Fertig", for: .normal)
@@ -51,7 +61,7 @@ class GridTargets: TargetViewController {
         
         randomNumbers = Utility().generateRandomSequence(from: 0, to: 7, quit: 8)
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(countTime), userInfo: nil, repeats: true)
         
         let x1: CGFloat = 60
         let x2: CGFloat = 245
@@ -101,23 +111,35 @@ class GridTargets: TargetViewController {
         EyeTracker.delegate = self 
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch! = touches.first
+        let touchPosition = touch.location(in: self.view)
+        
+        addPositionsToArray(touchPosition, down)
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
+    }
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
         let touchPosition = touch.location(in: self.view)
         
-        let eyePosition = EyeTracker.getTrackerPosition()
+        addPositionsToArray(touchPosition, move)
         
-        addPositionsToArray(touchPosition)
-
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
-        
         let touchPosition = touch.location(in: self.view)
-        let eyePosition = EyeTracker.getTrackerPosition()
         
-        addPositionsToArray(touchPosition)
+        addPositionsToArray(touchPosition, up)
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
         
         if frames < 8 {
             
@@ -134,14 +156,15 @@ class GridTargets: TargetViewController {
             let gazePosition = EyeTracker.getTrackerPosition()
             let eyePosition = [gazePosition.x, gazePosition.y]
             eyePositions.append(eyePosition)
+            
+            let timestamp = Date().toMillis()
+            eyePositions_timestamp.append(timestamp)
         }
-        
-        
         totalTime += 1
     }
     
-    func addPositionsToArray(_ touchPosition: CGPoint) {
-        let touchPos = [touchPosition.x, touchPosition.y]
+    func addPositionsToArray(_ touchPosition: CGPoint, _ event: CGFloat) {
+        let touchPos = [touchPosition.x, touchPosition.y, event]
         touchPositions.append(touchPos)
     }
     
@@ -206,7 +229,7 @@ class GridTargets: TargetViewController {
         
         let id = String(format: "%02d", targetNumber)
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
-        ref.updateChildValues(["Target ID": targets[randomNumbers[frames]].tag, "Highlight Timestamp": timestamp, "Target Position": position])
+        ref.updateChildValues(["Target ID": targets[randomNumbers[frames]].tag, "Start Timestamp": timestamp, "Target Position": position])
        
     }
     
@@ -217,10 +240,12 @@ class GridTargets: TargetViewController {
         let id = String(format: "%02d", targetNumber)
         
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
-        ref.updateChildValues(["\(target) Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions, "Cursor Positions": cursorPositions])
+        ref.updateChildValues(["End Timestamp": timestamp, "Touch Positions": touchPositions, "Eye Positions": eyePositions, "Cursor Positions": cursorPositions, "Eye Positions Timestamp": eyePositions_timestamp, "Touch Positions Timestamp": touchPositions_timestamp])
         touchPositions.removeAll()
         eyePositions.removeAll()
         cursorPositions.removeAll()
+        eyePositions_timestamp.removeAll()
+        touchPositions_timestamp.removeAll()
     }
     
     

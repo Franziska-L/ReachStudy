@@ -10,6 +10,7 @@ import UIKit
 
 class GazeReachTask: GridTargets {
     
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationBar!
     let gazeView: UIView = UIView()
     
@@ -25,8 +26,8 @@ class GazeReachTask: GridTargets {
         //gazeView.layer.cornerRadius = 40
         //gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
-        //self.view.sendSubviewToBack(gazeView)
-        self.view.addSubview(gazeView)
+        self.view.sendSubviewToBack(gazeView)
+        //self.view.addSubview(gazeView)
         
         borderView.isHidden = false
         
@@ -47,6 +48,14 @@ class GazeReachTask: GridTargets {
             }
             viewIsMoved = true
         }
+        
+        if eyePosition.y < middle {
+            EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+            EyeTracker.instance.trackerView.alpha = 0.5
+        } else {
+            EyeTracker.instance.trackerView.alpha = 0.2
+            EyeTracker.instance.trackerView.backgroundColor = UIColor.gray
+        }
     }
     
     override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -66,14 +75,21 @@ class GazeReachTask: GridTargets {
         let touch: UITouch! = touches.first
         let position = touch.location(in: self.view)
         
-        addPositionsToArray(position)
-        
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
+            
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
+            addPositionsToArray(position, up)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }
         } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
             
+            let timestamp = Date().toMillis()
+            touchPositions_timestamp.append(timestamp)
+            
+            addPositionsToArray(position, up)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }

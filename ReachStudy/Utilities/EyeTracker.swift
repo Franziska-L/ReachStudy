@@ -152,8 +152,8 @@ class EyeTracker: NSObject, ARSCNViewDelegate, ARSessionDelegate {
         self.eyeLookAtPositionXs = Array(self.eyeLookAtPositionXs.suffix(smoothThresholdNumber))
         self.eyeLookAtPositionYs = Array(self.eyeLookAtPositionYs.suffix(smoothThresholdNumber))
         
-        var x = self.eyeLookAtPositionXs.average! + self.phoneScreenSize.width / 2
-        var y = self.eyeLookAtPositionYs.average! + self.phoneScreenSize.height / 2
+        var x = self.eyeLookAtPositionXs.average! + self.phoneScreenSize.width / 2 - 25
+        var y = self.eyeLookAtPositionYs.average! + self.phoneScreenSize.height / 2 - 25
         
         let offset = SCalibration.getOffsetY(x: x, y: y)
                 

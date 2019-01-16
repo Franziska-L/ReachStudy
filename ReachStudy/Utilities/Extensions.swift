@@ -67,11 +67,19 @@ public extension CGFloat {
 
 extension Date {
     var millisecondsSince1970:Int64 {
-        return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+        return Int64((self.timeIntervalSince1970 * 1000.0))
     }
     
     init(milliseconds: Int64) {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
+    }
+    
+    func toString(millisec: Int64) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(millisec / 1000))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-MM-dd HH:mm:ss.SSSSSS"
+        
+        return formatter.string(from: date)
     }
     
     func toMillis() -> Int64 {

@@ -11,15 +11,15 @@ import UIKit
 class Baseline: TrainingTargets {
     
     
-    override func startTask() {
-        
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BaselineTask") as? BaselineTask {
-            vc.data = data
-            vc.condition = condition
-            vc.counter = counter
-            
-            present(vc, animated: true, completion: nil)
-        }
-    }
+//    override func startTask() {
+//        
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BaselineTask") as? BaselineTask {
+//            vc.data = data
+//            vc.condition = condition
+//            vc.counter = counter
+//            
+//            present(vc, animated: true, completion: nil)
+//        }
+//    }
     
 }

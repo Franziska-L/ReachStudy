@@ -18,6 +18,9 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     var offsetX: CGFloat = CGFloat()
     var offsetY: CGFloat = CGFloat()
     
+    var eyePositionX: [Int] = [Int]()
+    var eyePositionY: [Int] = [Int]()
+    
     var skip = 0
     var frames = 0
     
@@ -30,9 +33,12 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
    
     var ref: DatabaseReference!
 
+    var saveValue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(saveValue)
 
         checkpoint.backgroundColor = UIColor.red
         self.checkpointMiddle.backgroundColor = UIColor(red: 127/255, green: 0, blue: 0, alpha: 1)
@@ -70,7 +76,13 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
             let averageY = self.averageOffset(self.offY)
             
             SCalibration.setOffset(averageX, y: averageY)
-            setOffsetData(estimatedPoint: EyeTracker.getTrackerPosition(), calibrationPoint: checkpoint.frame.origin, offX: averageX, offY: averageY)
+            
+            if saveValue == 1 {
+                let averageEyeX = self.averageOffset(self.eyePositionX)
+                let averageEyeY = self.averageOffset(self.eyePositionY)
+                setOffsetData(estimatedPointX: averageEyeX, estimatedPointY: averageEyeY, offX: averageX, offY: averageY)
+                
+            }
             
             EyeTracker.instance.trackerView.isHidden = false
             self.start.isHidden = false
@@ -88,18 +100,22 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     
     func adjustXY(){
         let eyePosition = EyeTracker.getTrackerPosition()
+        
+        self.eyePositionX.append(Int(eyePosition.x))
+        self.eyePositionY.append(Int(eyePosition.y))
+        
         self.offX.append(Int(self.checkpoint.frame.midX - eyePosition.x))
         self.offY.append(Int(self.checkpoint.frame.midY - eyePosition.y))
     }
     
-    func setOffsetData(estimatedPoint: CGPoint, calibrationPoint: CGPoint, offX: Int, offY: Int) {
+    func setOffsetData(estimatedPointX: Int, estimatedPointY: Int, offX: Int, offY: Int) {
         
-        let estPoint = [estimatedPoint.x, estimatedPoint.y]
-        let calibPoint = [calibrationPoint.x, calibrationPoint.y]
+        let estimatedPoint = [estimatedPointX, estimatedPointY]
+        let calibPoint = [self.checkpoint.frame.midX, self.checkpoint.frame.midY]
         let offXY = [offX, offY]
-        
+     
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)")
-        ref.updateChildValues(["Estimated Point": estPoint, "Calibration Point": calibPoint, "Offset": offXY])
+        ref.updateChildValues(["Estimated Point": estimatedPoint, "Calibration Point": calibPoint, "Offset": offXY])
         
     }
     
@@ -109,63 +125,125 @@ class CalibrationViewController: UIViewController, TrackerDelegate {
     }
     
     @IBAction func startTraining(_ sender: Any) {
-        switch condition {
-        case 1:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Baseline") as? Baseline {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
+        if saveValue == 0 {
+
+            switch condition {
+            case 1:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Baseline") as? Baseline {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 2:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reachability") as? Reachability {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 3:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachability") as? GazeReachability {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 4:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouch") as? GazeTouch {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 5:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormal") as? ComboNormal {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 6:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGaze") as? ComboGaze {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            default:
+                break
             }
-            break
-        case 2:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Reachability") as? Reachability {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
+        } else if saveValue == 1 {
+            switch condition {
+            case 1:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BaselineTask") as? BaselineTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 2:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReachTask") as? ReachTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 3:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachTask") as? GazeReachTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 4:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouchTask") as? GazeTouchTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 5:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTask") as? ComboNormalTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            case 6:
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGazeTask") as? ComboGazeTask {
+                    vc.data = data
+                    vc.condition = condition
+                    vc.counter = counter
+                    
+                    present(vc, animated: true, completion: nil)
+                }
+                break
+            default:
+                break
             }
-            break
-        case 3:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachability") as? GazeReachability {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 4:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeTouch") as? GazeTouch {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 5:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormal") as? ComboNormal {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        case 6:
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboGaze") as? ComboGaze {
-                vc.data = data
-                vc.condition = condition
-                vc.counter = counter
-                
-                present(vc, animated: true, completion: nil)
-            }
-            break
-        default:
-            break
         }
     }
     
