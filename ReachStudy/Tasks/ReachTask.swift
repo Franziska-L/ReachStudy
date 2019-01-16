@@ -33,10 +33,7 @@ class ReachTask: GridTargets {
         
         if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             if viewIsMoved {
-                touchPositions.append([pos.x, pos.y, swipeUp])
-                
-                let timestamp = Date().toMillis()
-                touchPositions_timestamp.append(timestamp)
+                addPositionsToArray(pos, swipeUp)
                 
                 UIView.animate(withDuration: 0.4) {
                     self.navigationBar.frame.origin.y = 44
@@ -47,10 +44,7 @@ class ReachTask: GridTargets {
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             if !viewIsMoved {
-                touchPositions.append([pos.x, pos.y, swipeDown])
-                
-                let timestamp = Date().toMillis()
-                touchPositions_timestamp.append(timestamp)
+                addPositionsToArray(pos, swipeDown)
                 
                 UIView.animate(withDuration: 0.4) {
                     self.navigationBar.frame.origin.y = 44
@@ -65,21 +59,13 @@ class ReachTask: GridTargets {
         let touch: UITouch! = touches.first
         let position = touch.location(in: self.view)
         
+        addPositionsToArray(position, up)
+        
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
-            addPositionsToArray(position, up)
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }
         } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
-            addPositionsToArray(position, up)
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }

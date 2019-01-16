@@ -22,13 +22,8 @@ class GazeTouchTask: GridTargets {
         let touch: UITouch! = touches.first
         let touchPosition = touch.location(in: self.view)
         
-        addPositionsToArray(touchPosition, down)
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
-        
         let cursorPos = cursor.frame.origin
-        cursorPositions.append([cursorPos.x, cursorPos.y])
+        addData(touchPosition: touchPosition, cursorPositionX: cursorPos.x, cursorPositionY: cursorPos.y, event: down)
         
     }
     
@@ -53,12 +48,7 @@ class GazeTouchTask: GridTargets {
         let y = cursorPosition.y + distY
         
         cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
-        
-        addPositionsToArray(newLocation, move)
-        cursorPositions.append([x, y])
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
+        addData(touchPosition: newLocation, cursorPositionX: x, cursorPositionY: y, event: move)
     }
     
     
@@ -69,20 +59,23 @@ class GazeTouchTask: GridTargets {
         let touchPosition = touch.location(in: self.view)
         
         let position = cursor.frame.origin
-       
+        addData(touchPosition: touchPosition, cursorPositionX: position.x, cursorPositionY: position.y, event: up)
+        
         if frames < 8 {
-            addPositionsToArray(touchPosition, up)
-            cursorPositions.append([position.x, position.y])
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
             let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
            
             if isActive {
                 updateScreen()
             }
         }
+    }
+    
+    func addData(touchPosition: CGPoint, cursorPositionX: CGFloat, cursorPositionY: CGFloat, event: CGFloat) {
+        addPositionsToArray(touchPosition, event)
+        
+        let roundedCursorX: CGFloat = (cursorPositionX * 100).rounded() / 100
+        let roundedCursorY: CGFloat = (cursorPositionY * 100).rounded() / 100
+        cursorPositions.append([roundedCursorX, roundedCursorY])
     }
     
     

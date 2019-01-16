@@ -116,9 +116,6 @@ class GridTargets: TargetViewController {
         let touchPosition = touch.location(in: self.view)
         
         addPositionsToArray(touchPosition, down)
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -126,10 +123,6 @@ class GridTargets: TargetViewController {
         let touchPosition = touch.location(in: self.view)
         
         addPositionsToArray(touchPosition, move)
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,9 +130,6 @@ class GridTargets: TargetViewController {
         let touchPosition = touch.location(in: self.view)
         
         addPositionsToArray(touchPosition, up)
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
         
         if frames < 8 {
             
@@ -164,8 +154,14 @@ class GridTargets: TargetViewController {
     }
     
     func addPositionsToArray(_ touchPosition: CGPoint, _ event: CGFloat) {
-        let touchPos = [touchPosition.x, touchPosition.y, event]
+        let roundedX: CGFloat = (touchPosition.x * 100).rounded() / 100
+        let roundedY: CGFloat = (touchPosition.y * 100).rounded() / 100
+        
+        let touchPos = [roundedX, roundedY, event]
         touchPositions.append(touchPos)
+        
+        let timestamp = Date().toMillis()
+        touchPositions_timestamp.append(timestamp)
     }
     
         
@@ -227,9 +223,6 @@ class GridTargets: TargetViewController {
         let timestamp = Utility().initTimestamp()
         let position = [targets[randomNumbers[frames]].frame.midX, targets[randomNumbers[frames]].frame.midY]
         
-        print("\(targets[randomNumbers[frames]].frame.origin.x)   \(targets[randomNumbers[frames]].frame.origin.y)")
-        print("\(targets[randomNumbers[frames]].frame.midX)   \(targets[randomNumbers[frames]].frame.midY)")
-
         let id = String(format: "%02d", targetNumber)
         ref = Database.database().reference().child("Participant \(data.participantID)").child("Condition \(condition!)").child("Target \(id)")
         ref.updateChildValues(["Target ID": targets[randomNumbers[frames]].tag, "Start Timestamp": timestamp, "Target Position": position])

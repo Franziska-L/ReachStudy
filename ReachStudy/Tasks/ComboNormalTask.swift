@@ -54,9 +54,6 @@ class ComboNormalTask: GridTargets {
         
         addPositionsToArray(newLocation, move)
         
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
-        
         if frames < 8 && !checkPosition(position: newLocation, target: targets[randomNumbers[frames]]) {
             swipePadX = newLocation.x - (swipePadSize / 2)
             swipePadY = newLocation.y - (swipePadSize / 2)
@@ -76,7 +73,9 @@ class ComboNormalTask: GridTargets {
                 targets[randomNumbers[frames]].backgroundColor = UIColor.yellow
             }
             
-            cursorPositions.append([x, y])
+            let roundedCursorX: CGFloat = (x * 100).rounded() / 100
+            let roundedCursorY: CGFloat = (y * 100).rounded() / 100
+            cursorPositions.append([roundedCursorX, roundedCursorY])
             
             if swipePad.isHidden {
                 swipePad.isHidden = false
@@ -89,17 +88,15 @@ class ComboNormalTask: GridTargets {
     @objc func handleTap(sender: UIGestureRecognizer) {
         let touchPosition = sender.location(in: self.view)
         
+        addPositionsToArray(touchPosition, tap)
+        
         if frames < 8 && targets[randomNumbers[frames]].tag < 4 {
-            let position = cursor.frame.origin
-            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            let cursorPos = cursor.frame.origin
+            let isActive = checkPosition(position: cursorPos, target: targets[randomNumbers[frames]])
             
-            addPositionsToArray(touchPosition, tap)
-            cursorPositions.append([position.x, position.y])
-            
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
+            let roundedCursorX: CGFloat = (cursorPos.x * 100).rounded() / 100
+            let roundedCursorY: CGFloat = (cursorPos.y * 100).rounded() / 100
+            cursorPositions.append([roundedCursorX, roundedCursorY])
             
             if isActive {
                 updateScreen()
@@ -107,29 +104,10 @@ class ComboNormalTask: GridTargets {
         } else if frames < 8 && targets[randomNumbers[frames]].tag >= 4 {
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             
-            addPositionsToArray(touchPosition, tap)
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
-
             if isActive {
                 updateScreen()
             }
         }
     }
-
-    func hideViews() {
-        for button in self.targets {
-            button.isHidden = true
-            self.finishButton.isHidden = false
-            self.cursor.isHidden = true
-            self.swipePad.isHidden = true
-            self.borderView.isHidden = true 
-            
-            self.timer.invalidate()
-            self.setTotalTime()
-        }
-    }
-    
     
 }

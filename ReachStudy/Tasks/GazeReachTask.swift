@@ -23,11 +23,8 @@ class GazeReachTask: GridTargets {
         
         gazeView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: navigationBarHeight)
         gazeView.backgroundColor = UIColor.red
-        //gazeView.layer.cornerRadius = 40
-        //gazeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         gazeView.alpha = 0.3
         self.view.sendSubviewToBack(gazeView)
-        //self.view.addSubview(gazeView)
         
         borderView.isHidden = false
         
@@ -59,8 +56,12 @@ class GazeReachTask: GridTargets {
     }
     
     override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        let pos = gesture.location(in: self.view)
+
         if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             if viewIsMoved {
+                addPositionsToArray(pos, swipeUp)
+                
                 UIView.animate(withDuration: 0.4) {
                     self.navigationBar.frame.origin.y = 44
                     self.view.frame.origin.y -= self.moveDistance
@@ -75,21 +76,13 @@ class GazeReachTask: GridTargets {
         let touch: UITouch! = touches.first
         let position = touch.location(in: self.view)
         
+        addPositionsToArray(position, up)
+        
         if frames < 8 && viewIsMoved && targets[randomNumbers[frames]].tag < 4 {
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
-            addPositionsToArray(position, up)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }
         } else if frames < 8 && !viewIsMoved && targets[randomNumbers[frames]].tag >= 4 {
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
-            addPositionsToArray(position, up)
             if checkPosition(position: position, target: targets[randomNumbers[frames]]) {
                 updateScreen()
             }

@@ -43,14 +43,14 @@ class ComboGazeTask: GridTargets {
         let touchPosition = touch.location(in: self.view)
         
         addPositionsToArray(touchPosition, down)
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
-
+    
         if trackerPosition.y < middle {
             setCursorPosition(position: trackerPosition)
+            
             let cursorPos = cursor.frame.origin
-            cursorPositions.append([cursorPos.x, cursorPos.y])
+            let roundedCursorX: CGFloat = (cursorPos.x * 100).rounded() / 100
+            let roundedCursorY: CGFloat = (cursorPos.y * 100).rounded() / 100
+            cursorPositions.append([roundedCursorX, roundedCursorY])
             
             trackerActive = true
         } else {
@@ -65,10 +65,6 @@ class ComboGazeTask: GridTargets {
         let newLocation = touch.location(in: self.view)
         
         addPositionsToArray(newLocation, move)
-        
-        
-        let timestamp = Date().toMillis()
-        touchPositions_timestamp.append(timestamp)
         
         if trackerActive {
             let distX: CGFloat = newLocation.x - prevLocaiton.x
@@ -87,7 +83,9 @@ class ComboGazeTask: GridTargets {
             
             cursor.frame = CGRect(x: x, y: y, width: cursorSize, height: cursorSize)
             
-            cursorPositions.append([x, y])
+            let roundedCursorX: CGFloat = (x * 100).rounded() / 100
+            let roundedCursorY: CGFloat = (y * 100).rounded() / 100
+            cursorPositions.append([roundedCursorX, roundedCursorY])
         }
     }
     
@@ -97,27 +95,20 @@ class ComboGazeTask: GridTargets {
         let touch: UITouch! = touches.first
         let touchPosition = touch.location(in: self.view)
         
+        addPositionsToArray(touchPosition, up)
+
         if frames < 8 && trackerActive {
-            let position = cursor.frame.origin
-            let isActive = checkPosition(position: position, target: targets[randomNumbers[frames]])
+            let cursorPos = cursor.frame.origin
+            let isActive = checkPosition(position: cursorPos, target: targets[randomNumbers[frames]])
             
-            cursorPositions.append([position.x, position.y])
-            addPositionsToArray(touchPosition, up)
-            
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
+            let roundedCursorX: CGFloat = (cursorPos.x * 100).rounded() / 100
+            let roundedCursorY: CGFloat = (cursorPos.y * 100).rounded() / 100
+            cursorPositions.append([roundedCursorX, roundedCursorY])
             
             if isActive {
                 updateScreen()
             }
         } else if frames < 8 && !trackerActive {
-            addPositionsToArray(touchPosition, up)
-            
-            
-            let timestamp = Date().toMillis()
-            touchPositions_timestamp.append(timestamp)
-            
             let isActive = checkPosition(position: touchPosition, target: targets[randomNumbers[frames]])
             
             if isActive {
