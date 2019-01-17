@@ -20,18 +20,7 @@ class Reachability: TrainingTargets {
         navigationBar.layer.cornerRadius = 40
         borderView.isHidden = false
     }
-//    
-//    override func startTask() {
-//        
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReachTask") as? ReachTask {
-//            vc.data = data
-//            vc.condition = condition
-//            vc.counter = counter
-//            
-//            present(vc, animated: true, completion: nil)
-//        }
-//    }
-    
+
     override func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             if viewIsMoved {

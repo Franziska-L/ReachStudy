@@ -144,8 +144,11 @@ class GridTargets: TargetViewController {
     @objc func countTime() {
         if targetActive {
             let gazePosition = EyeTracker.getTrackerPosition()
-            let eyePosition = [gazePosition.x, gazePosition.y]
-            eyePositions.append(eyePosition)
+            
+            let roundedX: CGFloat = (gazePosition.x * 100).rounded() / 100
+            let roundedY: CGFloat = (gazePosition.y * 100).rounded() / 100
+            
+            eyePositions.append([roundedX, roundedY])
             
             let timestamp = Date().toMillis()
             eyePositions_timestamp.append(timestamp)
@@ -267,6 +270,7 @@ class GridTargets: TargetViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.targets[self.randomNumbers[0]].isHidden = false
             self.targets[self.randomNumbers[0]].backgroundColor = UIColor.yellow
+            self.targetActive = true
             
             self.setDataTarget()
             if self.condition == 2 || self.condition == 3 || self.condition == 5 || self.condition == 6 {

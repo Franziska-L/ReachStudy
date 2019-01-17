@@ -30,6 +30,14 @@ class GazeReachTask: GridTargets {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        trackerTimer.invalidate()
+        EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+        EyeTracker.instance.trackerView.alpha = 0.5
+    }
+    
     @IBAction func refreshCalibration(_ sender: Any) {
         refresh()
     }

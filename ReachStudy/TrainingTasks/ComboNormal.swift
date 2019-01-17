@@ -107,15 +107,4 @@ class ComboNormal: TrainingTargets {
         }
     }
     
-//    override func startTask() {
-//        
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ComboNormalTask") as? ComboNormalTask {
-//            vc.data = data
-//            vc.condition = condition
-//            vc.counter = counter
-//            
-//            present(vc, animated: true, completion: nil)
-//        }
-//    }
-    
 }

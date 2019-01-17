@@ -40,6 +40,14 @@ class GazeReachability: TrainingTargets {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        trackerTimer.invalidate()
+        EyeTracker.instance.trackerView.backgroundColor = UIColor.red
+        EyeTracker.instance.trackerView.alpha = 0.5
+    }
+    
     
     @objc func updateTrackerTimer() {
         let eyePosition = EyeTracker.getTrackerPosition()
@@ -72,18 +80,6 @@ class GazeReachability: TrainingTargets {
             }
         }
     }
-    
-//    override func startTask() {
-//        
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GazeReachTask") as? GazeReachTask {
-//            vc.data = data
-//            vc.condition = condition
-//            vc.counter = counter
-//            
-//            present(vc, animated: true, completion: nil)
-//        }
-//    }
-//    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch! = touches.first
