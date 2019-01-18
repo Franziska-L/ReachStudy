@@ -259,6 +259,7 @@ class GridTargets: TargetViewController {
             vc.data = data
             vc.condition = condition
             vc.counter = counter
+            vc.saveValue = 1
             
             present(vc, animated: true, completion: nil)
         }
